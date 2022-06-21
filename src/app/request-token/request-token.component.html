@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>RequestToken</title>
+</head>
+<body>
+    <div id="container">
+        <div id="main" class="bg-background">
+            <div class="content">
+                <div class="title">
+                    <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
+                </div>
+                <div class="subtitle">
+                    <h2 class="color-black">ADMIN MODULE</h2>
+                </div>
+                <div class="form">
+                    <form [formGroup]="formToken" (ngSubmit)="sendToken()">
+                        <div class="form-block color-green-dark">
+                            <label for="email">E-MAIL</label>
+                        </div>
+                        <div class="form-block">
+                            <input formControlName ="email" class="form-input" type="email"  placeholder="EMAIL">
+                        </div>
+                        <div class="form-block btn-request">
+                            <button class="bg-green-dark" type="submit">REQUEST TOKEN</button>
+                        </div>
+                    </form>
+                    <div class="link">
+                        <a href="" class="color-green-dark">PRESS HERE IF YOU HAVE ALREADY HAVE A TOKEN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="bg-footer">
+        <div class="footer">
+            <h3 class="color-title-footer">LEGAL TERMS | DATA POLICY</h3>
+            <p>COPYRIGHT © 2022 GRUPO CINCOVEINTICINCO SAS.</p>
+            <p>ALL RIGTHS RESERVED</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/request-token.js"></script>
+</body>
+</html>

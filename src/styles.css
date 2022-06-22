@@ -30,14 +30,14 @@ html, body {
 }
 #main {
     overflow: auto;
-    padding-bottom: 100px;
+    padding-bottom: 70px;
     height: 720px;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
 }
 #footer {
     position: relative;
-    height: 100px;
-    margin-top: -100px;
+    height: 70px;
+    margin-top: -70px;
     clear: both;
 }
 .content {
@@ -48,7 +48,11 @@ html, body {
 }
 .bg-background {
     background-color: var(--background);
-    color: var(--dark-grey);
+    color: var(--black);
+}
+.bg-green-dark {
+    background-color: var(--green-dark) !important;
+    color: var(--white) !important;
 }
 .footer {
     width: 100%;
@@ -82,9 +86,22 @@ html, body {
 .color-black {
     color: var(--black) !important;
 }
+.color-grey {
+    color: var(--dark-grey) !important;
+}
+.color-green-dark {
+    color: var(--green-dark) !important;
+}
 .bg-green-dark {
     background-color: var(--green-dark) !important;
     color: var(--white) !important;
+}
+.bg-dark-grey {
+    background-color: var(--dark-grey) !important;
+}
+.bg-white {
+    background-color: var(--white) !important;
+    color: var(--black) !important;
 }
 .title {
     text-align: center;
@@ -96,9 +113,6 @@ html, body {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 30px;
-}
-.color-green-dark {
-    color: var(--green-dark) !important;
 }
 .btn button {
     display: block;
@@ -168,4 +182,14 @@ html, body {
 }
 .swal-text {
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
+}
+hr {
+    height: 3px;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button {
+    cursor: pointer;
+}
+button:hover {
+    opacity: 0.5;
 }

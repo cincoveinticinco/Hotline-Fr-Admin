@@ -1,0 +1,135 @@
+#admin-container {
+    min-height: 100%;
+}
+#admin-main {
+    overflow: auto;
+    padding-bottom: 70px;
+    height: 780px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
+}
+.nav {
+    font-weight: bold;
+    height: auto;
+}
+.nav-title {
+    padding-top: 10px;
+    font-size: 25px;
+    padding-left: 10px;
+}
+ul li {
+    display: inline-block;
+}
+.nav-link {
+    padding-top: 15px;
+    padding-right: 30px;
+    float: right;
+    color: black;
+}
+.nav-link li {
+    margin-left: 40px;
+    cursor: pointer;
+}
+.nav-link li:hover {
+    opacity: 0.4;
+}
+.img-round {
+    cursor: pointer;
+    border-radius: 50%;
+    margin-top: 7px;
+}
+.grid-nav {
+    display: grid;
+    grid-template-columns: 30% 64% 6%;
+    width: auto;
+    height: 50px;
+}
+.nav-user {
+    float: right;
+    height: 100%;
+    padding-left: 18px;
+    padding-right: 14px;
+    cursor: pointer;
+}
+.nav-user:hover {
+    opacity: 0.5;
+}
+.nav-user button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+.container {
+    margin: 1%;
+}
+.btn-add {
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+    border-radius: 5%;
+}
+table {
+    margin-top: 12px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid;
+}
+table td {
+    border: 1px solid;
+    padding: 8px 15px 8px 15px;
+    font-size: 12px;
+    letter-spacing: 0;
+    max-width: 200px;
+    height: auto;
+    text-align: justify;
+}
+table th {
+    padding: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #2B2B2B;
+    font-weight: bold;
+}
+.btn-option button {
+    width: 100%;
+    margin-bottom: 3px;
+    border: none;
+    padding: 1px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-option button:hover {
+    opacity: 0.6;
+}
+.header {
+    display: inline-block;
+}
+.header span {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 30px;
+}
+select {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+input {
+    width: 250px;
+    height: 26px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-left: 5px;
+}
+mat-form-field {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.grid-header {
+    display: grid;
+    grid-template-columns: 93% 7%;
+}

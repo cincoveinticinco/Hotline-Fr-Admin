@@ -5,7 +5,10 @@
 export const environment = {
 	production: false,
 
-	
+	email: "http://52.24.127.184:8000/auth/sendToken",
+	token: "http://52.24.127.184:8000/auth/loginToken"
+
+
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Index</title>
+    <title>Login</title>
 </head>
 <body>
     <div id="container">
@@ -18,11 +18,28 @@
                 <div class="subtitle">
                     <h2 class="color-black">ADMIN MODULE</h2>
                 </div>
-                <div class="btn">
-                    <button class="bg-green-dark">LOGIN WITH GOOGLE ACOUNT</button>
+                <div class="p-text color-black">
+                    <p>
+                        TOKEN SUCCESSFULLY GENERATED. 
+                    </p>
+                    <p>
+                        PLEASE CHECK YOUR EMAIL                        
+                    </p>
                 </div>
-                <div class="btn">
-                    <a href="{% url 'request-token' %}"><button class="btn bg-green-dark">LOGIN WITH OTHER EMAIL</button></a>
+                <div class="form">
+									<form [formGroup]="formToken" (ngSubmit)="login()">
+                        <div class="form-block">
+                            <input  formControlName ="token" class="form-input" type="token"  required placeholder="TOKEN">
+                        </div>
+												<mat-error *ngIf="fToken['email'].getError('required') != null">Required Field</mat-error>
+                				<mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid token</mat-error>
+                        <div class="form-block btn-request">
+                            <button class="bg-green-dark" id="button-login" onclick="login()" type="button" disabled>LOGIN</button>
+                        </div>
+                    </form>
+                    <div class="link">
+                        <a href="" class="color-green-dark">GENERATE NEW TOKEN</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,5 +51,8 @@
             <p>ALL RIGTHS RESERVED</p>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

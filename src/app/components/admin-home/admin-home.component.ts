@@ -16,23 +16,19 @@ export class AdminHomeComponent implements OnInit {
   dataSource:any = ELEMENT_DATA;
   reason = '';
   statuses: any[] = [];
+  types: any[] = [];
+  centers: any[] = [];
+  projects: any[] = [];
   loading: boolean = true;
-
-  constructor(private _aS: AdminService) {
-    this.statuses = [
-      { 'id': 1, 'name': 'Started' },
-      { 'id': 2, 'name': 'New' },
-      { 'id': 3, 'name': 'Respond to Reporter' },
-      { 'id': 4, 'name': 'To Review' },
-      { 'id': 5, 'name': 'Closed' },
-    ];
-  };
   filters: any = {
     status: null,
     types: null,
     centers: null,
     project: null
   }
+
+  constructor(private _aS: AdminService) {
+  };
 
   ngOnInit(): void {
     this.loadData();
@@ -44,6 +40,10 @@ export class AdminHomeComponent implements OnInit {
       (data: any) => {
         console.log(data);
         //this.dataSource = data.reports ? data.reports : [];
+        this.statuses = data.report_statuses && data.report_statuses.length ? data.report_statuses : [];
+        this.types = data.incident_types && data.incident_types.length ? data.incident_types : [];
+        this.centers = data.centers && data.centers.length ? data.centers : [];
+        this.projects = data.projects && data.projects.length ? data.projects : [];
         this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
         this.loading = false;
       }

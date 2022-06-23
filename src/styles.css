@@ -289,14 +289,70 @@ table .img-text {
   text-align: center;
 }
 
-.nav-option {
+.nav-container .nav-option {
   display: flex;
   align-items: center;
   height: 100%;
   padding: 10px;
   cursor: pointer;
 }
-.nav-option:hover {
+.nav-container .nav-option:hover {
   background-color: rgba(0, 0, 0, 0.1);
   color: var(--green-dark);
+}
+
+.mat-drawer {
+  width: 40%;
+}
+.sidebar-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.sidenav-lateral .sidenav-header-btn {
+  width: 75px;
+}
+.sidenav-lateral .example-button-container {
+  padding: 10px;
+}
+.example-button-container button {
+  border: none;
+}
+.sidenav-lateral .sidenav-container {
+  margin: 5%;
+}
+.sidenav-lateral .sidenav-container h3 {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+.sidenav-lateral .sidenav-container span {
+  font-size: 13px;
+}
+.sidenav-lateral .sidenav-container p {
+  margin-top: 5px;
+  font-size: 13px;
+  text-align: justify;
+}
+.sidenav-lateral .sidenav-grid-status {
+  display: grid;
+  grid-template-columns: 18% 18% 18% 24% 18%;
+  height: auto;
+}
+.sidenav-lateral .sidenav-hr {
+  margin-top: 8px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 0;
+}
+.sidenav-lateral .sidenav-grid-center {
+  display: grid;
+  grid-template-columns: 18% 36% 42%;
+  height: auto;
+}
+.sidenav-lateral .sidenav-grid-incidentType {
+  display: grid;
+  grid-template-columns: 54% 23% 23%;
+  height: auto;
 }

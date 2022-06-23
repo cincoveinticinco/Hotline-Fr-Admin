@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { NavTopComponent } from './shared/components/nav-top/nav-top.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { AddCommentReportComponent } from './components/admin-home/add-comment-report/add-comment-report.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProjectsComponent } from './projects/projects.component';
     RequestTokenComponent,
     AdminHomeComponent,
     NavTopComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    AddCommentReportComponent
   ],
   imports: [
     BrowserModule,

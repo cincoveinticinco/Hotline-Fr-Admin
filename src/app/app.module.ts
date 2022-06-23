@@ -15,6 +15,7 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     HomeComponent,
     RequestTokenComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,

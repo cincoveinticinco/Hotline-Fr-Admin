@@ -133,6 +133,10 @@ body {
   color: var(--white) !important;
 }
 
+.bg-green{
+  background-color: #52ee5f;
+}
+
 .bg-dark-grey {
   background-color: var(--dark-grey) !important;
 }

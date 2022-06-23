@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { NavTopComponent } from './shared/components/nav-top/nav-top.component';
-
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { NavTopComponent } from './shared/components/nav-top/nav-top.component';
     HomeComponent,
     RequestTokenComponent,
     AdminHomeComponent,
-    NavTopComponent
+    NavTopComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -10,10 +11,10 @@ export class AdminHomeComponent implements OnInit {
 
   displayedColumns = ['status', 'incidentType', 'date', 'project', 'incident', 'assign', 'comments', 'pk'];
   dataSource:any = ELEMENT_DATA;
-  
   statuses: any[] = [];
+  loading: boolean = true;
 
-  constructor() {
+  constructor(private _aS: AdminService) {
     this.statuses = [
       { 'pk': 1, 'name': 'Started' },
       { 'pk': 2, 'name': 'New' },
@@ -24,6 +25,19 @@ export class AdminHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData(){
+    this.loading = true;
+    this._aS.getListReports().subscribe(
+      (data: any) => {
+        console.log(data);
+        //this.dataSource = data.reports ? data.reports : [];
+        this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
+        this.loading = false;
+      }
+    )
   }
 
   reply(id: number) {
@@ -41,9 +55,22 @@ export interface DataElement {
   date: Date;
   project: string;
   incident: string;
+  assigns?: any[];
+  comments?: any[];
 }
 const ELEMENT_DATA: DataElement[] = [
-  {pk: 1, status: 'NEW WEB', incidentType: 'DISCRIMINATION', date: new Date(), project: 'AMAZONIA S1 BRASIL', incident: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM'},
+  {pk: 1, status: 'NEW WEB', incidentType: 'DISCRIMINATION', date: new Date(), project: 'AMAZONIA S1 BRASIL', incident: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM',
+  assigns: [
+    {id: 1, first_name: 'Diego', last_name: 'Sarmiento'},
+    {id: 1, first_name: 'Ana', last_name: 'Martinez'},
+    {id: 1, first_name: 'Ana', last_name: 'Martinez'},
+    {id: 1, first_name: 'Ana', last_name: 'Martinez'},
+    {id: 1, first_name: 'Ana', last_name: 'Martinez'},
+  ],
+  comments: [
+    {id: 1, comment: 'comentario de prueba'},
+    {id: 1, comment: 'comentario de prueba'}
+  ]},
   {pk: 2, status: 'NEW WEB', incidentType: 'DISCRIMINATION', date: new Date(), project: 'AMAZONIA S1 BRASIL', incident: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM'},
   {pk: 3, status: 'NEW WEB', incidentType: 'DISCRIMINATION', date: new Date(), project: 'AMAZONIA S1 BRASIL', incident: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM'},
   {pk: 4, status: 'NEW WEB', incidentType: 'DISCRIMINATION', date: new Date(), project: 'AMAZONIA S1 BRASIL', incident: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM'},

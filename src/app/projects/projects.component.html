@@ -1,5 +1,6 @@
 <mat-sidenav-container class="sidebar-example" (backdropClick)="close()">
     <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
+        
         <div class="bg-orange-lite">
             <div class="example-button-container">
                 <button mat-fab (click)="close()" class="bg-orange-lite" aria-label="Example icon button with a delete icon">
@@ -98,37 +99,12 @@
     <mat-sidenav-content>
         <div id="admin-container">
             <div id="admin-main" class="bg-background">
-                <div class="nav">
-                    <ul>
-                        <div class="grid-nav">
-                            <div>
-                                <li class="nav-title">
-                                    <span class="color-green-dark">HOTLINE</span>REPORT
-                                </li>
-                            </div>
-                            <div>
-                                <span class="nav-link">
-                                    <li>
-                                        <a [routerLink]="">INCIDENTS</a>
-                                    </li>
-                                    <li>
-                                        <a [routerLink]="">USERS</a>
-                                    </li>
-                                   
-                                </span>
-                            </div>
-                            <div>
-                                <li>
-                                    <img class="img-round" src="../../../assets/img/english.svg.png" width="36" height="36" alt="Language">
-                                </li>
-                                <li class="nav-user bg-green-dark">
-                                    <button class="bg-green-dark">LA</button>
-                                </li>
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-                <hr class="bg-dark-grey">
+                <app-nav-top>
+                    <div [routerLink]="'../admin-home'" class="nav-option"><span>INCIDENTS</span></div>
+                    <div class="nav-option"><span>USERS</span></div>       
+                </app-nav-top>
+               
+                <hr class="bg-footer">
                 <div class="container color-black">
                     <form class="example-form">
                         <div class="header grid-header">
@@ -155,47 +131,54 @@
                         <table mat-table [dataSource]="dataSource">
                             <ng-container  matColumnDef="project">
                                 <th mat-header-cell *matHeaderCellDef >PROJECT</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.project}} </td>
-                            </ng-container>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element">{{element.p_name | nulls}}</td>
+                            </ng-container>     
                             <ng-container matColumnDef="season">
                                 <th mat-header-cell *matHeaderCellDef>SEASON </th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element">{{element.season}}</td>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element">{{element.p_season | nulls}}</td>
                             </ng-container>
                             <ng-container matColumnDef="center">
                                 <th mat-header-cell *matHeaderCellDef>CENTER</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.center | date: 'mediumDate' }} </td>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.center_name | nulls }} </td>
                             </ng-container>
                             <ng-container matColumnDef="location">
                                 <th mat-header-cell *matHeaderCellDef>LOCATION</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.location}} </td>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.location_name | nulls}} </td>
                             </ng-container>
                             <ng-container matColumnDef="status">
                                 <th mat-header-cell *matHeaderCellDef>STATUS</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> <span class="bg-green">{{element.status}}</span></td>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> <span class="bg-green">{{element.status | nulls}}</span></td>
                             </ng-container>
                             <ng-container matColumnDef="alias">
                                 <th mat-header-cell *matHeaderCellDef>ALIAS</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.alias}} </td>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.alias | nulls}} </td>
                             </ng-container>
                             <ng-container matColumnDef="assign">
                                 <th mat-header-cell *matHeaderCellDef>ASSIGN</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.assign}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="open_inc">
+                                <td style="text-align: center;" mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.pk)">
+                                    <ng-container *ngFor="let assing of element.assigns">
+                                        <span class="img-text">{{assing.value_initials | uppercase}}</span>
+                                    </ng-container>
+                                    <!-- <div *ngIf="item[head.list].length > 2" class="box-img box-imgg-asset" >
+                                        <div (mouseleave)="_gS.hidemenu()" (mouseenter)="onClickUser($event, item)">
+                                            <span>+{{item[head.list].length - 2}}</span>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                </ng-container>
+                            <ng-container  matColumnDef="open_inc">
                                 <th mat-header-cell *matHeaderCellDef>OPEN INC.</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.open_inc}} </td>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.open_reports | nulls}} </td>
                             </ng-container>
                             <ng-container matColumnDef="closed_inc">
                                 <th mat-header-cell *matHeaderCellDef>CLOSED INC.</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.closed_inc}} </td>
+                                <td style="text-align: center;" (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.closed_reports | nulls}} </td>
                             </ng-container>
                             <ng-container matColumnDef="pk">
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let element; let i = index">
-                                    <div class="btn-option">
-                                        <button class="bg-background" (click)="replyIncident(element.pk)">
-                                            REPLY
-                                        </button>
+                                    <div style="text-align: center;" class="btn-option">
+                                        <mat-icon aria-hidden="false" aria-label="comments" style="color: #3C9096;">drive_file_rename_outline</mat-icon>
                                     </div>
                                 </td>
                             </ng-container>

@@ -22,4 +22,7 @@ export class AdminService {
 		return this.http.get(this.service_url + 'admin/listReports');
 	}
 
+  getListProjects(){
+		return this.http.get(this.service_url + 'admin/getProjects');
+  }
 }

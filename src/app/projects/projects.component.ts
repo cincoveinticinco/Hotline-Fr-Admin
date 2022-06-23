@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-projects',
@@ -11,22 +12,41 @@ export class ProjectsComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
  
   displayedColumns = ['project', 'season', 'center', 'location', 'status', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
-  dataSource:any = ELEMENT_DATA;
+  dataSource:any = [];
   
   reason = '';
   statuses: any[] = [];
+  loading: boolean = true;
+  projects: any[] = [];
+  
 
-  constructor() {
-    this.statuses = [
-      { 'pk': 1, 'name': 'Started' },
-      { 'pk': 2, 'name': 'New' },
-      { 'pk': 3, 'name': 'Respond to Reporter' },
-      { 'pk': 4, 'name': 'To Review' },
-      { 'pk': 5, 'name': 'Closed' },
-    ];
+  constructor(private _aS: AdminService) {
+    
   }
 
   ngOnInit(): void {
+    this._aS.getListProjects().subscribe(
+      (data: any) => {  
+        console.log(data.projects);
+        this.projects = data.projects
+        this.dataSource = this.projects 
+      }
+    )
+    
+
+  }
+
+  loadData(){
+    
+    this.loading = true;
+    this._aS.getListProjects().subscribe(
+      (data: any) => {  
+        console.log(data);
+        this.dataSource = data.projects ? data.projects : [];
+        this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
+        this.loading = false;
+      }
+    )
   }
 
   showDetails(pk: number) {
@@ -55,20 +75,8 @@ export interface DataElement {
   alias: string;
   open_inc: string;
   closed_inc: string
+  assigns?: any[];
 }
-const ELEMENT_DATA: DataElement[] = [
-  {pk: 1, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 2, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 3, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 4, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 5, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 6, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 7, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 8, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 9, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 10, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
-  {pk: 11, project: 'AMAZONIA S1 BRASIL', season: '2', center: new Date(), location: 'MEXICO', status: 'OPEN', alias: 'LOREM IPSUN DOLOR SIT AMENT, CONSECTUR ADIPISING ELIT. PHASELLUS ALIQUET FELIS UT FRIGALLANGA IACULIUS. VIVAMOS CURSUS ELIT ET DIAM INTERDUM', open_inc: '20', closed_inc: '10'},
 
-];
 
 

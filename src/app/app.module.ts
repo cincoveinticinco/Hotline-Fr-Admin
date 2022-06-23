@@ -17,6 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { NavTopComponent } from './shared/components/nav-top/nav-top.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { NullsPipe } from './pipes/nulls.pipe';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ProjectsComponent } from './projects/projects.component';
     RequestTokenComponent,
     AdminHomeComponent,
     NavTopComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    NullsPipe,
+    AddProjectComponent
   ],
   imports: [
     BrowserModule,

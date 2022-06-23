@@ -1,0 +1,12 @@
+<div class="left-modal">
+	<div class="close" (click)="close($event)"></div>
+	<h1 style="margin-top: 50px;">hola</h1>
+	<h3 style="margin-bottom: 50px;">prueba</h3>
+    		<form #form="ngForm"  novalidate>
+      <!-- sumbit -->
+			<div >
+				<input name="sumbit" type="submit" value="{{'Save'}}"  [disabled]="form.invalid">
+			</div>
+
+		</form>
+	</div>

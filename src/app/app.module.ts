@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTableModule } from '@angular/material/table';
-import { MatSelectModule } from '@angular/material/select'; 
+import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,6 @@ import { MatIconModule } from '@angular/material/icon';
     RequestTokenComponent,
     AdminHomeComponent
   ],
-  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatInputModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

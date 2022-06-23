@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,27 +17,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		LoginComponent,
-		HomeComponent,
-		RequestTokenComponent,
-		AdminHomeComponent
-	],
-
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		ReactiveFormsModule,
-		BrowserAnimationsModule,
-		MatTableModule,
-		MatSelectModule,
-		MatInputModule,
-		MatIconModule,
-		HttpClientModule,
-
-	],
-	providers: [],
-	bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    RequestTokenComponent,
+    AdminHomeComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    MatSidenavModule,
+    HttpClientModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

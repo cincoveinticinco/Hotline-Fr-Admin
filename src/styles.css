@@ -9,26 +9,27 @@ body {
 }
 
 :root {
-  --background: #EFEFEF;
-  --yellow: #f6fa8f;
-  --blue-dark: #3E82D8;
-  --blue: #A2DDE2;
-  --green: #A2E2A7;
-  --red: #ed4079;
-  --purple: #a74bc7;
-  --dark-grey: #707070;
-  --black-light: #434343;
-  --black: #2B2B2B;
-  --white: #FFFFFF;
-  --orange: #ff963c;
-  --pink: #EFCAEA;
-  --green-dark: #3C9096;
-  --web-grey: #E0E0E0;
-  --font-title: 0.7em;
-  --font-value: 1.3em;
-  --font-secondary: 0.6875em;
+    --background: #EFEFEF;
+    --yellow: #f6fa8f;
+    --blue-dark: #3E82D8;
+    --blue: #A2DDE2;
+    --green: #A2E2A7;
+    --red: #ed4079;
+    --purple: #a74bc7;
+    --dark-grey: #707070;
+    --black-light: #434343;
+    --black: #2B2B2B;
+    --white: #FFFFFF;
+    --orange: #FBBC60;
+    --orange-lite: #F3C960;
+    --yellow: #FCF76E;
+    --pink: #EFCAEA;
+    --green-dark: #3C9096;
+    --web-grey: #E0E0E0;
+    --font-title: 0.7em;
+    --font-value: 1.3em;
+    --font-secondary: 0.6875em;
 }
-
 #container {
   min-height: 100%;
 }
@@ -64,7 +65,22 @@ body {
   background-color: var(--green-dark) !important;
   color: var(--white) !important;
 }
-
+.bg-yellow {
+    background-color: var(--yellow);
+    color: var(--black);
+}
+.bg-orange {
+    background-color: var(--orange);
+    color: var(--black);
+}
+.bg-orange-lite {
+    background-color: var(--orange-lite);
+    color: var(--black);
+}
+.bg-black {
+    background-color: var(--black);
+    color: var(--white);
+}
 .footer {
   width: 100%;
   text-align: center;

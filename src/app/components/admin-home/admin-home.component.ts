@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-admin-home',
@@ -9,8 +10,11 @@ import { AdminService } from 'src/app/services/admin.service';
 
 export class AdminHomeComponent implements OnInit {
 
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+
   displayedColumns = ['status', 'incidentType', 'date', 'project', 'incident', 'assign', 'comments', 'pk'];
   dataSource:any = ELEMENT_DATA;
+  reason = '';
   statuses: any[] = [];
   loading: boolean = true;
 
@@ -40,11 +44,19 @@ export class AdminHomeComponent implements OnInit {
     )
   }
 
-  reply(id: number) {
+  showDetails(pk: number) {
+    console.log(pk);
+  }
+
+  close() {
+    this.sidenav.close();
+  }
+
+  replyIncident(id: number) {
     console.log(id);
   }
 
-  close(id: number) {
+  closeIncident(id: number) {
     console.log(id);
   }
 }

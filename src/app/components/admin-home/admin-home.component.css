@@ -83,6 +83,7 @@ table td {
     max-width: 200px;
     height: auto;
     text-align: justify;
+    cursor: pointer;
 }
 table th {
     padding: 15px;
@@ -148,4 +149,65 @@ table td.commets span{
     justify-content: center;
     align-items: center;
     color: var(--white);
+}
+.sidebar-example {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.mat-drawer {
+    width: 40%;
+}
+.sidenav-grid-header {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 20px 20px 20px 20px;
+    height: 3%;
+}
+.sidenav-header-btn {
+    width: 75px;
+}
+.example-button-container {
+    padding: 10px;
+}
+.example-button-container button {
+    border: none;
+}
+.sidenav-container {
+    margin: 5%;
+}
+.sidenav-container h3 {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+.sidenav-container span {
+    font-size: 13px;
+}
+.sidenav-container p {
+    margin-top: 5px;
+    font-size: 13px;
+    text-align: justify;
+}
+.sidenav-grid-status {
+    display: grid;
+    grid-template-columns: 18% 18% 18% 24% 18%;
+    height: auto;
+}
+.sidenav-hr {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 0;
+}
+.sidenav-grid-center {
+    display: grid;
+    grid-template-columns: 18% 36% 42%;
+    height: auto;
+}
+.sidenav-grid-incidentType {
+    display: grid;
+    grid-template-columns: 54% 23% 23%;
+    height: auto;
 }

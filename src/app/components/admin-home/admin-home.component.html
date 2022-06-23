@@ -196,11 +196,24 @@
                             </ng-container>
                             <ng-container matColumnDef="assign">
                                 <th mat-header-cell *matHeaderCellDef>ASSIGN</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.assign}} </td>
-                            </ng-container>
+                                <td mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.pk)">
+                                    <ng-container *ngFor="let assing of element.assigns">
+                                        <span class="img-text">{{assing.value_initials | uppercase}}</span>
+                                    </ng-container>
+
+                                    <!-- <div *ngIf="item[head.list].length > 2" class="box-img box-imgg-asset" >
+                                        <div (mouseleave)="_gS.hidemenu()" (mouseenter)="onClickUser($event, item)">
+                                            <span>+{{item[head.list].length - 2}}</span>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                </ng-container>
                             <ng-container matColumnDef="comments">
                                 <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.comments}} </td>
+                                <td class="commets" mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.pk)">
+                                    <mat-icon aria-hidden="false" aria-label="comments">forum</mat-icon>
+                                    <span>{{element.comments ? element.comments.length : 0}}</span>
+                                </td>
                             </ng-container>
                             <ng-container matColumnDef="pk">
                                 <th mat-header-cell *matHeaderCellDef></th>

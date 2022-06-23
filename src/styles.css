@@ -48,6 +48,10 @@ body {
   clear: both;
 }
 
+div {
+  box-sizing: border-box;
+}
+
 .content {
   margin: 12% 35% 10% 35%;
 }
@@ -275,4 +279,20 @@ table .img-text {
   margin-right: -3px;
   color: var(--white);
   border: 1px solid #ffffff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.nav-option {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+.nav-option:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--green-dark);
 }

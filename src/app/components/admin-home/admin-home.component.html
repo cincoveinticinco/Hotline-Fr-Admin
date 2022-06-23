@@ -98,42 +98,12 @@
     <mat-sidenav-content>
         <div id="admin-container">
             <div id="admin-main" class="bg-background">
-                <div class="nav">
-                    <ul>
-                        <div class="grid-nav">
-                            <div>
-                                <li class="nav-title">
-                                    <span class="color-black">ONE<span class="color-green-dark">HOTLINE</span></span>
-                                </li>
-                            </div>
-                            <div>
-                                <span class="nav-link">
-                                    <li>
-                                        <a [routerLink]="">USERS</a>
-                                    </li>
-                                    <li>
-                                        <a [routerLink]="">CENTERS</a>
-                                    </li>
-                                    <li>
-                                        <a [routerLink]="">PROJECTS</a>
-                                    </li>
-                                    <li>
-                                        <a [routerLink]="">INCIDENTS</a>
-                                    </li>
-                                </span>
-                            </div>
-                            <div>
-                                <li>
-                                    <img class="img-round" src="../../../assets/img/english.svg.png" width="36" height="36" alt="Language">
-                                </li>
-                                <li class="nav-user bg-green-dark">
-                                    <button class="bg-green-dark">LA</button>
-                                </li>
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-                <hr class="bg-dark-grey">
+                <app-nav-top>
+                    <div class="nav-option"><span>USERS</span></div>
+                    <div class="nav-option"><span>CENTERS</span></div>
+                    <div class="nav-option"><span>PROJECTS</span></div>
+                    <div class="nav-option"><span>INCIDENTS</span></div>
+                </app-nav-top>
                 <div class="container color-black">
                     <form class="example-form">
                         <div class="header grid-header">
@@ -141,27 +111,27 @@
                                 <span>
                                     INCIDENTS
                                 </span>
-                                <select>
+                                <select name="status" [(ngModel)]="filters.status">
                                     <option disabled selected>ALL STATUSES</option>
-                                    <option *ngFor="let status of statuses" [value]="status.pk">
+                                    <option *ngFor="let status of statuses" [value]="status.id">
                                         {{ status.name | uppercase }}
                                     </option>
                                 </select>
-                                <select>
+                                <select name="types" [(ngModel)]="filters.types">
                                     <option disabled selected>ALL TYPES</option>
-                                    <option *ngFor="let status of statuses" [value]="status.pk">
+                                    <option *ngFor="let status of statuses" [value]="status.id">
                                         {{ status.name | uppercase }}
                                     </option>
                                 </select>
-                                <select>
+                                <select name="centers" [(ngModel)]="filters.centers">
                                     <option disabled selected>ALL CENTERS</option>
-                                    <option *ngFor="let status of statuses" [value]="status.pk">
+                                    <option *ngFor="let status of statuses" [value]="status.id">
                                         {{ status.name | uppercase }}
                                     </option>
                                 </select>
-                                <select>
+                                <select name="project" [(ngModel)]="filters.project">
                                     <option disabled selected>ALL PROJECTS</option>
-                                    <option *ngFor="let status of statuses" [value]="status.pk">
+                                    <option *ngFor="let status of statuses" [value]="status.id">
                                         {{ status.name | uppercase }}
                                     </option>
                                 </select>
@@ -176,27 +146,27 @@
                         <table mat-table [dataSource]="dataSource">
                             <ng-container matColumnDef="status">
                                 <th mat-header-cell *matHeaderCellDef>STATUS</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"><span class="bg-yellow">{{element.status}}</span></td>
+                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"><span class="bg-yellow">{{element.status}}</span></td>
                             </ng-container>
                             <ng-container matColumnDef="incidentType">
                                 <th mat-header-cell *matHeaderCellDef>INCIDENT TYPE</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"><span class="bg-orange">{{element.incidentType}}</span></td>
+                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"><span class="bg-orange">{{element.incidentType}}</span></td>
                             </ng-container>
                             <ng-container matColumnDef="date">
                                 <th mat-header-cell *matHeaderCellDef>DATE</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.date | date: 'mediumDate' }} </td>
+                                <td class="text-center" (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.date | date: 'mediumDate' }} </td>
                             </ng-container>
                             <ng-container matColumnDef="project">
                                 <th mat-header-cell *matHeaderCellDef>PROJECT</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.project}} </td>
+                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.project}} </td>
                             </ng-container>
                             <ng-container matColumnDef="incident">
                                 <th mat-header-cell *matHeaderCellDef>INCIDENT</th>
-                                <td (click)="sidenav.open(); showDetails(element.pk)" mat-cell *matCellDef="let element"> {{element.incident}} </td>
+                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.incident}} </td>
                             </ng-container>
                             <ng-container matColumnDef="assign">
                                 <th mat-header-cell *matHeaderCellDef>ASSIGN</th>
-                                <td mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.pk)">
+                                <td class="text-center" mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.id)">
                                     <ng-container *ngFor="let assing of element.assigns">
                                         <span class="img-text">{{assing.value_initials | uppercase}}</span>
                                     </ng-container>
@@ -210,21 +180,21 @@
                                 </ng-container>
                             <ng-container matColumnDef="comments">
                                 <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
-                                <td class="commets" mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.pk)">
+                                <td class="commets" mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.id)">
                                     <mat-icon aria-hidden="false" aria-label="comments">forum</mat-icon>
                                     <span>{{element.comments ? element.comments.length : 0}}</span>
                                 </td>
                             </ng-container>
-                            <ng-container matColumnDef="pk">
+                            <ng-container matColumnDef="id">
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let element; let i = index">
                                     <div class="btn-option">
-                                        <button class="bg-background" (click)="replyIncident(element.pk)">
+                                        <button class="bg-background" (click)="replyIncident(element.id)">
                                             REPLY
                                         </button>
                                     </div>
                                     <div class="btn-option">
-                                        <button class="bg-green-dark" (click)="closeIncident(element.pk)">
+                                        <button class="bg-green-dark" (click)="closeIncident(element.id)">
                                             CLOSE
                                         </button>
                                     </div>

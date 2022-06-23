@@ -1,23 +1,29 @@
 #admin-container {
-    min-height: 100%;
+    height: 100%;
 }
 #admin-main {
-    overflow: auto;
     padding-bottom: 70px;
-    height: 780px;
+    height: 100%;
+    overflow: hidden;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
 }
 .container {
     margin: 1%;
+    height: 100%;
+}
+
+.table-container {
+    height: calc(100% - 120px);
+    overflow: auto;
+    display: block;
 }
 .btn-add {
     padding: 10px;
     border: none;
     font-weight: bold;
-    border-radius: 5%;
+    border-radius: 5px;
 }
 table {
-    margin-top: 12px;
     width: 100%;
     background-color: white;
     border: 1px solid;
@@ -55,16 +61,16 @@ table th {
 .header span {
     font-size: 30px;
     font-weight: bold;
-    margin-right: 30px;
-}
-select {
-    width: 250px;
-    height: 30px;
-    margin-bottom: 10px;
     margin-right: 10px;
 }
+select {
+    width: 150px;
+    height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
 input {
-    width: 250px;
+    width: 150px;
     height: 26px;
     margin-bottom: 10px;
     margin-right: 10px;
@@ -78,7 +84,7 @@ mat-form-field {
 }
 .grid-header {
     display: grid;
-    grid-template-columns: 93% 7%;
+    grid-template-columns: auto 120px;
 }
 
 table td.commets{
@@ -95,65 +101,4 @@ table td.commets span{
     justify-content: center;
     align-items: center;
     color: var(--white);
-}
-.sidebar-example {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-.mat-drawer {
-    width: 40%;
-}
-.sidenav-grid-header {
-    display: grid;
-    grid-template-columns: 70% 30%;
-    padding: 20px 20px 20px 20px;
-    height: 3%;
-}
-.sidenav-header-btn {
-    width: 75px;
-}
-.example-button-container {
-    padding: 10px;
-}
-.example-button-container button {
-    border: none;
-}
-.sidenav-container {
-    margin: 5%;
-}
-.sidenav-container h3 {
-    font-size: 12px;
-    margin-bottom: 2px;
-}
-.sidenav-container span {
-    font-size: 13px;
-}
-.sidenav-container p {
-    margin-top: 5px;
-    font-size: 13px;
-    text-align: justify;
-}
-.sidenav-grid-status {
-    display: grid;
-    grid-template-columns: 18% 18% 18% 24% 18%;
-    height: auto;
-}
-.sidenav-hr {
-    margin-top: 8px;
-    margin-bottom: 15px;
-    width: 100%;
-    height: 0;
-}
-.sidenav-grid-center {
-    display: grid;
-    grid-template-columns: 18% 36% 42%;
-    height: auto;
-}
-.sidenav-grid-incidentType {
-    display: grid;
-    grid-template-columns: 54% 23% 23%;
-    height: auto;
 }

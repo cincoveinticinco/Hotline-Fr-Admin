@@ -1,12 +1,19 @@
-<div class="left-modal">
-	<div class="close" (click)="close($event)"></div>
-	<h1 style="margin-top: 50px;">hola</h1>
-	<h3 style="margin-bottom: 50px;">prueba</h3>
-    		<form #form="ngForm"  novalidate>
-      <!-- sumbit -->
-			<div >
-				<input name="sumbit" type="submit" value="{{'Save'}}"  [disabled]="form.invalid">
+<div class="sidenav-lateral">
+	<div class="bg-green">
+		<div class="example-button-container">
+			<button mat-fab  class="bg-green" aria-label="Example icon button with a delete icon">
+			  <mat-icon>close</mat-icon>
+			</button>
+		</div>
+	</div>
+	<div class="sidenav-grid-header bg-green">
+		<div>
+			<div>
+				<h1>#12JG12MM</h1>
 			</div>
-
-		</form>
+		</div>
+		<div class="btns-close-reply">
+			<button class="sidenav-header-btn bg-black" style="margin-left: 20px;">REPLY</button>
+			<button class="sidenav-header-btn bg-black" style="margin-left: 10px;" >CLOSE</button>
+		</div>
 	</div>

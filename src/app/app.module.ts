@@ -19,6 +19,7 @@ import { NavTopComponent } from './shared/components/nav-top/nav-top.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { NullsPipe } from './pipes/nulls.pipe';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { AddCommentReportComponent } from './components/admin-home/add-comment-report/add-comment-report.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddProjectComponent } from './add-project/add-project.component';
     NavTopComponent,
     ProjectsComponent,
     NullsPipe,
-    AddProjectComponent
+    AddProjectComponent,
+    AddCommentReportComponent
   ],
   imports: [
     BrowserModule,

@@ -46,46 +46,46 @@
               </div>
               <div>
                   <h3 class="color-green-dark">PROJECT</h3>
-                  <span>{{report.report?.project_name || '-'}}</span>
+                    <span>{{getQuestion(9)}}</span>
               </div>
               <div>
                   <h3 class="color-green-dark">POSITION ON PRODUCTION</h3>
-                  <span>{{report.report?.position || '-'}}</span>
+                    <span>{{getQuestion(11)}}</span>
               </div>
           </div>
           <hr class="sidenav-hr">
-          <div class="sidenav-grid-incidentType">
+          <div class="sidenav-grid-incidentType" style="height: 50px;">
               <div>
                   <h3 class="color-green-dark">INCIDENT TYPE</h3>
-                  <span>{{report.report?.Incident_type || '-'}}</span>
+                    <span>{{getQuestion(10)}}</span>
               </div>
               <div>
                   <h3 class="color-green-dark">DATE INCIDENT</h3>
-                  <span>{{(report.report?.incident_date | date: 'mediumDate') || '--/--/----'}}</span>
+                    <span>{{getQuestion(15)}}</span>
               </div>
               <div>
                   <h3 class="color-green-dark">LOCATION INCIDENT</h3>
-                  <span>{{report.report?.incident_loc || '-'}}</span>
+                    <span>{{getQuestion(16)}}</span>
               </div>
           </div>
           <hr class="sidenav-hr">
-          <div class="sidenav-incident-description">
+          <div class="sidenav-incident-description" style="height: 50px;">
               <h3 class="color-green-dark">INCIDENT</h3>
-              <p>{{report.report?.incident_description || '-'}}</p>
+                <p>{{getQuestion(13)}}</p>
           </div>
           <hr class="sidenav-hr">
           <div class="sidenav-people-involved sidenav-section">
               <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
-              <p>{{report.report?.people || '-'}}</p>
+                <p >{{getQuestion(14)}}</p>
           </div>
           <div class="sidenav-container-discussed">
               <div class="sidenav-section">
                 <h3 class="color-green-dark">REPEATED INCIDENT</h3>
-                <p>{{report.report?.incident_repeat || '-'}}</p>
+                    <p>{{getQuestion(17)}}</p>
               </div>
               <div class="sidenav-section" style="flex: 1 1 300px;">
                 <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
-                <p>{{report.report?.incident_discussed || '-'}}</p>
+                    <p>{{getQuestion(18)}}</p>
               </div>
           </div>
           <div class="sidenav-container-responses">

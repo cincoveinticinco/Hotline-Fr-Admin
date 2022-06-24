@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 
 
 import * as _ from 'lodash';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

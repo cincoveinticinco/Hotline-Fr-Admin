@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -13,23 +13,33 @@ export class AddProjectComponent implements OnInit {
   @Output() notify = new EventEmitter<string>();
 
   loading: boolean = true;
-  centers: any[] = [];
-  locations: any[] = [];
+  center_id: any[] = [];
+  location_name: any[] = [];
   filters: any = {
-    centers: null,
-    locations: null,
+    center_id: null,
+    location_name: null,
   }
   form: FormGroup;
+  project: any = {
+    p_name: "",
+    p_season: "",
+    alias: ""
+  }
 
   Save() {
-		if (this.form.valid) {
-			this.form.value.email
-			this._aS.addProject().subscribe(
+    console.log(this.form)
+		
+			this.form.value.users
+      this.form.value.p_name
+      this.form.value.p_season
+      this.form.value.alias
+			this._aS.addProject(this.form.value).subscribe(
 				data => {
 					console.log(data)
-				}
+          this.form.reset()
+          this.notify.emit();				}
 			);
-		}
+		
 	}
 
 	get fproject() {
@@ -37,40 +47,37 @@ export class AddProjectComponent implements OnInit {
 	}
 
 
-  addProject(){ 
-    this.loading = true;
-    this._aS.addProject().subscribe(
-      (data: any) => {  
-        console.log(data);
-        this.loading = false;
-        this.notify.emit();
-      }
-    )
-  }
-
   close() {
     this.closePanel.emit();
   }
 
   constructor(private _aS: AdminService, private fb: FormBuilder,) { 
     this.form = this.fb.group({
-      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])),
-      centers: new FormControl(''),
-      locations: new FormControl('')		
+      users: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])),
+      center_id: new FormControl(''),
+      location_name: new FormControl(''),
+      p_name: new FormControl(''),
+      p_season: new FormControl(''),
+      alias: new FormControl('')
+
+
     })
   }
 
   ngOnInit(): void {
+    this.form.reset()
     console.log(this.itemact)
     this.loading = true;
     this._aS.getListProjects().subscribe(
       (data: any) => {  
         console.log(data);
-        this.centers = data.centers && data.centers.length ? data.centers : [];
-        this.locations = data.locations && data.locations.length ? data.locations : [];
+        this.center_id = data.centers && data.centers.length ? data.centers : [];
+        this.location_name = data.locations && data.locations.length ? data.locations : [];
         this.loading = false;
       }
     )
   }
 
 }
+
+

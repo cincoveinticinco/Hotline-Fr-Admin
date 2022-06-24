@@ -1,6 +1,10 @@
 <mat-sidenav-container class="sidebar-example" (backdropClick)="close()">
     <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
-        <app-add-project (closePanel)="close()" [itemact]="itemact"></app-add-project>     
+        <app-add-project 
+        (closePanel)="close()" 
+        (notify)="update()"
+        [itemact]="itemact">
+        </app-add-project>
     </mat-sidenav>
     <mat-sidenav-content>
         <div id="admin-container">
@@ -18,16 +22,14 @@
                                 <span>
                                     PROJECTS
                                 </span>
-                                
-                                <select class="filter" name="centers" [(ngModel)]="filters.centers"> 
-                                    <option selected [value]="null">ALL CENTERS</option>                               
-                                    <option *ngFor="let center of centers" [value]="center.id">
+                                <mat-select style="border-style: double; padding: 1px;" class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="CENTERS" disableOptionCentering>
+                                    <mat-option [value]="null">ALL CENTERS</mat-option>
+                                    <mat-option *ngFor="let center of centers" [value]="center.id">
                                         {{ center.center_name | uppercase }}
-                                    </option>
-                                </select>
-                                
-                                <input class="" type="text" placeholder="SEARCH"/>
-                            </div>
+                                    </mat-option>
+                                </mat-select>                  
+                                <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" class="filter" type="text" placeholder="SEARCH"/>                        
+                                </div>
                             <div>
                                 <button type="button" (click)="sidenav.open();" class="btn-add bg-green-dark">ADD PROJECT</button>
                             </div>

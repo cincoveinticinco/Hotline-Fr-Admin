@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 
 
 import * as _ from 'lodash';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -137,8 +136,16 @@ export class AdminService {
 		return this.http.get(this.service_url + 'admin/getProjects');
   }
 
-  addProject(){
-		return this.http.post(this.service_url + 'admin/newProject', '')
+  addProject(params: any){
+    let queryParams = {
+      'p_name': params.p_name,
+			'p_season': params.p_season,
+			'alias': [params.alias],
+      'users': [params.users],
+			'center_id': params.center_id,
+			'location_name': params.location_name,
+    }
+		return this.http.post(this.service_url + 'admin/newProject', queryParams, this.httpOptions)
 			.pipe(
 				map((response: any) => {
 					return response;

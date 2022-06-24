@@ -2,7 +2,7 @@
 	<form [formGroup]="form" (ngSubmit)="Save()">
 	<div class="bg-green">
 		<div class="example-button-container">
-			<button mat-fab (click)="close()" class="bg-green close-button">
+			<button mat-fab type="button" (click)="close()" class="bg-green close-button">
 				<mat-icon>close</mat-icon>
 			</button>
 		</div>
@@ -19,28 +19,28 @@
       <div class="sidenav-grid-project">
           <div>
               <h3 class="color-green-dark">PROJEC NAME</h3>
-			  <input class="add-insert-name" type="text" placeholder="Insert"/>         
+			  <input formControlName ="p_name" class="add-insert-name" type="text" placeholder="Insert"/>         
 			 </div>
           <div>
               <h3 style="margin-left: -80%;" class="color-green-dark">SEASON</h3>
-              <input class="add-insert-season" type="text" placeholder="Insert"/>
+              <input formControlName ="p_season" class="add-insert-season" type="text" placeholder="Insert"/>
           </div>
       </div>
       <div class="sidenav-grid-center">
           <div>
               <h3 class="color-green-dark">CENTER</h3>
-              <mat-select class="dropdown-center" name="centers" formControlName="centers"> 
+              <mat-select class="dropdown-center" name="center_id" formControlName="center_id" placeholder="Insert"> 
 				<mat-label>Select</mat-label>
-				<mat-option *ngFor="let center of centers" [value]="center.id">
+				<mat-option *ngFor="let center of center_id" [value]="center.id">
 					{{ center.center_name | uppercase }}
 				</mat-option>                            
 			</mat-select>
           </div>
           <div>
               <h3 style="margin-left: -130%;" class="color-green-dark">LOCATION</h3>
-			  <mat-select class="dropdown-location" name="locations" formControlName="locations">
+			  <mat-select class="dropdown-location" name="location_name" formControlName="location_name" placeholder="Insert">
 				<option selected [value]="null">Select</option>   
-				<mat-option selected [value]="null" *ngFor="let location of locations" [value]="location.id">
+				<mat-option selected [value]="null" *ngFor="let location of location_name" [value]="location.id">
 					{{ location.location_name | uppercase }}
 				</mat-option>                            
 			</mat-select>
@@ -51,23 +51,23 @@
           <div>
               <h3 style="font-size: 1.3rem; margin-bottom: -7px" class="color-green-dark">ALIAS</h3>
 			  <hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
-			  <input class="add-insert-name" type="text" placeholder="Insert"/><button type="button" class="btn-add bg-green-dark add-button">ADD </button>
+			  <input formControlName ="alias" class="add-insert-name" type="text" placeholder="Insert"/><button type="button" class="btn-add bg-green-dark add-button">ADD </button>
      
   			</div>
 		</div>
 		<div class="sidenav-grid-incidentType">
 			<div>
-				<h3 style="font-size: 1.3rem; margin-bottom: -7px" class="label-user color-green-dark">USERS</h3>
+				<h3 style="font-size: 1.3rem; margin-bottom: -7px" class="label-user color-green-dark">EMAIL</h3>
 				<hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
 				<h3 style="font-size: 0.8rem; margin-top: -10px;" class="label-user color-green-dark">EMAIL</h3>
-				<input  formControlName ="email" class="add-insert-name" type="token"  required placeholder="Email">
+				<input  formControlName ="users" class="add-insert-name" type="token"  required placeholder="Email">
 				<button type="button" class="btn-add bg-green-dark add-button">ADD </button>
-				<mat-error *ngIf="fproject['email'].getError('required') != null">Required Field</mat-error>
+				<mat-error *ngIf="fproject['users'].getError('required') != null">Required Field</mat-error>
 
 				</div>
 		  </div>
 		  <hr style="height: 1px; background-color: #8e9191;" class="sidenav-hr">
-		 <button type="submit" name="submit" class="btn-add bg-green-dark save-button" onclick="Save()" [disabled]="form.invalid">SAVE</button>
+		 <button type="submit" name="submit" class="btn-add bg-green-dark save-button" >SAVE</button>
 		 
 	</div>
 </form>

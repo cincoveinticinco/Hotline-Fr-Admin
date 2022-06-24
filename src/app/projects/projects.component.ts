@@ -13,7 +13,8 @@ export class ProjectsComponent implements OnInit {
  
   displayedColumns = ['project', 'season', 'location', 'status', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
   dataSource:any = [];
-  
+  searchProperties: string[] = ['r_status_txt'];
+  filteredDataSource: any[] = [];
   reason = '';
   statuses: any[] = [];
   loading: boolean = true;
@@ -22,16 +23,34 @@ export class ProjectsComponent implements OnInit {
   centers: any[] = [];
   filters: any = {
     centers: null,
+    searchText: ''
   }
+  
   
 
   constructor(private _aS: AdminService) {
     
   }
 
+  update() {
+    this.sidenav.close();
+    this.loadData();
+  }
+  
   ngOnInit(): void {
     this.loadData()
 
+  }
+
+  filter() {
+    this.filteredDataSource = JSON.parse(JSON.stringify(this.dataSource));
+  
+    if(this.filters.centers) {
+      this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "center_id", this.filters.centers, "id");
+    }
+    if(this.filters.searchText) {
+      this.filteredDataSource = this._aS.searchByMultipleValuesExtended(this.filteredDataSource, this.searchProperties, this.filters.searchText)
+    }
   }
 
   loadData(){
@@ -43,6 +62,7 @@ export class ProjectsComponent implements OnInit {
         this.dataSource = data.projects ? data.projects : [];
         this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
         this.centers = data.centers && data.centers.length ? data.centers : [];
+        this.filter();
         this.loading = false;
       }
     )
@@ -65,6 +85,7 @@ export class ProjectsComponent implements OnInit {
     console.log(id);
   }
 }
+  
 export interface DataElement {
   pk: number;
   project: string;
@@ -77,6 +98,8 @@ export interface DataElement {
   closed_inc: string
   assigns?: any[];
 }
+
+
 
 
 

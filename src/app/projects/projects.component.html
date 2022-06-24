@@ -24,7 +24,7 @@
                                 </span>
                                 <mat-select style="border-style: double; padding: 1px;" class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="CENTERS" disableOptionCentering>
                                     <mat-option [value]="null">ALL CENTERS</mat-option>
-                                    <mat-option *ngFor="let center of centers" [value]="center.id">
+                                    <mat-option *ngFor="let center of centers" [value]="center">
                                         {{ center.center_name | uppercase }}
                                     </mat-option>
                                 </mat-select>                  
@@ -38,7 +38,7 @@
                         
                     </form>
                     <section class="table-container mat-elevation-z8" tabindex="0">
-                        <table mat-table [dataSource]="dataSource">
+                        <table mat-table [dataSource]="filteredDataSource">
                             <ng-container  matColumnDef="project">
                                 <th mat-header-cell *matHeaderCellDef >PROJECT</th>
                                 <td style="text-align: center;"  mat-cell *matCellDef="let element">{{element.p_name | nulls }}</td>

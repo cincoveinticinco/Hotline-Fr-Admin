@@ -29,7 +29,7 @@
       <div class="sidenav-grid-center">
           <div>
               <h3 class="color-green-dark">CENTER</h3>
-              <mat-select class="dropdown-center" name="center_id" formControlName="center_id" placeholder="Insert"> 
+              <mat-select class="dropdown-center" name="center_id"  formControlName="center_id" placeholder="Insert"> 
 				<mat-label>Select</mat-label>
 				<mat-option *ngFor="let center of center_id" [value]="center.id">
 					{{ center.center_name | uppercase }}

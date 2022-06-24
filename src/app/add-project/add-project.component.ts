@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -63,8 +63,21 @@ export class AddProjectComponent implements OnInit {
 
     })
   }
+  fillform(){
+    if(this.itemact){
+      this.form.patchValue({ 
+      center_id: this.itemact.center_id,
+      location_name: this.itemact.location_name,
+      p_name: this.itemact.p_name,
+      p_season: this.itemact.p_season,
+      alias: this.itemact.alias,
+    })
+    }
+    
+  }
 
   ngOnInit(): void {
+    this.fillform()
     this.form.reset()
     console.log(this.itemact)
     this.loading = true;
@@ -78,6 +91,14 @@ export class AddProjectComponent implements OnInit {
     )
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['itemact']) {
+      this.fillform()
+    }
+  }
+
 }
+
+
 
 

@@ -439,6 +439,24 @@ table .img-text {
   margin-left: 34%;
 }
 
+#admin-container {
+  height: calc(100% - 80px);
+}
+#admin-main {
+  height: 100%;
+  overflow: hidden;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
+}
+.container {
+  margin: 1%;
+  height: 100%;
+}
+.table-container {
+  height: calc(100% - 120px);
+  overflow: auto;
+  display: block;
+}
+
 @media screen and (max-width: 720px){
   .mat-drawer.mat-drawer-end {
     width: 100%;

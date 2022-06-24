@@ -62,8 +62,8 @@ ul li {
     font-weight: bold;
     border-radius: 5%;
     width: 150px;
-    position: fixed;
-    margin-left: -2%;
+    position: relative;
+    margin-left: -8%;
 }
 
 table td {
@@ -123,8 +123,8 @@ mat-form-field {
 }
 .grid-header {
     display: grid;
-    grid-template-columns: 93% 7%;
-}
+    grid-template-columns: auto 150px;}
+
 .sidebar-example {
     position: absolute;
     top: 0;

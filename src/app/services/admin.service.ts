@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+
 
 import * as _ from 'lodash';
 import { map } from 'rxjs';
@@ -134,4 +136,13 @@ export class AdminService {
   getListProjects(){
 		return this.http.get(this.service_url + 'admin/getProjects');
   }
+
+  addProject(){
+		return this.http.post(this.service_url + 'admin/newProject', '')
+			.pipe(
+				map((response: any) => {
+					return response;
+				})
+			)
+	}
 }

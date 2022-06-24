@@ -1,0 +1,9 @@
+<div #theInput >
+	<div class="input">
+		<div class="options" #options *ngIf="showOptions && filteredList.length == 0" [ngStyle]="{'width.px': theInput.offsetWidth }">
+			<ul>
+				<li *ngIf="!toCreate || (toCreate && !inputValue)" class="noHover"></li>
+			</ul>
+		</div>
+	</div>
+</div>

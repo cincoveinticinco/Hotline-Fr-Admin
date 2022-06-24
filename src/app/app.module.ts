@@ -22,6 +22,7 @@ import { NullsPipe } from './pipes/nulls.pipe';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { AddCommentReportComponent } from './components/admin-home/add-comment-report/add-comment-report.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ProjectsComponent,
     NullsPipe,
     AddProjectComponent,
-    AddCommentReportComponent
+    AddCommentReportComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

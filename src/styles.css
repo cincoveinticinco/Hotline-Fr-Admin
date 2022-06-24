@@ -457,11 +457,15 @@ table .img-text {
   height: 100%;
 }
 .table-container {
-  height: calc(100% - 120px);
+  height: calc(100% - 130px);
   overflow: auto;
   display: block;
 }
-
+table {
+  width: 100%;
+  background-color: white;
+  border: 1px solid;
+}
 @media screen and (max-width: 720px){
   .mat-drawer.mat-drawer-end {
     width: 100%;

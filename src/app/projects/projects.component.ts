@@ -30,9 +30,8 @@ export class ProjectsComponent implements OnInit {
       (data: any) => {  
         console.log(data.projects);
         this.projects = data.projects
-/*         this.dataSource = this.projects 
- */     
-        this.dataSource = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
+        this.dataSource = this.projects 
+
 }
     )
     

@@ -1,0 +1,49 @@
+.sidenav-grid-header {
+  padding: 6px;
+}
+.sidenav-lateral-header,
+.response-text-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidenav-container-discussed {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sidenav-section {
+  padding: 6px 20px 6px 0;
+}
+
+.sidenav-container-responses h2{
+  border-bottom: 1px solid var(--green-dark);
+  margin: 10px 0;
+}
+.response-textarea-container textarea{
+  width: 100%;
+  resize: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  padding: 6px;
+  border-radius: 5px;
+  color: var(--dark-grey);
+}
+
+.response {
+  display: flex;
+  padding: 5px;
+}
+.response-icon {
+  background-color: var(--dark-grey);
+  color: var(--white);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 4px 6px;
+  margin: 0 5px;
+  font-size: 12px;
+}
+.response-info {
+  border-bottom: 1px solid var(--green-dark);
+  padding: 3px;
+}

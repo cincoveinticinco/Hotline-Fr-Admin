@@ -1,23 +1,18 @@
 
 <div class="sidenav-lateral">
-  <div class="bg-orange-lite">
-      <div class="example-button-container">
-          <button mat-fab (click)="close()" class="bg-orange-lite" aria-label="Example icon button with a delete icon">
-            <mat-icon>close</mat-icon>
-          </button>
-      </div>
-  </div>
   <div class="sidenav-grid-header bg-orange-lite">
-      <div>
-          <div>
-              <h1>#12JG12MM</h1>
-          </div>
-      </div>
-      <div class="btns-close-reply">
-          <button class="sidenav-header-btn bg-black" style="margin-left: 20px;">REPLY</button>
-          <button class="sidenav-header-btn bg-black" style="margin-left: 10px;" >CLOSE</button>
-      </div>
-  </div>
+        <button mat-fab (click)="close()" class="bg-orange-lite close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+        <div class="sidenav-lateral-header">
+            <div>
+                <h1>#12JG12MM</h1>
+            </div>
+            <div>
+                <button class="sidenav-header-btn bg-black" (click)="toggleTextarea()">REPLY</button>
+            </div>
+        </div>
+    </div>
   <div class="sidenav-container">
       <div class="sidenav-grid-status">
           <div>
@@ -81,17 +76,45 @@
           </p>
       </div>
       <hr class="sidenav-hr">
-      <div class="sidenav-people-involved">
+      <div class="sidenav-people-involved sidenav-section">
           <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
           <p>
               Ut eu eiusmod consequat eiusmod cillum eiusmod. Sint sunt nisi aliquip exercitation amet. Adipisicing adipisicing sit Lorem exercitation amet commodo aute est adipisicing anim quis mollit proident ad. Consequat esse fugiat proident esse esse duis nulla sint irure dolor cillum id incididunt sint.
           </p>
       </div>
-      <div class="sidenav-grid-discussed">
-          
+      <div class="sidenav-container-discussed">
+          <div class="sidenav-section">
+            <h3 class="color-green-dark">REPEATED INCIDENT</h3>
+            <p>NO</p>
+          </div>
+          <div class="sidenav-section" style="flex: 1 1 300px;">
+            <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At culpa saepe omnis, nostrum est blanditiis distinctio cumque commodi eum sit aut laboriosam dolorum accusantium quidem earum sed, praesentium veritatis. Quasi?</p>
+          </div>
       </div>
-      <div class="sidenav-responses">
-          
+      <div class="sidenav-container-responses">
+        <h2 class="color-green-dark">RESPONSES</h2>
+        <div class="response-textarea-container">
+            <textarea placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
+            <div *ngIf="isOpenTexarea" class="response-text-options">
+                <span></span>
+                <div>
+                    <button class="sidenav-header-btn bg-black">REPLY</button>
+                    <button class="sidenav-header-btn bg-green-dark">CLOSE</button>
+                </div>
+            </div>
+        </div>
+        <div class="responses-container">
+            <div class="response">
+                <div class="response-icon">R</div>
+                <div class="response-info">
+                    <h3 class="color-green-dark">ANONYMOUS. ON MAY 25 2021</h3>
+                    <p>
+                        Ut eu eiusmod consequat eiusmod cillum eiusmod. Sint sunt nisi aliquip exercitation amet. Adipisicing adipisicing sit Lorem exercitation amet commodo aute est adipisicing anim quis mollit proident ad. Consequat esse fugiat proident esse esse duis nulla sint irure dolor cillum id incididunt sint.
+                    </p>
+                </div>
+            </div>
+        </div>
       </div>
   </div>
 </div>

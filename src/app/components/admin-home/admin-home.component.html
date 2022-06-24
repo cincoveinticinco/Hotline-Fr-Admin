@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
     <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
-        <app-add-comment-report></app-add-comment-report>
+        <app-add-comment-report (closePanel)="close()"></app-add-comment-report>
     </mat-sidenav>
     <mat-sidenav-content>
         <div id="admin-container">

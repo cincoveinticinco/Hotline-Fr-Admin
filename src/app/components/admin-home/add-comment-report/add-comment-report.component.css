@@ -46,4 +46,15 @@
 .response-info {
   border-bottom: 1px solid var(--green-dark);
   padding: 3px;
+  width: 100%;
+}
+.response-info h3 {
+  text-transform: uppercase;
+}
+
+.sidenav-lateral .sidenav-grid-center {
+  grid-template-columns: 18% 36% 42% !important;
+}
+.sidenav-lateral .sidenav-grid-incidentType {
+  grid-template-columns: 54% 23% 23% !important;
 }

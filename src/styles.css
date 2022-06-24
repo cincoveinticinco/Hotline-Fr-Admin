@@ -272,6 +272,9 @@ button {
 button:hover {
   opacity: 0.5;
 }
+button:disabled {
+  filter: opacity(0.5);
+}
 
 table .img-text {
   background-color: var(--green-dark);
@@ -457,14 +460,46 @@ table .img-text {
   height: 100%;
 }
 .table-container {
-  height: calc(100% - 130px);
+  max-height: calc(100% - 130px);
   overflow: auto;
   display: block;
+  text-transform: uppercase;
 }
 table {
   width: 100%;
   background-color: white;
   border: 1px solid;
+}
+
+mat-select{
+  width: 150px !important;
+  height: 25px;
+  margin-bottom: 10px;
+  font-size: 10px;
+  line-height: 25px;
+  background-color: #ffffff;
+}
+.mat-select-value {
+  color: var(--black-light);
+  padding: 6px;
+}
+.mat-select-panel {
+  font-size: 11px !important;
+}
+
+.mat-progress-spinner {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--green-dark);
+}
+
+.no-data-found {
+  padding: 30px;
+  text-align: center;
 }
 @media screen and (max-width: 720px){
   .mat-drawer.mat-drawer-end {

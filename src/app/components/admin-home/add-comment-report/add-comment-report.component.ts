@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-add-comment-report',
@@ -7,13 +8,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AddCommentReportComponent implements OnInit {
 
+  @Input() report: any = null;
+
   @Output() closePanel = new EventEmitter<string>();
+  @Output() notify = new EventEmitter<string>();
 
   heightTextarea: number = 15;
   isOpenTexarea: boolean = false;
-  report: any = null;
+  response: string = '';
+  loading: boolean = true;
 
-  constructor() { }
+  constructor(
+    private _aS: AdminService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -26,5 +33,26 @@ export class AddCommentReportComponent implements OnInit {
     this.isOpenTexarea = open ? true : !this.isOpenTexarea;
     this.heightTextarea = this.isOpenTexarea ? 100 : 15;
   }
+
+  saveReply(isClose: boolean) {
+    this.loading = true;
+    let params = {
+      reportId: this.report.report.id,
+      replyTxt: this.response,
+      toClose: isClose,
+    }
+    this._aS.createReply(params).subscribe(
+      (data: any) => {
+        this.notify.emit();
+        this.loading = false;
+      }
+    )
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+		if (changes['report']) {
+      this.loading = this.report ? false : true;
+		}
+	}
 
 }

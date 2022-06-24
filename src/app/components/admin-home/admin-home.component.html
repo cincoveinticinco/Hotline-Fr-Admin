@@ -1,6 +1,10 @@
 <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
     <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
-        <app-add-comment-report (closePanel)="close()"></app-add-comment-report>
+        <app-add-comment-report
+            [report]="reportDetail"
+            (closePanel)="close()"
+            (notify)="update()">
+        </app-add-comment-report>
     </mat-sidenav>
     <mat-sidenav-content>
         <div id="admin-container">
@@ -19,31 +23,31 @@
                             </div>
                             <div class="contaner-filters">
                                 <div class="filters">
-                                    <select class="filter" name="status" [(ngModel)]="filters.status">
-                                        <option selected [value]="null">ALL STATUSES</option>
-                                        <option *ngFor="let status of statuses" [value]="status.id">
+                                    <mat-select class="filter" name="status" [(ngModel)]="filters.status" (ngModelChange)="filter()" placeholder="ALL STATUSES" disableOptionCentering>
+                                        <mat-option>ALL STATUSES</mat-option>
+                                        <mat-option *ngFor="let status of statuses" [value]="status">
                                             {{ status.r_status_txt | uppercase }}
-                                        </option>
-                                    </select>
-                                    <select class="filter" name="types" [(ngModel)]="filters.types">
-                                        <option selected [value]="null">ALL TYPES</option>
-                                        <option *ngFor="let type of types" [value]="type.id">
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-select class="filter" name="types" [(ngModel)]="filters.types" (ngModelChange)="filter()" placeholder="ALL TYPES" disableOptionCentering>
+                                        <mat-option [value]="null">ALL TYPES</mat-option>
+                                        <mat-option *ngFor="let type of types" [value]="type">
                                             {{ type.q_option_title | uppercase }}
-                                        </option>
-                                    </select>
-                                    <select class="filter" name="centers" [(ngModel)]="filters.centers">
-                                        <option selected [value]="null">ALL CENTERS</option>
-                                        <option *ngFor="let center of centers" [value]="center.id">
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="ALL CENTERS" disableOptionCentering>
+                                        <mat-option [value]="null">ALL CENTERS</mat-option>
+                                        <mat-option *ngFor="let center of centers" [value]="center">
                                             {{ center.center_name | uppercase }}
-                                        </option>
-                                    </select>
-                                    <select class="filter" name="project" [(ngModel)]="filters.project">
-                                        <option selected [value]="null">ALL PROJECTS</option>
-                                        <option *ngFor="let project of projects" [value]="project.id">
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="ALL PROJECTS" disableOptionCentering>
+                                        <mat-option [value]="null">ALL PROJECTS</mat-option>
+                                        <mat-option *ngFor="let project of projects" [value]="project">
                                             {{ project.proj_name | uppercase }}
-                                        </option>
-                                    </select>
-                                    <input class="filter" type="text" placeholder="SEARCH"/>
+                                        </mat-option>
+                                    </mat-select>
+                                    <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" class="filter" type="text" placeholder="SEARCH"/>
                                 </div>
                             </div>
                             <div>
@@ -52,58 +56,53 @@
                         </div>
                     </form>
                     <section class="table-container mat-elevation-z8" tabindex="0">
-                        <table mat-table [dataSource]="dataSource">
+                        <table *ngIf="!loading" mat-table [dataSource]="filteredDataSource">
                             <ng-container matColumnDef="status">
                                 <th mat-header-cell *matHeaderCellDef>STATUS</th>
-                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"><span class="bg-yellow">{{element.status}}</span></td>
+                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"><span  [ngClass]="{'bg-yellow': element.r_status_txt}">{{element.r_status_txt || '-'}}</span></td>
                             </ng-container>
                             <ng-container matColumnDef="incidentType">
                                 <th mat-header-cell *matHeaderCellDef>INCIDENT TYPE</th>
-                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"><span class="bg-orange">{{element.incidentType}}</span></td>
+                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"><span [ngClass]="{'bg-orange': element.Incident_type}">{{element.Incident_type || '-'}}</span></td>
                             </ng-container>
                             <ng-container matColumnDef="date">
                                 <th mat-header-cell *matHeaderCellDef>DATE</th>
-                                <td class="text-center" (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.date | date: 'mediumDate' }} </td>
+                                <td class="text-center" (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{(element.created_at | date: 'mediumDate') || '--/--/----' }} </td>
                             </ng-container>
                             <ng-container matColumnDef="project">
                                 <th mat-header-cell *matHeaderCellDef>PROJECT</th>
-                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.project}} </td>
+                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.project_name || '-'}} </td>
                             </ng-container>
                             <ng-container matColumnDef="incident">
                                 <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">INCIDENT</th>
-                                <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.incident}} </td>
+                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.incident_description || '-'}} </td>
                             </ng-container>
                             <ng-container matColumnDef="assign">
                                 <th mat-header-cell *matHeaderCellDef>ASSIGN</th>
-                                <td class="text-center" mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.id)">
+                                <td class="text-center" mat-cell *matCellDef="let element" (click)="showDetails(element)">
                                     <ng-container *ngFor="let assing of element.assigns">
                                         <span class="img-text">{{assing.value_initials | uppercase}}</span>
                                     </ng-container>
-
-                                    <!-- <div *ngIf="item[head.list].length > 2" class="box-img box-imgg-asset" >
-                                        <div (mouseleave)="_gS.hidemenu()" (mouseenter)="onClickUser($event, item)">
-                                            <span>+{{item[head.list].length - 2}}</span>
-                                        </div>
-                                    </div> -->
+                                    <ng-container *ngIf="!element.assigns || !element.assigns.length">-</ng-container>
                                 </td>
                                 </ng-container>
                             <ng-container matColumnDef="comments">
                                 <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
-                                <td class="commets" mat-cell *matCellDef="let element" (click)="sidenav.open(); showDetails(element.id)">
+                                <td class="commets" mat-cell *matCellDef="let element" (click)="showDetails(element)">
                                     <mat-icon aria-hidden="false" aria-label="comments">forum</mat-icon>
-                                    <span>{{element.comments ? element.comments.length : 0}}</span>
+                                    <span>{{element.replies || '0'}}</span>
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="id">
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let element; let i = index">
                                     <div class="btn-option">
-                                        <button class="bg-background" (click)="replyIncident(element.id)">
+                                        <button [disabled]="element.r_status_id == 5" class="bg-background" (click)="saveReply(element.id, false)">
                                             REPLY
                                         </button>
                                     </div>
                                     <div class="btn-option">
-                                        <button class="bg-green-dark" (click)="closeIncident(element.id)">
+                                        <button [disabled]="element.r_status_id == 5" class="bg-green-dark" (click)="saveReply(element.id, true)">
                                             CLOSE
                                         </button>
                                     </div>
@@ -112,6 +111,8 @@
                             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
+                        <mat-spinner *ngIf="loading"></mat-spinner>
+                        <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
                     </section>
                 </div>
             </div>

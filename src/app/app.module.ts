@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { NullsPipe } from './pipes/nulls.pipe';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { AddCommentReportComponent } from './components/admin-home/add-comment-report/add-comment-report.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { AddCommentReportComponent } from './components/admin-home/add-comment-r
     MatIconModule,
     MatSidenavModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

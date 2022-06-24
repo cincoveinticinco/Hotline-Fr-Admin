@@ -1,120 +1,115 @@
 
 <div class="sidenav-lateral">
-  <div class="sidenav-grid-header bg-orange-lite">
-        <button mat-fab (click)="close()" class="bg-orange-lite close-button">
-            <mat-icon>close</mat-icon>
-        </button>
-        <div class="sidenav-lateral-header">
-            <div>
-                <h1>#12JG12MM</h1>
-            </div>
-            <div>
-                <button class="sidenav-header-btn bg-black" (click)="toggleTextarea()">REPLY</button>
-            </div>
-        </div>
-    </div>
-  <div class="sidenav-container">
-      <div class="sidenav-grid-status">
-          <div>
-              <h3 class="color-green-dark">STATUS</h3>
-              <span>New</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">DATE REPORT</h3>
-              <span>May 25 2021</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">METHOD</h3>
-              <span>Online</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">REPORTER</h3>
-              <span>Anonymous</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">NOTIFICATIONS</h3>
-              <span>Allowed</span>
-          </div>
-      </div>
-      <hr class="sidenav-hr">
-      <div class="sidenav-grid-center">
-          <div>
-              <h3 class="color-green-dark">CENTER</h3>
-              <span>Brasil</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">PROJECT</h3>
-              <span>Amazonia S1</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">POSITION ON PRODUCTION</h3>
-              <span>Current Production Staff Or Crew</span>
-          </div>
-      </div>
-      <hr class="sidenav-hr">
-      <div class="sidenav-grid-incidentType">
-          <div>
-              <h3 class="color-green-dark">INCIDENT TYPE</h3>
-              <span>Hostile Work Environment</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">DATE INCIDENT</h3>
-              <span>May 25 2021</span>
-          </div>
-          <div>
-              <h3 class="color-green-dark">LOCATION INCIDENT</h3>
-              <span>Lorem Ipsum Dolor</span>
-          </div>
-      </div>
-      <hr class="sidenav-hr">
-      <div class="sidenav-incident-description">
-          <h3 class="color-green-dark">INCIDENT</h3>
-          <p>
-              Ut eu eiusmod consequat eiusmod cillum eiusmod. Sint sunt nisi aliquip exercitation amet. Adipisicing adipisicing sit Lorem exercitation amet commodo aute est adipisicing anim quis mollit proident ad. Consequat esse fugiat proident esse esse duis nulla sint irure dolor cillum id incididunt sint.
-              Ut eu eiusmod consequat eiusmod cillum eiusmod. Sint sunt nisi aliquip exercitation amet. Adipisicing adipisicing sit Lorem exercitation amet commodo aute est adipisicing anim quis mollit proident ad. Consequat esse fugiat proident esse esse duis nulla sint irure dolor cillum id incididunt sint.
-              Ut eu eiusmod consequat eiusmod cillum eiusmod. Sint sunt nisi aliquip exercitation amet. Adipisicing adipisicing sit Lorem exercitation amet commodo aute est adipisicing anim quis mollit proident ad. Consequat esse fugiat proident esse esse duis nulla sint irure dolor cillum id incididunt sint.
-          </p>
-      </div>
-      <hr class="sidenav-hr">
-      <div class="sidenav-people-involved sidenav-section">
-          <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
-          <p>
-              Ut eu eiusmod consequat eiusmod cillum eiusmod. Sint sunt nisi aliquip exercitation amet. Adipisicing adipisicing sit Lorem exercitation amet commodo aute est adipisicing anim quis mollit proident ad. Consequat esse fugiat proident esse esse duis nulla sint irure dolor cillum id incididunt sint.
-          </p>
-      </div>
-      <div class="sidenav-container-discussed">
-          <div class="sidenav-section">
-            <h3 class="color-green-dark">REPEATED INCIDENT</h3>
-            <p>NO</p>
-          </div>
-          <div class="sidenav-section" style="flex: 1 1 300px;">
-            <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At culpa saepe omnis, nostrum est blanditiis distinctio cumque commodi eum sit aut laboriosam dolorum accusantium quidem earum sed, praesentium veritatis. Quasi?</p>
-          </div>
-      </div>
-      <div class="sidenav-container-responses">
-        <h2 class="color-green-dark">RESPONSES</h2>
-        <div class="response-textarea-container">
-            <textarea placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
-            <div *ngIf="isOpenTexarea" class="response-text-options">
-                <span></span>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <ng-container *ngIf="!loading">
+        <div class="sidenav-grid-header bg-orange-lite">
+            <button mat-fab (click)="close()" class="bg-orange-lite close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+            <div class="sidenav-lateral-header">
                 <div>
-                    <button class="sidenav-header-btn bg-black">REPLY</button>
-                    <button class="sidenav-header-btn bg-green-dark">CLOSE</button>
+                    <h1>#12JG12MM</h1>
+                </div>
+                <div *ngIf="report.report.r_status_id != 5">
+                    <button class="sidenav-header-btn bg-black" (click)="toggleTextarea()">REPLY</button>
                 </div>
             </div>
         </div>
-        <div class="responses-container">
-            <div class="response">
-                <div class="response-icon">R</div>
-                <div class="response-info">
-                    <h3 class="color-green-dark">ANONYMOUS. ON MAY 25 2021</h3>
-                    <p>
-                        Ut eu eiusmod consequat eiusmod cillum eiusmod. Sint sunt nisi aliquip exercitation amet. Adipisicing adipisicing sit Lorem exercitation amet commodo aute est adipisicing anim quis mollit proident ad. Consequat esse fugiat proident esse esse duis nulla sint irure dolor cillum id incididunt sint.
-                    </p>
+        <div class="sidenav-container">
+          <div class="sidenav-grid-status">
+              <div>
+                  <h3 class="color-green-dark">STATUS</h3>
+                  <span>{{report.report?.r_status_txt || '-'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">DATE REPORT</h3>
+                  <span>{{(report.report?.created_at | date: 'mediumDate') || '--/--/----'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">METHOD</h3>
+                  <span>{{report.report?.r_method_txt || '-'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">REPORTER</h3>
+                  <span>{{report.report?.r_report_txt || '-'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">NOTIFICATIONS</h3>
+                  <span>{{report.report?.r_notification_txt || '-'}}</span>
+              </div>
+          </div>
+          <hr class="sidenav-hr">
+          <div class="sidenav-grid-center">
+              <div>
+                  <h3 class="color-green-dark">CENTER</h3>
+                  <span>{{report.report?.center_name || '-'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">PROJECT</h3>
+                  <span>{{report.report?.project_name || '-'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">POSITION ON PRODUCTION</h3>
+                  <span>{{report.report?.position || '-'}}</span>
+              </div>
+          </div>
+          <hr class="sidenav-hr">
+          <div class="sidenav-grid-incidentType">
+              <div>
+                  <h3 class="color-green-dark">INCIDENT TYPE</h3>
+                  <span>{{report.report?.Incident_type || '-'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">DATE INCIDENT</h3>
+                  <span>{{(report.report?.incident_date | date: 'mediumDate') || '--/--/----'}}</span>
+              </div>
+              <div>
+                  <h3 class="color-green-dark">LOCATION INCIDENT</h3>
+                  <span>{{report.report?.incident_loc || '-'}}</span>
+              </div>
+          </div>
+          <hr class="sidenav-hr">
+          <div class="sidenav-incident-description">
+              <h3 class="color-green-dark">INCIDENT</h3>
+              <p>{{report.report?.incident_description || '-'}}</p>
+          </div>
+          <hr class="sidenav-hr">
+          <div class="sidenav-people-involved sidenav-section">
+              <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
+              <p>{{report.report?.people || '-'}}</p>
+          </div>
+          <div class="sidenav-container-discussed">
+              <div class="sidenav-section">
+                <h3 class="color-green-dark">REPEATED INCIDENT</h3>
+                <p>{{report.report?.incident_repeat || '-'}}</p>
+              </div>
+              <div class="sidenav-section" style="flex: 1 1 300px;">
+                <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
+                <p>{{report.report?.incident_discussed || '-'}}</p>
+              </div>
+          </div>
+          <div class="sidenav-container-responses">
+            <h2 class="color-green-dark">RESPONSES</h2>
+            <div *ngIf="report.report.r_status_id != 5" class="response-textarea-container">
+                <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
+                <div *ngIf="isOpenTexarea" class="response-text-options">
+                    <span></span>
+                    <div>
+                        <button class="sidenav-header-btn bg-black" (click)="saveReply(false)">REPLY</button>
+                        <button class="sidenav-header-btn bg-green-dark" (click)="saveReply(true)">CLOSE</button>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="responses-container">
+                <div *ngFor="let ask of report.replies" class="response">
+                    <div class="response-icon">R</div>
+                    <div class="response-info">
+                        <h3 class="color-green-dark">{{ask.user_name || '-'}}. ON {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
+                        <p>{{ask.reply_txt || '-'}}</p>
+                    </div>
+                </div>
+            </div>
+          </div>
       </div>
-  </div>
+    </ng-container>
 </div>

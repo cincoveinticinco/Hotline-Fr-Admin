@@ -369,11 +369,60 @@ table .img-text {
 }
 .sidenav-lateral .sidenav-grid-center {
   display: grid;
-  grid-template-columns: 18% 36% 42%;
+  grid-template-columns: 100% 36% 42%;
   height: auto;
 }
 .sidenav-lateral .sidenav-grid-incidentType {
   display: grid;
-  grid-template-columns: 54% 23% 23%;
+  grid-template-columns: 100% 23% 23%;
   height: auto;
+}
+.sidenav-lateral .sidenav-grid-project{
+  display: grid;
+  grid-template-columns: 100% 23% 23%;
+  height: auto;
+}
+.add-insert-name{
+  width: 77%;
+  height: 25px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+.add-insert-season{
+  width: 60%;
+  height: 25px;
+  padding-left: 10px;
+  margin-left: -80%;
+}
+.dropdown-center{
+  width: 50%;
+  height: 28px;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+.drpdown-location{
+  width: 123%;
+  height: 28px;
+  padding-left: 10px;
+  margin-left: -130%;
+}
+.add-button{
+  width: 15%;
+  height: 18px;
+  padding-left: 10px;
+  margin-left: 3%;
+  border: 0px
+}
+.label-user{
+  grid-template-columns: 100% 80% 80%;
+}
+
+.save-button{
+  width: 35%;
+  height: 50px;
+  padding-left: 10px;
+  border: 0px;
+  margin-left: 34%;
+  
+
 }

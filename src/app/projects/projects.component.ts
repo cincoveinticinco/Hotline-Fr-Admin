@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AdminService } from '../services/admin.service';
 
@@ -18,6 +18,7 @@ export class ProjectsComponent implements OnInit {
   statuses: any[] = [];
   loading: boolean = true;
   projects: any[] = [];
+  itemact: any;
   
 
   constructor(private _aS: AdminService) {
@@ -49,8 +50,9 @@ export class ProjectsComponent implements OnInit {
     )
   }
 
-  showDetails(pk: number) {
-    console.log(pk);
+  showDetails(element: any) {
+    this.itemact = element
+    console.log(this.itemact);
   }
 
   close() {

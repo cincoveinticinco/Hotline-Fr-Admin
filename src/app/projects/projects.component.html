@@ -9,7 +9,7 @@
                     <div [routerLink]="'../admin-home'" class="nav-option"><span>INCIDENTS</span></div>
                     <div class="nav-option"><span>USERS</span></div>       
                 </app-nav-top>
-               
+                
                 <hr class="bg-footer">
                 <div class="container color-black">
                     <form class="example-form">
@@ -84,7 +84,7 @@
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let element; let i = index">
                                     <div style="text-align: center;" class="btn-option">
-                                        <button style="background-color: white;" (click)="sidenav.open(); showDetails(element.pk)">
+                                        <button style="background-color: white;" (click)="sidenav.open(); showDetails(element)">
                                         <mat-icon aria-hidden="false" aria-label="comments" style="color: #3C9096;">drive_file_rename_outline</mat-icon>
                                     </button>
                                     </div>

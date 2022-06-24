@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-project',
@@ -6,6 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent implements OnInit {
+  @Input() itemact: any;
   @Output() closeView = new EventEmitter<string>();
 
 

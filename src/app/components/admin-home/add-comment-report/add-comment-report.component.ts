@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-comment-report',
@@ -7,13 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCommentReportComponent implements OnInit {
 
+  @Output() closePanel = new EventEmitter<string>();
+
+  heightTextarea: number = 15;
+  isOpenTexarea: boolean = false;
+  report: any = null;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   close() {
-    
+    this.closePanel.emit();
+  }
+
+  toggleTextarea(open: boolean = false) {
+    this.isOpenTexarea = open ? true : !this.isOpenTexarea;
+    this.heightTextarea = this.isOpenTexarea ? 100 : 15;
   }
 
 }

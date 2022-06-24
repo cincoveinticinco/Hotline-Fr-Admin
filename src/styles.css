@@ -44,7 +44,6 @@ body {
 #footer {
   position: relative;
   height: 70px;
-  margin-top: -70px;
   clear: both;
 }
 
@@ -87,13 +86,11 @@ div {
 }
 .bg-green{
   background-color: var(--green);
-  
 }
 .footer {
   width: 100%;
   text-align: center;
-  padding-top: 0;
-  padding-bottom: 10pt;
+  padding: 15px;
 }
 
 .footer h3 {
@@ -333,6 +330,7 @@ table .img-text {
   bottom: 0;
   left: 0;
   right: 0;
+  height: 100%;
 }
 .sidenav-lateral .sidenav-header-btn {
   width: 75px;

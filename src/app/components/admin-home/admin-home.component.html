@@ -13,36 +13,38 @@
                 </app-nav-top>
                 <div class="container color-black">
                     <form class="example-form">
-                        <div class="header grid-header">
-                            <div>
-                                <span>
-                                    INCIDENTS
-                                </span>
-                                <select name="status" [(ngModel)]="filters.status">
-                                    <option selected [value]="null">ALL STATUSES</option>
-                                    <option *ngFor="let status of statuses" [value]="status.id">
-                                        {{ status.r_status_txt | uppercase }}
-                                    </option>
-                                </select>
-                                <select name="types" [(ngModel)]="filters.types">
-                                    <option selected [value]="null">ALL TYPES</option>
-                                    <option *ngFor="let type of types" [value]="type.id">
-                                        {{ type.q_option_title | uppercase }}
-                                    </option>
-                                </select>
-                                <select name="centers" [(ngModel)]="filters.centers">
-                                    <option selected [value]="null">ALL CENTERS</option>
-                                    <option *ngFor="let center of centers" [value]="center.id">
-                                        {{ center.center_name | uppercase }}
-                                    </option>
-                                </select>
-                                <select name="project" [(ngModel)]="filters.project">
-                                    <option selected [value]="null">ALL PROJECTS</option>
-                                    <option *ngFor="let project of projects" [value]="project.id">
-                                        {{ project.proj_name | uppercase }}
-                                    </option>
-                                </select>
-                                <input type="text" placeholder="SEARCH"/>
+                        <div class="header-page">
+                            <div class="title-page">
+                                <span>INCIDENTS</span>
+                            </div>
+                            <div class="contaner-filters">
+                                <div class="filters">
+                                    <select class="filter" name="status" [(ngModel)]="filters.status">
+                                        <option selected [value]="null">ALL STATUSES</option>
+                                        <option *ngFor="let status of statuses" [value]="status.id">
+                                            {{ status.r_status_txt | uppercase }}
+                                        </option>
+                                    </select>
+                                    <select class="filter" name="types" [(ngModel)]="filters.types">
+                                        <option selected [value]="null">ALL TYPES</option>
+                                        <option *ngFor="let type of types" [value]="type.id">
+                                            {{ type.q_option_title | uppercase }}
+                                        </option>
+                                    </select>
+                                    <select class="filter" name="centers" [(ngModel)]="filters.centers">
+                                        <option selected [value]="null">ALL CENTERS</option>
+                                        <option *ngFor="let center of centers" [value]="center.id">
+                                            {{ center.center_name | uppercase }}
+                                        </option>
+                                    </select>
+                                    <select class="filter" name="project" [(ngModel)]="filters.project">
+                                        <option selected [value]="null">ALL PROJECTS</option>
+                                        <option *ngFor="let project of projects" [value]="project.id">
+                                            {{ project.proj_name | uppercase }}
+                                        </option>
+                                    </select>
+                                    <input class="filter" type="text" placeholder="SEARCH"/>
+                                </div>
                             </div>
                             <div>
                                 <button type="button" class="btn-add bg-green-dark">ADD INCIDENT</button>
@@ -68,7 +70,7 @@
                                 <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.project}} </td>
                             </ng-container>
                             <ng-container matColumnDef="incident">
-                                <th mat-header-cell *matHeaderCellDef>INCIDENT</th>
+                                <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">INCIDENT</th>
                                 <td (click)="sidenav.open(); showDetails(element.id)" mat-cell *matCellDef="let element"> {{element.incident}} </td>
                             </ng-container>
                             <ng-container matColumnDef="assign">

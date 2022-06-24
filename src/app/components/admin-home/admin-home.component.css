@@ -1,8 +1,7 @@
 #admin-container {
-    height: 100%;
+    height: calc(100% - 80px);
 }
 #admin-main {
-    padding-bottom: 70px;
     height: 100%;
     overflow: hidden;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
@@ -10,6 +9,35 @@
 .container {
     margin: 1%;
     height: 100%;
+}
+
+.header-page {
+    display: flex;
+}
+.header-page .title-page {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.contaner-filters {
+    flex: 1;
+    height: 40px;
+    overflow: auto;
+    margin: 3px 10px;
+}
+
+.contaner-filters .filter {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.contaner-filters .filter:first-child {
+    border-radius: 5px 0 0 5px;
+}
+.contaner-filters .filter:last-child {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 0 5px 5px 0;
+}
+.contaner-filters .filters {
+    width: max-content;
 }
 
 .table-container {
@@ -36,6 +64,7 @@ table td {
     max-width: 200px;
     height: auto;
     cursor: pointer;
+    min-width: 80px;
 }
 table th {
     padding: 15px;
@@ -55,23 +84,14 @@ table th {
 .btn-option button:hover {
     opacity: 0.6;
 }
-.header {
-    display: inline-block;
-}
-.header span {
-    font-size: 30px;
-    font-weight: bold;
-    margin-right: 10px;
-}
 select {
     width: 150px;
     height: 30px;
     margin-bottom: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 input {
     width: 150px;
-    height: 26px;
+    height: 28px;
     margin-bottom: 10px;
     margin-right: 10px;
     padding-left: 5px;
@@ -81,10 +101,6 @@ mat-form-field {
     height: 30px;
     margin-bottom: 10px;
     margin-right: 10px;
-}
-.grid-header {
-    display: grid;
-    grid-template-columns: auto 120px;
 }
 
 table td.commets{

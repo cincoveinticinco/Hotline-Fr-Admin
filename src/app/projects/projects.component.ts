@@ -11,7 +11,7 @@ export class ProjectsComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
  
-  displayedColumns = ['project', 'season', 'center', 'location', 'status', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
+  displayedColumns = ['project', 'season', 'location', 'status', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
   dataSource:any = [];
   
   reason = '';
@@ -19,6 +19,10 @@ export class ProjectsComponent implements OnInit {
   loading: boolean = true;
   projects: any[] = [];
   itemact: any;
+  centers: any[] = [];
+  filters: any = {
+    centers: null,
+  }
   
 
   constructor(private _aS: AdminService) {
@@ -26,15 +30,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._aS.getListProjects().subscribe(
-      (data: any) => {  
-        console.log(data.projects);
-        this.projects = data.projects
-        this.dataSource = this.projects 
-
-}
-    )
-    
+    this.loadData()
 
   }
 
@@ -46,6 +42,7 @@ export class ProjectsComponent implements OnInit {
         console.log(data);
         this.dataSource = data.projects ? data.projects : [];
         this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
+        this.centers = data.centers && data.centers.length ? data.centers : [];
         this.loading = false;
       }
     )

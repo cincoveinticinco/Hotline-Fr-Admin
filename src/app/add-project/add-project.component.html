@@ -1,8 +1,9 @@
 <div class="sidenav-lateral">
+	<form [formGroup]="form" (ngSubmit)="Save()">
 	<div class="bg-green">
 		<div class="example-button-container">
-			<button mat-fab  class="bg-green" aria-label="Example icon button with a delete icon">
-			  <mat-icon>close</mat-icon>
+			<button mat-fab (click)="close()" class="bg-green close-button">
+				<mat-icon>close</mat-icon>
 			</button>
 		</div>
 	</div>
@@ -25,20 +26,26 @@
               <input class="add-insert-season" type="text" placeholder="Insert"/>
           </div>
       </div>
-      <div class="sidenav-grid-center ">
-          <div >
+      <div class="sidenav-grid-center">
+          <div>
               <h3 class="color-green-dark">CENTER</h3>
-              <select class="dropdown-center">
-				<option  disabled selected>Select</option>
-			</select>
+              <mat-select class="dropdown-center" name="centers" formControlName="centers"> 
+				<mat-label>Select</mat-label>
+				<mat-option *ngFor="let center of centers" [value]="center.id">
+					{{ center.center_name | uppercase }}
+				</mat-option>                            
+			</mat-select>
           </div>
           <div>
               <h3 style="margin-left: -130%;" class="color-green-dark">LOCATION</h3>
-			  <select class="drpdown-location">
-				<option  disabled selected>Select</option>
-			</select>
+			  <mat-select class="dropdown-location" name="locations" formControlName="locations">
+				<option selected [value]="null">Select</option>   
+				<mat-option selected [value]="null" *ngFor="let location of locations" [value]="location.id">
+					{{ location.location_name | uppercase }}
+				</mat-option>                            
+			</mat-select>
           </div>
-          
+		  
       </div>
       <div class="sidenav-grid-incidentType">
           <div>
@@ -53,11 +60,15 @@
 				<h3 style="font-size: 1.3rem; margin-bottom: -7px" class="label-user color-green-dark">USERS</h3>
 				<hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
 				<h3 style="font-size: 0.8rem; margin-top: -10px;" class="label-user color-green-dark">EMAIL</h3>
-				<input class="add-insert-name" type="text" placeholder="Insert"/><button type="button" class="btn-add bg-green-dark add-button">ADD </button>
-	   
+				<input  formControlName ="email" class="add-insert-name" type="token"  required placeholder="Email">
+				<button type="button" class="btn-add bg-green-dark add-button">ADD </button>
+				<mat-error *ngIf="fproject['email'].getError('required') != null">Required Field</mat-error>
+
 				</div>
 		  </div>
 		  <hr style="height: 1px; background-color: #8e9191;" class="sidenav-hr">
-		 <button type="button" class="btn-add bg-green-dark save-button">SAVE</button>
+		 <button type="submit" name="submit" class="btn-add bg-green-dark save-button" onclick="Save()" [disabled]="form.invalid">SAVE</button>
+		 
 	</div>
+</form>
 </div>

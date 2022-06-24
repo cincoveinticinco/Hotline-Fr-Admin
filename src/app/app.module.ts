@@ -4,7 +4,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -20,6 +19,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { NullsPipe } from './pipes/nulls.pipe';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { AddCommentReportComponent } from './components/admin-home/add-comment-report/add-comment-report.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { AddCommentReportComponent } from './components/admin-home/add-comment-r
     ProjectsComponent,
     NullsPipe,
     AddProjectComponent,
-    AddCommentReportComponent
+    AddCommentReportComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

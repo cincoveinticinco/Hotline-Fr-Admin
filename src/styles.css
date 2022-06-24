@@ -409,16 +409,23 @@ table .img-text {
   margin-left: -80%;
 }
 .dropdown-center{
-  width: 50%;
+  width: 50% !important;
   height: 28px;
   padding-left: 10px;
   margin-bottom: 30px;
+  color: #8b9293;
+  border-style: solid;
+  border-radius: 3px;
 }
-.drpdown-location{
-  width: 123%;
+.dropdown-location{
+  width: 118% !important;
   height: 28px;
   padding-left: 10px;
   margin-left: -130%;
+  color: #8b9293;
+  border-style: solid;
+  border-radius: 3px;
+
 }
 .add-button{
   width: 15%;
@@ -439,9 +446,11 @@ table .img-text {
   margin-left: 34%;
 }
 .tittle-add-project{
-  font-size: 10rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: black;
+  text-transform: uppercase;
+  margin-left: 5%;
 }
 
 #admin-container {

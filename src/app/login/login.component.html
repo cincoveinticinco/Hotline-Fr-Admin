@@ -27,12 +27,12 @@
                     </p>
                 </div>
                 <div class="form">
-									<form [formGroup]="formToken" (ngSubmit)="login()">
+						<form [formGroup]="formToken" (ngSubmit)="login()">
                         <div class="form-block">
                             <input  formControlName ="token" class="form-input" type="token"  required placeholder="TOKEN">
                         </div>
-												<mat-error *ngIf="fToken['email'].getError('required') != null">Required Field</mat-error>
-                				<mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid token</mat-error>
+							<mat-error *ngIf="fToken['email'].getError('required') != null">Required Field</mat-error>
+                			<mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid token</mat-error>
                         <div class="form-block btn-request">
                             <button class="bg-green-dark" id="button-login" onclick="login()" type="button" disabled>LOGIN</button>
                         </div>

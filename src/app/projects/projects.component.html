@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidebar-example" (backdropClick)="close()">
     <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
-        <app-add-project [itemact]="itemact"></app-add-project>     
+        <app-add-project (closePanel)="close()" [itemact]="itemact"></app-add-project>     
     </mat-sidenav>
     <mat-sidenav-content>
         <div id="admin-container">
@@ -19,25 +19,27 @@
                                     PROJECTS
                                 </span>
                                 
-                                <select>
-                                    <option disabled selected>ALL CENTERS</option>
-                                    <option *ngFor="let status of statuses" [value]="status.pk">
-                                        {{ status.name | uppercase }}
+                                <select class="filter" name="centers" [(ngModel)]="filters.centers"> 
+                                    <option selected [value]="null">ALL CENTERS</option>                               
+                                    <option *ngFor="let center of centers" [value]="center.id">
+                                        {{ center.center_name | uppercase }}
                                     </option>
                                 </select>
                                 
                                 <input class="" type="text" placeholder="SEARCH"/>
                             </div>
                             <div>
-                                <button type="button" class="btn-add bg-green-dark">ADD PROJECT</button>
+                                <button type="button" (click)="sidenav.open();" class="btn-add bg-green-dark">ADD PROJECT</button>
                             </div>
                         </div>
+
+                        
                     </form>
                     <section class="table-container mat-elevation-z8" tabindex="0">
                         <table mat-table [dataSource]="dataSource">
                             <ng-container  matColumnDef="project">
                                 <th mat-header-cell *matHeaderCellDef >PROJECT</th>
-                                <td style="text-align: center;"  mat-cell *matCellDef="let element">{{element.p_name | nulls}}</td>
+                                <td style="text-align: center;"  mat-cell *matCellDef="let element">{{element.p_name | nulls }}</td>
                             </ng-container>     
                             <ng-container matColumnDef="season">
                                 <th mat-header-cell *matHeaderCellDef>SEASON </th>

@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidebar-example" (backdropClick)="close()">
     <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
-        <app-add-project></app-add-project>     
+        <app-add-project [itemact]="itemact"></app-add-project>     
     </mat-sidenav>
     <mat-sidenav-content>
         <div id="admin-container">

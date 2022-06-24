@@ -144,9 +144,7 @@ mat-form-field {
     left: 0;
     right: 0;
 }
-.mat-drawer {
-    width: 40%;
-}
+
 .sidenav-grid-header {
     display: grid;
     grid-template-columns: 70% 30%;

@@ -438,6 +438,11 @@ table .img-text {
   border: 0px;
   margin-left: 34%;
 }
+.tittle-add-project{
+  font-size: 10rem;
+  font-weight: bold;
+  color: black;
+}
 
 @media screen and (max-width: 720px){
   .mat-drawer.mat-drawer-end {

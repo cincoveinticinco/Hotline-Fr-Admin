@@ -3,100 +3,102 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AdminService } from '../services/admin.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+	selector: 'app-projects',
+	templateUrl: './projects.component.html',
+	styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
 
-  @ViewChild('sidenav') sidenav!: MatSidenav;
- 
-  displayedColumns = ['project', 'season', 'location', 'status', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
-  dataSource:any = [];
-  searchProperties: string[] = ['r_status_txt'];
-  filteredDataSource: any[] = [];
-  reason = '';
-  statuses: any[] = [];
-  loading: boolean = true;
-  projects: any[] = [];
-  itemact: any;
-  centers: any[] = [];
-  filters: any = {
-    centers: null,
-    searchText: ''
-  }
-  
-  
+	@ViewChild('sidenav') sidenav!: MatSidenav;
 
-  constructor(private _aS: AdminService) {
-    
-  }
+	displayedColumns = ['project', 'abbreviation', 'season', 'center', 'location', 'status', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
+	dataSource: any = [];
+	searchProperties: string[] = ['r_status_txt'];
+	filteredDataSource: any[] = [];
+	reason = '';
+	statuses: any[] = [];
+	loading: boolean = true;
+	projects: any[] = [];
+	itemact: any;
+	centers: any[] = [];
+	filters: any = {
+		centers: null,
+		searchText: ''
+	}
 
-  update() {
-    this.sidenav.close();
-    this.loadData();
-  }
-  
-  ngOnInit(): void {
-    this.loadData()
 
-  }
 
-  filter() {
-    this.filteredDataSource = JSON.parse(JSON.stringify(this.dataSource));
-  
-    if(this.filters.centers) {
-      this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "center_id", this.filters.centers, "id");
-    }
-    if(this.filters.searchText) {
-      this.filteredDataSource = this._aS.searchByMultipleValuesExtended(this.filteredDataSource, this.searchProperties, this.filters.searchText)
-    }
-  }
+	constructor(private _aS: AdminService) {
 
-  loadData(){
-    
-    this.loading = true;
-    this._aS.getListProjects().subscribe(
-      (data: any) => {  
-        console.log(data);
-        this.dataSource = data.projects ? data.projects : [];
-        this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
-        this.centers = data.centers && data.centers.length ? data.centers : [];
-        this.filter();
-        this.loading = false;
-      }
-    )
-  }
+	}
 
-  showDetails(element: any) {
-    this.itemact = element
-    console.log(this.itemact);
-  }
+	update() {
+		this.sidenav.close();
+		this.loadData();
+	}
 
-  close() {
-    this.sidenav.close();
-  }
+	ngOnInit(): void {
+		this.loadData()
 
-  replyIncident(id: number) {
-    console.log(id);
-  }
+	}
 
-  closeIncident(id: number) {
-    console.log(id);
-  }
+	filter() {
+		this.filteredDataSource = JSON.parse(JSON.stringify(this.dataSource));
+
+		if (this.filters.centers) {
+			this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "center_id", this.filters.centers, "id");
+		}
+		if (this.filters.searchText) {
+			this.filteredDataSource = this._aS.searchByMultipleValuesExtended(this.filteredDataSource, this.searchProperties, this.filters.searchText)
+		}
+	}
+
+	loadData() {
+
+		this.loading = true;
+		this._aS.getListProjects().subscribe(
+			(data: any) => {
+				console.log(data);
+				this.dataSource = data.projects ? data.projects : [];
+				this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
+				this.centers = data.centers && data.centers.length ? data.centers : [];
+				this.filter();
+				this.loading = false;
+			}
+		)
+	}
+
+	showDetails(element: any) {
+		this.itemact = element
+		console.log(this.itemact);
+	}
+
+	close() {
+		this.sidenav.close();
+	}
+
+	replyIncident(id: number) {
+		console.log(id);
+	}
+
+	closeIncident(id: number) {
+		console.log(id);
+	}
 }
-  
+
 export interface DataElement {
-  pk: number;
-  project: string;
-  season: string;
-  center: Date;
-  location: string;
-  status: string;
-  alias: string;
-  open_inc: string;
-  closed_inc: string
-  assigns?: any[];
+	pk: number;
+	project: string;
+	abbreviation: string;
+	season: string;
+	center: string;
+	location: string;
+	status: string;
+	alias: string;
+	open_inc: string;
+	closed_inc: string
+	assigns?: any[];
+
 }
 
 

@@ -21,8 +21,12 @@
               <h3 class="color-green-dark">PROJEC NAME</h3>
 			  <input formControlName ="p_name" class="add-insert-name" type="text" placeholder="Insert"/>         
 			 </div>
+			 	<div>
+					<h3 style="margin-left: -230%;" class="color-green-dark">ABBREVIATION</h3>
+						<input formControlName ="p_abbreviation" class="add-insert-abbreviation" type="text" placeholder="Insert"/>         
+ 				</div>
           <div>
-              <h3 style="margin-left: -80%;" class="color-green-dark">SEASON</h3>
+              <h3 style="margin-left: -177%;" class="color-green-dark">SEASON</h3>
               <input formControlName ="p_season" class="add-insert-season" type="text" placeholder="Insert"/>
           </div>
       </div>
@@ -51,7 +55,7 @@
           <div>
               <h3 style="font-size: 1.3rem; margin-bottom: -7px" class="color-green-dark">ALIAS</h3>
 			  <hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
-			  <input formControlName ="alias" class="add-insert-name" type="text" placeholder="Insert"/><button type="button" class="btn-add bg-green-dark add-button">ADD </button>
+			  <input formControlName ="alias" class="add-insert-alias" type="text" placeholder="Insert"/><button type="button" class="btn-add bg-green-dark add-button">ADD </button>
      
   			</div>
 		</div>
@@ -60,7 +64,7 @@
 				<h3 style="font-size: 1.3rem; margin-bottom: -7px" class="label-user color-green-dark">EMAIL</h3>
 				<hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
 				<h3 style="font-size: 0.8rem; margin-top: -10px;" class="label-user color-green-dark">EMAIL</h3>
-				<input  formControlName ="users" class="add-insert-name" type="token"  required placeholder="Email">
+				<input  formControlName ="users" class="add-insert-alias" type="token"  required placeholder="Email">
 				<button type="button" class="btn-add bg-green-dark add-button">ADD </button>
 				<mat-error *ngIf="fproject['users'].getError('required') != null">Required Field</mat-error>
 
@@ -69,6 +73,20 @@
 		  <hr style="height: 1px; background-color: #8e9191;" class="sidenav-hr">
 		 <button type="submit" name="submit" class="btn-add bg-green-dark save-button" >SAVE</button>
 		 
+
+
+
+<!-- 	</div>
+	<div >
+		<h2>{{'Comments'}}</h2>
+		<div class="form_with_button"  *ngFor="let comment of project.alias; let i = index">	
+				<input formControlName ="{{'alias ' + i}}" class="add-insert-name" type="text" placeholder="Insert"/> 		
+			<div class="form_button">
+				 <span (click)="deleteAlias(i)"></span>
+			</div>
+		</div>
+		<a class="addContainer" >{{'Click to add new comment'}}</a>
 	</div>
 </form>
 </div>
+ -->

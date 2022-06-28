@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginHomeService } from '../services/login-services.component';
 
 @Component({
 	selector: 'app-login',
@@ -14,11 +13,11 @@ export class LoginComponent implements OnInit {
 	login() {
 		if (this.formToken.valid) {
 			this.formToken.value.email
-			this.loginhomeservice.getToken().subscribe(
+			/* this.loginhomeservice.getToken().subscribe(
 				data => {
 					console.log(data)
 				}
-			);
+			); */
 		}
 	}
 
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
 	}
 
 
-	constructor(private fb: FormBuilder, private loginhomeservice: LoginHomeService) {
+	constructor(private fb: FormBuilder) {
 		this.formToken = this.fb.group({
 			token: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]))
 		})

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { EmailHomeService } from '../services/service-login.component';
+import { Router } from '@angular/router';
+import { AdminService } from '../services/admin.service';
 
 @Component({
 	selector: 'app-request-token',
@@ -10,26 +11,31 @@ import { EmailHomeService } from '../services/service-login.component';
 export class RequestTokenComponent implements OnInit {
 
 	formToken: FormGroup;
+	errorRequest: string = '';
+	loading: boolean = false;
 
 	sendToken() {
+		this.loading = true;
 		if (this.formToken.valid) {
-			this.formToken.value.email
-			this.emailhomeservice.getEmail().subscribe(
-				data => {
-					console.log(data)
+			this._aS.getEmail(this.formToken.value.email).subscribe(
+				(data: any) => {
+					if(data.error) {
+						this.errorRequest = data.msg;
+						this.loading = false;
+						return;
+					}
+					this.router.navigate(['login']);
 				}
 			);
 		}
 	}
-
-
 
 	get fToken() {
 		return this.formToken.controls;
 	}
 
 
-	constructor(private fb: FormBuilder, private emailhomeservice: EmailHomeService) {
+	constructor(private fb: FormBuilder, private _aS: AdminService, private router: Router) {
 		this.formToken = this.fb.group({
 			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]))
 		})

@@ -11,7 +11,8 @@
 <body>
     <div id="container">
         <div id="main" class="bg-background">
-            <div class="content">
+            <mat-spinner *ngIf="loading"></mat-spinner>
+            <div *ngIf="!loading" class="content">
                 <div class="title">
                     <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
                 </div>
@@ -24,12 +25,13 @@
                             <label for="email">E-MAIL</label>
                         </div>
                         <div class="form-block">
-                            <input formControlName ="email" class="form-input" type="email"  placeholder="EMAIL">
+                            <input name="email" formControlName ="email" class="form-input" type="email"  placeholder="EMAIL">
                         </div>
-												<mat-error *ngIf="fToken['email'].getError('required') != null">Required Field</mat-error>
-                				<mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid email</mat-error>
+							<mat-error *ngIf="errorRequest">{{errorRequest}}</mat-error>
+							<mat-error *ngIf="fToken['email'].getError('required') != null">Required Field</mat-error>
+                			<mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid email</mat-error>
                         <div class="form-block btn-request">
-                            <button class="bg-green-dark" type="submit">REQUEST TOKEN</button>
+                            <button class="bg-green-dark" type="submit" [disabled]="!formToken.valid">REQUEST TOKEN</button>
                         </div>
                     </form>
                     <div class="link">

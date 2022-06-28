@@ -58,12 +58,9 @@ export class AddCommentReportComponent implements OnInit {
 	}
 
   getQuestion(id:number) {
-    let text: any = '-'
+    let text: string = '';
     this.report.answers.forEach((rpt: any) => {
       if(rpt.question_id == id) text = rpt.answer_text ? rpt.answer_text : '-';
-      /* if(rpt.question_id == 15) {
-        text = rpt.question_id == id ? (rpt.answer_text ? this.datePipe.transform(rpt.answer_text, 'mediumDate') : '--/--/----') : '--/--/----';
-      } */
     });
     return text;
   }

@@ -112,6 +112,7 @@ export class AdminService {
   }
 
   getListReports() {
+		//return this.http.get('http://hotline.report/api/admin/listReports');
 		return this.http.get(this.service_url + 'admin/listReports');
 	}
 

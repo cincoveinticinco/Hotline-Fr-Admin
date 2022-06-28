@@ -8,9 +8,9 @@
             </button>
             <div class="sidenav-lateral-header">
                 <div>
-                    <h1>#12JG12MM</h1>
+                    <h1>#{{report.report?.r_reference || ' -'}}</h1>
                 </div>
-                <div *ngIf="report.report.r_status_id != 5">
+                <div *ngIf="report.report?.r_status_id != 5">
                     <button class="sidenav-header-btn bg-black" (click)="toggleTextarea()">REPLY</button>
                 </div>
             </div>
@@ -31,11 +31,11 @@
               </div>
               <div>
                   <h3 class="color-green-dark">REPORTER</h3>
-                  <span>{{report.report?.r_report_txt || '-'}}</span>
+                  <span>{{getQuestion(3) || '-'}}</span>
               </div>
               <div>
                   <h3 class="color-green-dark">NOTIFICATIONS</h3>
-                  <span>{{report.report?.r_notification_txt || '-'}}</span>
+                  <span>{{getQuestion(4) || 'No'}}</span>
               </div>
           </div>
           <hr class="sidenav-hr">
@@ -46,51 +46,51 @@
               </div>
               <div>
                   <h3 class="color-green-dark">PROJECT</h3>
-                    <span>{{getQuestion(9)}}</span>
+                    <span>{{report.report?.p_name || '-'}}</span>
               </div>
               <div>
                   <h3 class="color-green-dark">POSITION ON PRODUCTION</h3>
-                    <span>{{getQuestion(11)}}</span>
+                    <span>{{getQuestion(9) || '-'}}</span>
               </div>
           </div>
           <hr class="sidenav-hr">
           <div class="sidenav-grid-incidentType" style="height: 50px;">
               <div>
                   <h3 class="color-green-dark">INCIDENT TYPE</h3>
-                    <span>{{getQuestion(10)}}</span>
+                    <span>{{getQuestion(10) || '-'}}</span>
               </div>
               <div>
                   <h3 class="color-green-dark">DATE INCIDENT</h3>
-                    <span>{{getQuestion(15)}}</span>
+                    <span>{{getQuestion(15) || '--/--/----'}}</span>
               </div>
               <div>
                   <h3 class="color-green-dark">LOCATION INCIDENT</h3>
-                    <span>{{getQuestion(16)}}</span>
+                    <span>{{getQuestion(16) || '-'}}</span>
               </div>
           </div>
           <hr class="sidenav-hr">
           <div class="sidenav-incident-description" style="height: 50px;">
               <h3 class="color-green-dark">INCIDENT</h3>
-                <p>{{getQuestion(13)}}</p>
+                <p>{{getQuestion(13) || '-'}}</p>
           </div>
           <hr class="sidenav-hr">
           <div class="sidenav-people-involved sidenav-section">
               <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
-                <p >{{getQuestion(14)}}</p>
+                <p >{{getQuestion(14) || '-'}}</p>
           </div>
           <div class="sidenav-container-discussed">
               <div class="sidenav-section">
                 <h3 class="color-green-dark">REPEATED INCIDENT</h3>
-                    <p>{{getQuestion(17)}}</p>
+                    <p>{{getQuestion(17) || '-'}}</p>
               </div>
               <div class="sidenav-section" style="flex: 1 1 300px;">
                 <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
-                    <p>{{getQuestion(18)}}</p>
+                    <p>{{getQuestion(18) || '-'}}</p>
               </div>
           </div>
           <div class="sidenav-container-responses">
             <h2 class="color-green-dark">RESPONSES</h2>
-            <div *ngIf="report.report.r_status_id != 5" class="response-textarea-container">
+            <div *ngIf="report.report?.r_status_id != 5" class="response-textarea-container">
                 <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
                 <div *ngIf="isOpenTexarea" class="response-text-options">
                     <span></span>

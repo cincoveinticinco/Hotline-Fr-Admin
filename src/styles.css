@@ -344,6 +344,7 @@ table .img-text {
 }
 .sidenav-lateral {
   color: var(--dark-grey);
+  text-transform: uppercase;
 }
 .sidenav-lateral .sidenav-header-btn {
   width: 75px;

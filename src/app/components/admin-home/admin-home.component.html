@@ -44,7 +44,7 @@
                                     <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="ALL PROJECTS" disableOptionCentering>
                                         <mat-option [value]="null">ALL PROJECTS</mat-option>
                                         <mat-option *ngFor="let project of projects" [value]="project">
-                                            {{ project.proj_name | uppercase }}
+                                            {{ project.p_name | uppercase }}
                                         </mat-option>
                                     </mat-select>
                                     <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" class="filter" type="text" placeholder="SEARCH"/>
@@ -71,7 +71,7 @@
                             </ng-container>
                             <ng-container matColumnDef="project">
                                 <th mat-header-cell *matHeaderCellDef>PROJECT</th>
-                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.project_name || '-'}} </td>
+                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.p_name || '-'}} </td>
                             </ng-container>
                             <ng-container matColumnDef="incident">
                                 <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">INCIDENT</th>

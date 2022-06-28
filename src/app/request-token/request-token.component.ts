@@ -13,8 +13,9 @@ export class RequestTokenComponent implements OnInit {
 	formToken: FormGroup;
 	errorRequest: string = '';
 	loading: boolean = false;
+	openToken: boolean = false;
 
-	sendToken() {
+	sendEmail() {
 		this.loading = true;
 		if (this.formToken.valid) {
 			this._aS.getEmail(this.formToken.value.email).subscribe(
@@ -24,10 +25,32 @@ export class RequestTokenComponent implements OnInit {
 						this.loading = false;
 						return;
 					}
-					this.router.navigate(['login']);
+					this.openToken = true;
+					this.errorRequest = '';
+					this.loading = false;
 				}
 			);
 		}
+	}
+
+	sendToken(token: string) {
+		this.loading = true;
+		let params = {
+			'email': this.formToken.value.email,
+			'token': token
+		}
+		this._aS.getToken(params).subscribe(
+			(data: any) => {
+				if(data.error) {
+					this.errorRequest = data.msg;
+					this.loading = false;
+					return;
+				}
+				this.errorRequest = '';
+				this.router.navigate(['admin-home']);
+				this.loading = false;
+			}
+		);
 	}
 
 	get fToken() {

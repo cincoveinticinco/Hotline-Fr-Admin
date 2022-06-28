@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../services/admin.service';
 
 @Component({
 	selector: 'app-login',
@@ -8,29 +9,23 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
+	@Output() sendToken = new EventEmitter<string>();
+
 	formToken: FormGroup;
 
 	login() {
 		if (this.formToken.valid) {
-			this.formToken.value.email
-			/* this.loginhomeservice.getToken().subscribe(
-				data => {
-					console.log(data)
-				}
-			); */
+			this.sendToken.emit(this.formToken.value.token);
 		}
 	}
-
-
 
 	get fToken() {
 		return this.formToken.controls;
 	}
 
-
 	constructor(private fb: FormBuilder) {
 		this.formToken = this.fb.group({
-			token: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]))
+			token: new FormControl('', Validators.required)
 		})
 	}
 

@@ -507,6 +507,11 @@ mat-select{
   stroke: var(--green-dark);
 }
 
+.mat-error {
+  display: block;
+  text-transform: uppercase;
+}
+
 .no-data-found {
   padding: 30px;
   text-align: center;

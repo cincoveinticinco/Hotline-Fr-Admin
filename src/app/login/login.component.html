@@ -1,58 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Login</title>
-</head>
-<body>
-    <div id="container">
-        <div id="main" class="bg-background">
-            <div class="content">
-                <div class="title">
-                    <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
-                </div>
-                <div class="subtitle">
-                    <h2 class="color-black">ADMIN MODULE</h2>
-                </div>
-                <div class="p-text color-black">
-                    <p>
-                        TOKEN SUCCESSFULLY GENERATED. 
-                    </p>
-                    <p>
-                        PLEASE CHECK YOUR EMAIL                        
-                    </p>
-                </div>
-                <div class="form">
-						<form [formGroup]="formToken" (ngSubmit)="login()">
-                        <div class="form-block">
-                            <input  formControlName ="token" class="form-input" type="token"  required placeholder="TOKEN">
-                        </div>
-							<mat-error *ngIf="fToken['email'].getError('required') != null">Required Field</mat-error>
-                			<mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid token</mat-error>
-                        <div class="form-block btn-request">
-                            <button class="bg-green-dark" id="button-login" onclick="login()" type="button" disabled>LOGIN</button>
-                        </div>
-                    </form>
-                    <div class="link">
-                        <a href="" class="color-green-dark">GENERATE NEW TOKEN</a>
-                    </div>
-                </div>
+<div class="content">
+    <div class="title">
+        <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
+    </div>
+    <div class="subtitle">
+        <h2 class="color-black">ADMIN MODULE</h2>
+    </div>
+    <div class="p-text color-black">
+        <p>
+            TOKEN SUCCESSFULLY GENERATED.
+        </p>
+        <p>
+            PLEASE CHECK YOUR EMAIL
+        </p>
+    </div>
+    <div class="form">
+            <form [formGroup]="formToken" (ngSubmit)="login()">
+            <div class="form-block">
+                <input  formControlName ="token" class="form-input" type="token" required placeholder="TOKEN">
             </div>
+                <mat-error><ng-content></ng-content></mat-error>
+                <mat-error *ngIf="fToken['token'].getError('required') != null">Required Field</mat-error>
+                <mat-error *ngIf="fToken['token'].getError('pattern') != null">Please enter a valid token</mat-error>
+            <div class="form-block btn-request">
+                <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
+            </div>
+        </form>
+        <div class="link">
+            <a href="" class="color-green-dark">GENERATE NEW TOKEN</a>
         </div>
     </div>
-    <footer id="footer" class="bg-footer">
-        <div class="footer">
-            <h3 class="color-title-footer">LEGAL TERMS | DATA POLICY</h3>
-            <p>COPYRIGHT © 2022 GRUPO CINCOVEINTICINCO SAS.</p>
-            <p>ALL RIGTHS RESERVED</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/login.js"></script>
-</body>
-</html>
+</div>

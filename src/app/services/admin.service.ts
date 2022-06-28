@@ -153,4 +153,21 @@ export class AdminService {
 				})
 			)
 	}
+
+	getEmail(email: string) {
+		let params = {
+			'email': email
+		};
+		return this.http.post(this.service_url + 'login/sendToken', params, this.httpOptions).pipe(
+			map((response: any) => response))
+	}
+
+	getToken(requestParams: any) {
+		let params = {
+			'email': requestParams.email,
+			'token': requestParams.token
+		};
+		return this.http.post(this.service_url + 'login/loginToken', params, this.httpOptions).pipe(
+			map((response: any) => response))
+	}
 }

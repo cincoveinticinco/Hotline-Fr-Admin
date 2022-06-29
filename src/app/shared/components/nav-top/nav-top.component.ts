@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-nav-top',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavTopComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _lS: LoginService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  closeSession() {
+    this._lS.logOut();
   }
 
 }

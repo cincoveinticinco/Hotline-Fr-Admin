@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CookieModule } from 'ngx-cookie';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CookieModule } from 'ngx-cookie';
     NullsPipe,
     AddProjectComponent,
     AddCommentReportComponent,
-    DropdownComponent
+    DropdownComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

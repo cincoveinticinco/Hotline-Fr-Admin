@@ -31,6 +31,45 @@ body {
   --font-secondary: 0.6875em;
 }
 
+.mian-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+footer {
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+}
+
+footer h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--green-dark);
+}
+
+footer p {
+  color: var(--dark-grey) !important;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 7px;
+}
+
+.main-content {
+  height: calc(100vh - 60px);
+  background-color: var(--background);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#footer {
+  height: 70px;
+}
+
 #container {
   min-height: 100%;
 }
@@ -42,18 +81,14 @@ body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
 }
 
-#footer {
-  position: relative;
-  height: 70px;
-  clear: both;
-}
-
 div {
   box-sizing: border-box;
 }
 
 .content {
-  margin: 12% 35% 10% 35%;
+  width: 90%;
+  margin: 100px auto;
+  max-width: 400px;
 }
 
 .bg-footer {

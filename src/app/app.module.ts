@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavTopComponent } from './shared/components/nav-top/nav-top.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { NullsPipe } from './pipes/nulls.pipe';
@@ -23,6 +23,8 @@ import { AddProjectComponent } from './add-project/add-project.component';
 import { AddCommentReportComponent } from './components/admin-home/add-comment-report/add-comment-report.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -51,9 +53,16 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     HttpClientModule,
     FormsModule,
     MatFormFieldModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CookieModule.withOptions()
   ],
-  providers: [],
+  providers: [
+    {
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthInterceptorService,
+			multi: true
+		}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

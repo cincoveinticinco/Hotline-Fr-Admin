@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from '../services/admin.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
 	selector: 'app-request-token',
@@ -18,7 +18,7 @@ export class RequestTokenComponent implements OnInit {
 	sendEmail() {
 		this.loading = true;
 		if (this.formToken.valid) {
-			this._aS.getEmail(this.formToken.value.email).subscribe(
+			this._lS.getEmail(this.formToken.value.email).subscribe(
 				(data: any) => {
 					if(data.error) {
 						this.errorRequest = data.msg;
@@ -39,7 +39,7 @@ export class RequestTokenComponent implements OnInit {
 			'email': this.formToken.value.email,
 			'token': token
 		}
-		this._aS.getToken(params).subscribe(
+		this._lS.getLoginToken(params).subscribe(
 			(data: any) => {
 				if(data.error) {
 					this.errorRequest = data.msg;
@@ -58,7 +58,7 @@ export class RequestTokenComponent implements OnInit {
 	}
 
 
-	constructor(private fb: FormBuilder, private _aS: AdminService, private router: Router) {
+	constructor(private fb: FormBuilder, private router: Router, private _lS: LoginService) {
 		this.formToken = this.fb.group({
 			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]))
 		})

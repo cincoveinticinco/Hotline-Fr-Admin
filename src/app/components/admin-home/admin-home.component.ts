@@ -94,7 +94,7 @@ export class AdminHomeComponent implements OnInit {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "r_status_id", this.filters.status, "id");
     }
     if(this.filters.types) {
-      this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "r_type_id", this.filters.types, "id");
+      this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "incident_type_id", this.filters.types, "id");
     }
     if(this.filters.centers) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "center_id", this.filters.centers, "id");

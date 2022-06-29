@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  
+  public service_url: string = environment.apiUrl;
 
   constructor() { }
 

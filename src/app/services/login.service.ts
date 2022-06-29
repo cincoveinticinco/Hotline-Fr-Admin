@@ -30,8 +30,8 @@ export class LoginService {
     return value
   }
 
-	setToken() {
-		
+	setToken(token: string) {
+		this._cookieService.put('hotline', token);
 	}
 
   getIsLoggedIn() {

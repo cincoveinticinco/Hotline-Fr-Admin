@@ -11,10 +11,12 @@ const routes: Routes = [
   {
 		path: '',
 		component: HomeComponent,
+		pathMatch: 'full'
 	},
   {
 		path: 'login',
 		component: LoginComponent,
+		pathMatch: 'full'
 	},
   {
 		path: 'request-token',
@@ -29,6 +31,10 @@ const routes: Routes = [
 		path: 'projects',
 		canActivate: [AuthGuard],
 		component: ProjectsComponent,
+	},
+	{
+		path: '**',
+		redirectTo: ''
 	}
 ];
 

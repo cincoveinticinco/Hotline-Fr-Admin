@@ -47,6 +47,7 @@ export class RequestTokenComponent implements OnInit {
 					return;
 				}
 				this.errorRequest = '';
+				this._lS.setToken(data.token);
 				this.router.navigate(['admin-home']);
 				this.loading = false;
 			}

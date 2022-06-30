@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { AdminService } from '../services/admin.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 
 @Component({
 	selector: 'app-add-project',
@@ -24,21 +24,29 @@ export class AddProjectComponent implements OnInit {
 		p_name: "",
 		p_season: "",
 		alias: "",
-		p_abbreviation: ""
+		p_abbreviation: "",
+		aliases: "",
+		correos: ""
 	}
 
-	addAlias() {
-
+	/* 	profileForm = this.fb.group({
+			aliases: this.fb.array([
+				this.fb.control('')
+			])
+		});
+	 */
+	get aliases() {
+		return this.form.get('aliases') as FormArray;
 	}
+	get correos() {
+		return this.form.get('correos') as FormArray;
+	}
+
 
 	Save() {
+		console.log(this.form.get("aliases"))
+		console.log(this.form.get("correos"))
 		console.log(this.form)
-
-		this.form.value.users
-		this.form.value.p_name
-		this.form.value.p_season
-		this.form.value.alias
-		this.form.value.p_abbreviation
 		this._aS.addProject(this.form.value).subscribe(
 			data => {
 				console.log(data)
@@ -55,19 +63,36 @@ export class AddProjectComponent implements OnInit {
 
 
 	close() {
+		(<FormArray>this.form.get("aliases")).clear();
+		(<FormArray>this.form.get("correos")).clear();
 		this.closePanel.emit();
 	}
 
-	/* 	deleteAlias(ev: any) {
-			this.project.alias.splice(ev, 1);
-		}
-	
-		addAlias() {
-			var a: any = {
-				'alias': '',
-			}
-			this.project.alias.push(a)
-		} */
+	deleteAlias(ev: any) {
+		this.project.alias.splice(ev, 1);
+	}
+	deleteCorreos(ev: any) {
+		this.project.correo.splice(ev, 1);
+	}
+
+	addAlias() {
+		(<FormArray>this.form.get("aliases")).push(this.fb.control(this.alias))
+	}
+
+	get alias(): string | null {
+		return this.form.get('alias')?.value;
+	}
+
+	addCorreos() {
+		(<FormArray>this.form.get("correos")).push(this.fb.control(this.users, Validators.required))
+	}
+	get users(): string | null {
+		return this.form.get('users')?.value;
+	}
+
+
+
+
 
 	constructor(private _aS: AdminService, private fb: FormBuilder,) {
 		this.form = this.fb.group({
@@ -77,7 +102,10 @@ export class AddProjectComponent implements OnInit {
 			p_name: new FormControl(''),
 			p_season: new FormControl(''),
 			alias: new FormControl(''),
-			p_abbreviation: new FormControl('')
+			p_abbreviation: new FormControl(''),
+			aliases: new FormArray([]),
+			correos: new FormArray([])
+
 
 
 		})
@@ -90,7 +118,9 @@ export class AddProjectComponent implements OnInit {
 				p_name: this.itemact.p_name,
 				p_season: this.itemact.p_season,
 				alias: this.itemact.alias,
-				p_abbreviation: this.itemact.p_abbreviation
+				p_abbreviation: this.itemact.p_abbreviation,
+				aliases: this.itemact.aliases,
+				correos: this.itemact.correos
 			})
 		}
 

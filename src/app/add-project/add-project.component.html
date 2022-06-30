@@ -35,7 +35,7 @@
               <h3 class="color-green-dark">CENTER</h3>
               <mat-select class="dropdown-center" name="center_id"  formControlName="center_id" placeholder="Insert"> 
 				<mat-label>Select</mat-label>
-				<mat-option *ngFor="let center of center_id" [value]="center.id">
+				<mat-option *ngFor="let center of center_id" [value]="center.id"> 
 					{{ center.center_name | uppercase }}
 				</mat-option>                            
 			</mat-select>
@@ -55,9 +55,10 @@
           <div>
               <h3 style="font-size: 1.3rem; margin-bottom: -7px" class="color-green-dark">ALIAS</h3>
 			  <hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
-			  <input formControlName ="alias" class="add-insert-alias" type="text" placeholder="Insert"/><button type="button" class="btn-add bg-green-dark add-button">ADD </button>
-     
-  			</div>
+			  <input formControlName ="alias" class="add-insert-alias" type="text" placeholder="Insert"/>
+				<button type="button" (click)="addAlias()" class="btn-add bg-green-dark add-button">ADD </button>
+			  </div>
+			
 		</div>
 		<div class="sidenav-grid-incidentType">
 			<div>
@@ -65,7 +66,7 @@
 				<hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
 				<h3 style="font-size: 0.8rem; margin-top: -10px;" class="label-user color-green-dark">EMAIL</h3>
 				<input  formControlName ="users" class="add-insert-alias" type="token"  required placeholder="Email">
-				<button type="button" class="btn-add bg-green-dark add-button">ADD </button>
+				<button type="button" (click)="addCorreos()" class="btn-add bg-green-dark add-button">ADD </button>
 				<mat-error *ngIf="fproject['users'].getError('required') != null">Required Field</mat-error>
 
 				</div>
@@ -74,19 +75,40 @@
 		 <button type="submit" name="submit" class="btn-add bg-green-dark save-button" >SAVE</button>
 		 
 
-
-
-<!-- 	</div>
-	<div >
-		<h2>{{'Comments'}}</h2>
-		<div class="form_with_button"  *ngFor="let comment of project.alias; let i = index">	
-				<input formControlName ="{{'alias ' + i}}" class="add-insert-name" type="text" placeholder="Insert"/> 		
-			<div class="form_button">
-				 <span (click)="deleteAlias(i)"></span>
+<!-- 		 <div>
+			<h2 >{{'Comments'}}</h2>
+			<div>
+				<input formControlName ="alias" class="add-insert-alias" type="text" placeholder="Insert"/>				
 			</div>
-		</div>
-		<a class="addContainer" >{{'Click to add new comment'}}</a>
+			<div   *ngFor="let als of project.alias let i = index">		
+				<div class="form_button">
+					<span (click)="deleteAlias(i)"></span>
+				</div>
+			</div>
+			<a class="addContainer" (click)="addAlias()">{{'Click to add new comment'}}</a>
+		</div> -->
+
+		
+	</div>
+	<div formArrayName="aliases">
+		<h2>Aliases</h2>
+		<button type="button" (click)="addAlias()">+ Add another alias</button>	
+		<div *ngFor="let alias of aliases.controls; let i=index">		
+			
+				<label for="alias-{{ i }}">Alias:</label>
+				<input id="alias-{{ i }}" type="text" [formControlName]="i">
+			
+		</div> 
+	</div>
+	<div formArrayName="correos">
+		<h2>Correos</h2>
+		<button type="button" (click)="addAlias()">+ Add another alias</button>	
+		<div *ngFor="let correo of correos.controls; let i=index">		
+			
+				<label for="correo-{{ i }}">Correo:</label>
+				<input id="correo-{{ i }}" type="text" [formControlName]="i">
+			
+		</div> 
 	</div>
 </form>
 </div>
- -->

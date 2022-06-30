@@ -571,6 +571,60 @@ mat-select {
   text-align: center;
 }
 
+/* .form_with_button .form_container {
+  display: inline-block;
+  width: calc(100% - 40px);
+  padding-right: 3px;
+  padding-left: 0px;
+}
+
+.form_with_button .form_container label {
+  display: inline-block;
+  padding-left: 2px;
+  width: 100%;
+}
+
+.form_with_button .form_button {
+  display: inline-block;
+  float: right;
+  width: 40px;
+}
+
+.form_with_button .form_button span {
+  margin-top: 11px;
+  display: block;
+  width: 40px;
+  height: 32px;
+  background-image: url("../../Hotline-Fr-Admin/src/assets/img/assets.png");
+  background-size: 1024px 1024px;
+  background-position: -437px 0px;
+
+}
+
+.form_with_button .form_button span:hover {
+  cursor: pointer;
+  background-position: -397px 0px;
+}
+
+a.addContainer {
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  font-size: 11px;
+  border: dashed 1px rgb(220, 220, 220);
+  color: rgb(100, 100, 100);
+  padding-top: 6px;
+  margin: 3px 0px;
+}
+
+a.addContainer:hover {
+  cursor: pointer;
+  color: rgb(25, 207, 249);
+  border-color: rgb(25, 207, 249)
+}
+
+ */
 @media screen and (max-width: 720px) {
   .mat-drawer.mat-drawer-end {
     width: 100%;

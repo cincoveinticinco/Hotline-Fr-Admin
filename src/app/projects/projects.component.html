@@ -41,7 +41,7 @@
                         <table mat-table [dataSource]="filteredDataSource">
                             <ng-container  matColumnDef="project">
                                 <th mat-header-cell *matHeaderCellDef >PROJECT</th>
-                                <td style="text-align: center;"  mat-cell *matCellDef="let element">{{element.p_name | nulls }}</td>
+                                <td style="text-align: center;"  mat-cell *matCellDef="let element">{{element.p_name  | nulls }}</td>
                             </ng-container>     
 														<ng-container  matColumnDef="abbreviation">
 															<th mat-header-cell *matHeaderCellDef style="width: 20px;">ABBREVIATION</th>
@@ -58,10 +58,6 @@
                             <ng-container matColumnDef="location">
                                 <th mat-header-cell *matHeaderCellDef style="width: 80px;">LOCATION</th>
                                 <td style="text-align: center;"  mat-cell *matCellDef="let element"> {{element.location_name | nulls}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="status">
-                                <th mat-header-cell *matHeaderCellDef style="width: 50px;">STATUS</th>
-                                <td style="text-align: center;"  mat-cell *matCellDef="let element"> <span class="bg-green">{{element.status || '-----'}}</span></td>
                             </ng-container>
                             <ng-container matColumnDef="alias">
                                 <th mat-header-cell *matHeaderCellDef>ALIAS</th>

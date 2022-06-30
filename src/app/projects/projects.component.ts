@@ -11,7 +11,7 @@ export class ProjectsComponent implements OnInit {
 
 	@ViewChild('sidenav') sidenav!: MatSidenav;
 
-	displayedColumns = ['project', 'abbreviation', 'season', 'center', 'location', 'status', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
+	displayedColumns = ['project', 'abbreviation', 'season', 'center', 'location', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
 	dataSource: any = [];
 	searchProperties: string[] = ['r_status_txt'];
 	filteredDataSource: any[] = [];
@@ -93,7 +93,6 @@ export interface DataElement {
 	season: string;
 	center: string;
 	location: string;
-	status: string;
 	alias: string;
 	open_inc: string;
 	closed_inc: string

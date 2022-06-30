@@ -140,8 +140,8 @@ export class AdminService {
 		let queryParams = {
 			'p_name': params.p_name,
 			'p_season': params.p_season,
-			'alias': [params.alias],
-			'users': [params.users],
+			'alias': params.aliases,
+			'users': params.correos,
 			'center_id': params.center_id,
 			'location_name': params.location_name,
 			'p_abbreviation': params.p_abbreviation

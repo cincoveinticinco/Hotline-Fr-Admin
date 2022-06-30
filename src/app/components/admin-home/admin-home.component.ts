@@ -1,6 +1,7 @@
 import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-home',
@@ -32,11 +33,21 @@ export class AdminHomeComponent implements OnInit {
   selectedRerport: any = null;
   reportDetail: any = null;
 
-  constructor(public _aS: AdminService) {
-  };
+  constructor(
+    public _aS: AdminService,
+    private route: ActivatedRoute
+  ) {};
 
   ngOnInit(): void {
     this.loadData();
+  }
+
+  ngAfterViewInit() {
+    this.route.params.subscribe(
+      (data: any) => {
+        if(data.id) this.showDetails({id: data.id})
+			}
+		);
   }
 
   loadData(){
@@ -59,7 +70,7 @@ export class AdminHomeComponent implements OnInit {
     this.loadData();
   }
 
-  showDetails(report: number) {
+  showDetails(report: any) {
     this.sidenav.open();
     this.selectedRerport = report;
     this._aS.getReportDetail(this.selectedRerport.id).subscribe(

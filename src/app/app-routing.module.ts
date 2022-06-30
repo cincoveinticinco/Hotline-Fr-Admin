@@ -28,6 +28,11 @@ const routes: Routes = [
 		component: AdminHomeComponent,
 	},
 	{
+		path: 'admin-home/:id',
+		canActivate: [AuthGuard],
+		component: AdminHomeComponent,
+	},
+	{
 		path: 'projects',
 		canActivate: [AuthGuard],
 		component: ProjectsComponent,

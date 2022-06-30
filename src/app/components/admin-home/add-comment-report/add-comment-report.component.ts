@@ -13,7 +13,7 @@ export class AddCommentReportComponent implements OnInit {
   @Output() closePanel = new EventEmitter<string>();
   @Output() notify = new EventEmitter<string>();
 
-  heightTextarea: number = 15;
+  heightTextarea: number = 30;
   isOpenTexarea: boolean = false;
   response: string = '';
   loading: boolean = true;
@@ -32,7 +32,7 @@ export class AddCommentReportComponent implements OnInit {
 
   toggleTextarea(open: boolean = false) {
     this.isOpenTexarea = open ? true : !this.isOpenTexarea;
-    this.heightTextarea = this.isOpenTexarea ? 100 : 15;
+    this.heightTextarea = this.isOpenTexarea ? 100 : 30;
   }
 
   saveReply(isClose: boolean) {

@@ -35,7 +35,8 @@
 				</div>
 				<div class="L-6 M-6 S-6 columns">
 					<label class="color-green-dark">LOCATION</label>
-					<mat-select name="location_name" formControlName="location_name" placeholder="Insert">
+					<input formControlName ="location_name" class="add-location" type="text" placeholder="Insert"/>
+					<!-- <mat-select name="location_name" formControlName="location_name" placeholder="Insert">
 						<option selected [value]="null">Select</option>
 						<mat-option selected [value]="null" *ngFor="let location of location_name" [value]="location.id">
 							<app-dropdown>
@@ -43,7 +44,7 @@
 							</app-dropdown>
 							{{ location.location_name | uppercase }}
 						</mat-option>
-					</mat-select>
+					</mat-select> -->
 				</div>
 			</div>
 			<div class="row">

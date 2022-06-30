@@ -44,6 +44,7 @@ body {
   overflow: hidden;
   position: relative;
 }
+
 .main-content .content {
   height: 100%;
   overflow: auto;
@@ -55,12 +56,14 @@ footer {
   padding: 10px;
   border-top: 1px solid #000000;
 }
+
 footer h3 {
   font-size: 11px;
   font-weight: bold;
   margin-bottom: 10px;
   color: var(--green-dark);
 }
+
 footer p {
   color: var(--dark-grey) !important;
   font-size: 9px;
@@ -72,6 +75,7 @@ footer p {
 div {
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
 }
@@ -80,32 +84,40 @@ a {
   background-color: var(--background);
   color: var(--black);
 }
+
 .bg-green-dark {
   background-color: var(--green-dark) !important;
   color: var(--white) !important;
 }
+
 .bg-yellow {
   background-color: var(--yellow);
   color: var(--black);
 }
+
 .bg-orange {
   background-color: var(--orange);
   color: var(--black);
 }
+
 .bg-orange-lite {
   background-color: var(--orange-lite);
   color: var(--black);
 }
+
 .bg-black {
   background-color: var(--black);
   color: var(--white);
 }
+
 .bg-green {
   background-color: var(--green);
 }
+
 .bg-dark-grey {
   background-color: var(--dark-grey) !important;
 }
+
 .bg-white {
   background-color: var(--white) !important;
   color: var(--black) !important;
@@ -114,12 +126,15 @@ a {
 .color-subtitle {
   color: var(--dark-grey) !important;
 }
+
 .color-black {
   color: var(--black) !important;
 }
+
 .color-grey {
   color: var(--dark-grey) !important;
 }
+
 .color-green-dark {
   color: var(--green-dark) !important;
 }
@@ -135,9 +150,11 @@ a {
 button {
   cursor: pointer;
 }
+
 button:hover {
   opacity: 0.5;
 }
+
 button:disabled {
   filter: opacity(0.5);
 }
@@ -173,13 +190,16 @@ mat-select {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
+
 .mat-select-value {
   color: var(--black-light);
   padding: 6px;
 }
+
 .mat-select-panel {
   font-size: 11px !important;
 }
+
 mat-select:hover .mat-select-placeholder,
 mat-select:hover .mat-select-arrow {
   color: var(--green-dark);
@@ -210,6 +230,7 @@ mat-option:hover {
   font-size: 12px;
   width: 100%;
 }
+
 .btn-option {
   width: 100%;
   margin-bottom: 3px;
@@ -218,9 +239,11 @@ mat-option:hover {
   cursor: pointer;
   font-weight: bold;
 }
+
 .btn-option button:hover {
   opacity: 0.6;
 }
+
 .close-button {
   border: none;
   margin-bottom: 6px;
@@ -234,6 +257,7 @@ mat-option:hover {
   cursor: pointer;
   font-size: 12px;
 }
+
 .nav-container .nav-option:hover {
   background-color: rgba(0, 0, 0, 0.1);
   color: var(--green-dark);
@@ -245,6 +269,7 @@ mat-option:hover {
   height: 35px;
   align-items: center;
 }
+
 .header-page .title-page {
   font-size: 25px;
   font-weight: bold;
@@ -261,29 +286,44 @@ mat-option:hover {
 .contaner-filters .filter {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
+
 .contaner-filters .filter:first-child {
   border-radius: 5px 0 0 5px;
 }
+
 .contaner-filters .filter:last-child {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 0 5px 5px 0;
 }
+
 .contaner-filters .filters {
   width: max-content;
   margin: 4px;
 }
+
 .contaner-filters .filters input {
   width: 150px;
 }
+
+.contaner-filters .filters input::placeholder {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.contaner-filters .filters input:hover::placeholder {
+  color: var(--green-dark)
+}
+
 .contaner-filters .filters .filter.search-text {
   display: inline-block;
   position: relative;
 }
-.contaner-filters .filters .filter.search-text input{
+
+.contaner-filters .filters .filter.search-text input {
   border: none;
   border-radius: 0 5px 5px 0;
 }
-.contaner-filters .filters .filter.search-text mat-icon{
+
+.contaner-filters .filters .filter.search-text mat-icon {
   position: absolute;
   right: 0;
   color: var(--black-light);
@@ -295,8 +335,9 @@ mat-option:hover {
   border-radius: 50%;
   padding: 2px;
 }
+
 .contaner-filters .filters .filter.search-text mat-icon:hover {
-  background-color:rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   color: var(--green-dark)
 }
 
@@ -305,6 +346,7 @@ table {
   background-color: white;
   border-collapse: collapse;
 }
+
 .table-container {
   overflow: auto;
   display: block;
@@ -313,11 +355,13 @@ table {
   border: 1px solid #b7b7b7;
   margin: 6px;
 }
+
 table th {
   text-align: center !important;
   color: #2B2B2B !important;
   font-weight: bold !important;
 }
+
 table td {
   padding: 5px 8px !important;
   font-size: 12px !important;
@@ -329,15 +373,18 @@ table td {
   border: 1px solid #b7b7b7;
   border-bottom-color: #b7b7b7 !important;
 }
+
 tr.mat-header-row {
   height: 35px !important;
 }
-table td.commets{
+
+table td.commets {
   text-align: center;
   text-align: center;
   color: rgba(0, 0, 0, 0.4);
 }
-table td.commets span{
+
+table td.commets span {
   background-color: var(--green-dark);
   border-radius: 50%;
   width: 18px;
@@ -347,6 +394,7 @@ table td.commets span{
   align-items: center;
   color: var(--white);
 }
+
 table .img-text {
   background-color: var(--green-dark);
   border-radius: 50%;
@@ -377,17 +425,20 @@ table .img-text {
   padding: 50px 20px;
   max-width: 400px;
 }
+
 .login-container .title {
   text-align: center;
   font-size: 23px;
   font-weight: bold;
 }
+
 .login-container .subtitle {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 30px;
 }
+
 .login-container .btn button {
   display: block;
   width: 100%;
@@ -398,16 +449,20 @@ table .img-text {
   border: none;
   font-weight: bold;
 }
+
 .login-container.btn button:hover {
   opacity: 0.6;
 }
+
 .login-container .login-form .form-section {
   margin-top: 10px;
 }
+
 .login-container .login-form label {
   font-size: 14px;
   font-weight: bold;
 }
+
 .login-container .login-form .form-input {
   width: 100%;
   padding: 15px 0px 15px 0;
@@ -415,6 +470,7 @@ table .img-text {
   font-size: 15px;
   height: 50px;
 }
+
 .login-container .login-form .btn-request button {
   width: 100%;
   margin-top: 5px;
@@ -424,15 +480,18 @@ table .img-text {
   font-weight: bold;
   padding: 15px 0px 15px 0;
 }
+
 .login-container .login-form .btn-request button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
 .login-container .login-link {
   margin-top: 18px;
   font-size: 14px;
   font-weight: bold;
 }
+
 .login-container .login-message p {
   text-align: center;
   font-size: 17px;
@@ -447,16 +506,20 @@ table .img-text {
   right: 0;
   height: 100%;
 }
+
 .mat-drawer.mat-drawer-end {
   width: 720px;
 }
+
 .mat-drawer {
   width: 40%;
 }
+
 .sidenav-lateral {
   color: var(--dark-grey);
   text-transform: uppercase;
 }
+
 .sidenav-lateral .sidenav-header-btn {
   width: 75px;
   font-size: 11px;
@@ -464,50 +527,61 @@ table .img-text {
   margin: 3px;
   border: none;
 }
+
 .sidenav-lateral .sidenav-container {
   margin: 30px;
 }
+
 .sidenav-lateral .sidenav-container h3 {
   font-size: 12px;
   margin-bottom: 2px;
 }
+
 .sidenav-lateral .sidenav-container span {
   font-size: 13px;
 }
+
 .sidenav-lateral .sidenav-container p {
   margin-top: 5px;
   font-size: 13px;
   text-align: justify;
 }
+
 .sidenav-lateral .sidenav-grid-status {
   display: grid;
   grid-template-columns: 18% 18% 18% 24% 18%;
   height: auto;
 }
+
 .sidenav-lateral .sidenav-hr {
   margin-top: 8px;
   margin-bottom: 15px;
   width: 100%;
   height: 0;
 }
+
 .sidenav-lateral .sidenav-grid-center {
   display: grid;
   grid-template-columns: 100% 36% 42%;
   height: auto;
 }
+
 .sidenav-lateral .sidenav-grid-incidentType {
   display: grid;
   grid-template-columns: 100% 23% 23%;
   height: auto;
 }
+
 .sidenav-lateral .sidenav-grid-project {
   display: grid;
   grid-template-columns: 100% 23% 23%;
   height: auto;
 }
+
 .sidenav-lateral .sidenav-grid-header {
   padding: 6px;
 }
+
 .sidenav-lateral .sidenav-lateral-header,
 .sidenav-lateral .response-text-options {
   display: flex;
@@ -555,6 +629,7 @@ table .img-text {
   width: 140%;
   height: 25px;
   margin-bottom: 10px;
+  padding-left: 10px;
   margin-left: -350px !important;
 }
 
@@ -565,14 +640,22 @@ table .img-text {
   margin-left: -177%;
 }
 
+.add-location {
+  margin-left: -125%;
+  width: 115%;
+  height: 25px;
+  padding-left: 10px;
+}
+
 .dropdown-center {
   width: 50% !important;
   height: 28px;
   padding-left: 10px;
   margin-bottom: 30px;
-  color: #8b9293;
+  color: #757878;
   border-style: solid;
   border-radius: 3px;
+  border-width: 1px;
 }
 
 .dropdown-location {

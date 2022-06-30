@@ -90,7 +90,7 @@ export interface DataElement {
 	pk: number;
 	project: string;
 	abbreviation: string;
-	season: string;
+	season: number;
 	center: string;
 	location: string;
 	alias: string;

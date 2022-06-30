@@ -27,7 +27,7 @@
  				</div>
           <div>
               <h3 style="margin-left: -177%;" class="color-green-dark">SEASON</h3>
-              <input formControlName ="p_season" class="add-insert-season" type="text" placeholder="Insert"/>
+              <input formControlName ="p_season" class="add-insert-season" type="number" placeholder="Insert"/>
           </div>
       </div>
       <div class="sidenav-grid-center">
@@ -40,7 +40,11 @@
 				</mat-option>                            
 			</mat-select>
           </div>
-          <div>
+					<div>
+						<h3 style="margin-left: -125%;" class="color-green-dark">LOCATION</h3>
+						<input formControlName ="location_name" class="add-location" type="text" placeholder="Insert"/>
+					</div>
+          <!-- <div>
               <h3 style="margin-left: -130%;" class="color-green-dark">LOCATION</h3>
 			  <mat-select class="dropdown-location" name="location_name" formControlName="location_name" placeholder="Insert">
 				<option selected [value]="null">Select</option>   
@@ -51,7 +55,7 @@
 					{{ location.location_name | uppercase }}
 				</mat-option>                            
 			</mat-select>
-          </div>
+          </div> -->
 		  
       </div>
       <div class="sidenav-grid-incidentType">

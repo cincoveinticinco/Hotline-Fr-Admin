@@ -2,3 +2,6 @@ h2 {
   margin-top: 10px;
   border-bottom: 1px solid var(--green-dark);
 }
+.btn-add {
+  height: 30px;
+}

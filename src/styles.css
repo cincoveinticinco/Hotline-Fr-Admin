@@ -207,7 +207,7 @@ mat-select:hover .mat-select-arrow {
 .columns mat-select {
   display: block;
   border-radius: 5px;
-  line-height: 30px;
+  line-height: 28px;
 }
 .columns mat-select span{
   font-size: 11px !important;

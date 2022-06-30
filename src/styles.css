@@ -591,118 +591,12 @@ table .img-text {
   margin-left: 24px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.add-insert-name {
-  width: 40%;
-  height: 25px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-}
-
-.add-insert-alias {
-  width: 77%;
-  height: 25px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-}
-
-.add-insert-abbreviation {
-  width: 140%;
-  height: 25px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  margin-left: -350px !important;
-}
-
-.add-insert-season {
-  width: 60%;
-  height: 25px;
-  padding-left: 10px;
-  margin-left: -177%;
-}
-
-.add-location {
-  margin-left: -125%;
-  width: 115%;
-  height: 25px;
-  padding-left: 10px;
-}
-
-.dropdown-center {
-  width: 50% !important;
-  height: 28px;
-  padding-left: 10px;
-  margin-bottom: 30px;
-  color: #757878;
-  border-style: solid;
-  border-radius: 3px;
-  border-width: 1px;
-}
-
-.dropdown-location {
-  width: 118% !important;
-  height: 28px;
-  padding-left: 10px;
-  margin-left: -130%;
-  color: #8b9293;
-  border-style: solid;
-  border-radius: 3px;
-
-}
-
-.label-user {
-  grid-template-columns: 100% 80% 80%;
-}
-
-.save-button {
-  width: 35%;
-  height: 50px;
-  padding-left: 10px;
-  border: 0px;
-  margin-left: 34%;
-}
-
-.tittle-add-project {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: black;
-  text-transform: uppercase;
-  margin-left: 5%;
-}
-
-#admin-main {
-  height: 100%;
-  overflow: hidden;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
-}
-
 .mat-progress-spinner {
   position: absolute !important;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: var(--green-dark);
@@ -712,6 +606,42 @@ table .img-text {
   padding: 30px;
   text-align: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.save-button {
+  width: 35%;
+  height: 50px;
+  padding-left: 10px;
+  border: 0px;
+  margin-left: 34%;
+}
+
+
+
+
+
+
+
+
 
 .form_button span {
   margin-top: -7%;
@@ -723,15 +653,12 @@ table .img-text {
   background-image: url("../../Hotline-Fr-Admin/src/assets/img/assets.png");
   background-size: 1024px 1024px;
   background-position: -437px 0px;
-
-
 }
 
 .form_button span:hover {
   cursor: pointer;
   background-position: -397px 0px;
 }
-
 
 .deleteAlias {
   border: none;

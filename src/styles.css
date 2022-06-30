@@ -279,6 +279,7 @@ mat-option:hover {
   flex: 1;
   overflow-x: auto;
   margin: 0 10px;
+  overflow-y: hidden;
 }
 .contaner-filters mat-select {
   width: 150px !important;

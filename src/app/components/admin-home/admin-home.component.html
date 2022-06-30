@@ -1,127 +1,113 @@
-<mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
-    <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
-        <app-add-comment-report
-            [report]="reportDetail"
-            (closePanel)="close()"
-            (notify)="update()">
-        </app-add-comment-report>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div id="admin-container">
-            <div id="admin-main" class="bg-background">
-                <app-nav-top>
-                    <div class="nav-option"><span>USERS</span></div>
-                    <div class="nav-option"><span>CENTERS</span></div>
-                    <div [routerLink]="'../projects'" class="nav-option"><span>PROJECTS</span></div>
-                    <div class="nav-option"><span>INCIDENTS</span></div>
-                </app-nav-top>
-                <div class="container color-black">
-                    <form class="example-form">
-                        <div class="header-page">
-                            <div class="title-page">
-                                <span>INCIDENTS</span>
-                            </div>
-                            <div class="contaner-filters">
-                                <div class="filters">
-                                    <mat-select class="filter" name="status" [(ngModel)]="filters.status" (ngModelChange)="filter()" placeholder="ALL STATUSES" disableOptionCentering>
-                                        <mat-option>ALL STATUSES</mat-option>
-                                        <mat-option *ngFor="let status of statuses" [value]="status">
-                                            {{ status.r_status_txt | uppercase }}
-                                        </mat-option>
-                                    </mat-select>
-                                    <mat-select class="filter" name="types" [(ngModel)]="filters.types" (ngModelChange)="filter()" placeholder="ALL TYPES" disableOptionCentering>
-                                        <mat-option [value]="null">ALL TYPES</mat-option>
-                                        <mat-option *ngFor="let type of types" [value]="type">
-                                            {{ type.q_option_title | uppercase }}
-                                        </mat-option>
-                                    </mat-select>
-                                    <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="ALL CENTERS" disableOptionCentering>
-                                        <mat-option [value]="null">ALL CENTERS</mat-option>
-                                        <mat-option *ngFor="let center of centers" [value]="center">
-                                            {{ center.center_name | uppercase }}
-                                        </mat-option>
-                                    </mat-select>
-                                    <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="ALL PROJECTS" disableOptionCentering>
-                                        <mat-option [value]="null">ALL PROJECTS</mat-option>
-                                        <mat-option *ngFor="let project of projects" [value]="project">
-                                            {{ project.p_name | uppercase }}
-                                        </mat-option>
-                                    </mat-select>
-                                    <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" class="filter" type="text" placeholder="SEARCH"/>
-                                </div>
-                            </div>
-                            <div>
-                                <button type="button" class="btn-add bg-green-dark">ADD INCIDENT</button>
+<div class="content">
+    <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
+        <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
+            <app-add-comment-report
+                [report]="reportDetail"
+                (closePanel)="close()"
+                (notify)="update()">
+            </app-add-comment-report>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <app-nav-top>
+                <div class="nav-option"><span>USERS</span></div>
+                <div class="nav-option"><span>CENTERS</span></div>
+                <div [routerLink]="'../projects'" class="nav-option"><span>PROJECTS</span></div>
+                <div class="nav-option"><span>INCIDENTS</span></div>
+            </app-nav-top>
+            <form class="example-form">
+                <div class="header-page">
+                    <div class="title-page">
+                        <span>INCIDENTS</span>
+                    </div>
+                    <div class="contaner-filters">
+                        <div class="filters">
+                            <mat-select class="filter" name="status" [(ngModel)]="filters.status" (ngModelChange)="filter()" placeholder="ALL STATUSES" disableOptionCentering>
+                                <mat-option>ALL STATUSES</mat-option>
+                                <mat-option *ngFor="let status of statuses" [value]="status">
+                                    {{ status.r_status_txt | uppercase }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-select class="filter" name="types" [(ngModel)]="filters.types" (ngModelChange)="filter()" placeholder="ALL TYPES" disableOptionCentering>
+                                <mat-option [value]="null">ALL TYPES</mat-option>
+                                <mat-option *ngFor="let type of types" [value]="type">
+                                    {{ type.q_option_title | uppercase }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="ALL CENTERS" disableOptionCentering>
+                                <mat-option [value]="null">ALL CENTERS</mat-option>
+                                <mat-option *ngFor="let center of centers" [value]="center">
+                                    {{ center.center_name | uppercase }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="ALL PROJECTS" disableOptionCentering>
+                                <mat-option [value]="null">ALL PROJECTS</mat-option>
+                                <mat-option *ngFor="let project of projects" [value]="project">
+                                    {{ project.p_name | uppercase }}
+                                </mat-option>
+                            </mat-select>
+                            <div class="search-text filter">
+                                <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" type="text" placeholder="SEARCH"/>
+                                <mat-icon>search</mat-icon>
                             </div>
                         </div>
-                    </form>
-                    <section class="table-container mat-elevation-z8" tabindex="0">
-                        <table *ngIf="!loading" mat-table [dataSource]="filteredDataSource">
-                            <ng-container matColumnDef="status">
-                                <th mat-header-cell *matHeaderCellDef>STATUS</th>
-                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"><span  [ngClass]="{'bg-yellow': element.r_status_txt}">{{element.r_status_txt || '-'}}</span></td>
-                            </ng-container>
-                            <ng-container matColumnDef="incidentType">
-                                <th mat-header-cell *matHeaderCellDef>INCIDENT TYPE</th>
-                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"><span [ngClass]="{'bg-orange': element.Incident_type}">{{element.Incident_type || '-'}}</span></td>
-                            </ng-container>
-                            <ng-container matColumnDef="date">
-                                <th mat-header-cell *matHeaderCellDef>DATE</th>
-                                <td class="text-center" (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{(element.created_at | date: 'mediumDate') || '--/--/----' }} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="project">
-                                <th mat-header-cell *matHeaderCellDef>PROJECT</th>
-                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.p_name || '-'}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="incident">
-                                <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">INCIDENT</th>
-                                <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.incident_description || '-'}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="assign">
-                                <th mat-header-cell *matHeaderCellDef>ASSIGN</th>
-                                <td class="text-center" mat-cell *matCellDef="let element" (click)="showDetails(element)">
-                                    <ng-container *ngFor="let assing of element.assigns">
-                                        <span class="img-text">{{assing.value_initials | uppercase}}</span>
-                                    </ng-container>
-                                    <ng-container *ngIf="!element.assigns || !element.assigns.length">-</ng-container>
-                                </td>
-                                </ng-container>
-                            <ng-container matColumnDef="comments">
-                                <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
-                                <td class="commets" mat-cell *matCellDef="let element" (click)="showDetails(element)">
-                                    <mat-icon aria-hidden="false" aria-label="comments">forum</mat-icon>
-                                    <span>{{element.replies || '0'}}</span>
-                                </td>
-                            </ng-container>
-                            <ng-container matColumnDef="id">
-                                <th mat-header-cell *matHeaderCellDef></th>
-                                <td mat-cell *matCellDef="let element; let i = index">
-                                    <div class="btn-option">
-                                        <button [disabled]="element.r_status_id == 5" class="bg-background" (click)="saveReply(element.id, false)">
-                                            REPLY
-                                        </button>
-                                    </div>
-                                    <div class="btn-option">
-                                        <button [disabled]="element.r_status_id == 5" class="bg-green-dark" (click)="saveReply(element.id, true)">
-                                            CLOSE
-                                        </button>
-                                    </div>
-                                </td>
-                            </ng-container>
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                        </table>
-                        <mat-spinner *ngIf="loading"></mat-spinner>
-                        <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
-                    </section>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-add bg-green-dark">ADD INCIDENT</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- <footer id="footer" class="bg-footer">
-            <div class="footer">
-                <h3 class="color-title-footer">LEGAL TERMS | DATA POLICY</h3>
-                <p>COPYRIGHT © 2022 GRUPO CINCOVEINTICINCO SAS. ALL RIGTHS RESERVED</p>
-            </div>
-        </footer> -->
-    </mat-sidenav-content>
-</mat-sidenav-container>
+            </form>
+            <section class="table-container" tabindex="0">
+                <table *ngIf="!loading" mat-table [dataSource]="filteredDataSource">
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef>STATUS</th>
+                        <td (click)="showDetails(element)" mat-cell *matCellDef="let element"><span>{{element.r_status_txt || '-'}}</span></td>
+                    </ng-container>
+                    <ng-container matColumnDef="incidentType">
+                        <th mat-header-cell *matHeaderCellDef>INCIDENT TYPE</th>
+                        <td (click)="showDetails(element)" mat-cell *matCellDef="let element"><span>{{element.Incident_type || '-'}}</span></td>
+                    </ng-container>
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef>DATE</th>
+                        <td class="text-center" (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{(element.created_at | date: 'mediumDate') || '--/--/----' }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="project">
+                        <th mat-header-cell *matHeaderCellDef>PROJECT</th>
+                        <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.p_name || '-'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="incident">
+                        <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">INCIDENT</th>
+                        <td (click)="showDetails(element)" mat-cell *matCellDef="let element"> {{element.incident_description || '-'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="assign">
+                        <th mat-header-cell *matHeaderCellDef>ASSIGN</th>
+                        <td class="text-center" mat-cell *matCellDef="let element" (click)="showDetails(element)">
+                            <ng-container *ngFor="let assing of element.assigns">
+                                <span class="img-text">{{assing.value_initials | uppercase}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="!element.assigns || !element.assigns.length">-</ng-container>
+                        </td>
+                        </ng-container>
+                    <ng-container matColumnDef="comments">
+                        <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
+                        <td class="commets" mat-cell *matCellDef="let element" (click)="showDetails(element)">
+                            <mat-icon aria-hidden="false" aria-label="comments">forum</mat-icon>
+                            <span>{{element.replies || '0'}}</span>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element; let i = index">
+                            <div class="text-center" (click)="showDetails(element)">
+                                <mat-icon class="color-green-dark btn-option">visibility</mat-icon>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-spinner *ngIf="loading"></mat-spinner>
+                <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
+            </section>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

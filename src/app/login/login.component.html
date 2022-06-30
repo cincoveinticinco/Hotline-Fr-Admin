@@ -1,32 +1,30 @@
 <div class="content">
-    <div class="title">
-        <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
-    </div>
-    <div class="subtitle">
-        <h2 class="color-black">ADMIN MODULE</h2>
-    </div>
-    <div class="p-text color-black">
-        <p>
-            TOKEN SUCCESSFULLY GENERATED.
-        </p>
-        <p>
-            PLEASE CHECK YOUR EMAIL
-        </p>
-    </div>
-    <div class="form">
-            <form [formGroup]="formToken" (ngSubmit)="login()">
-            <div class="form-block">
-                <input  formControlName ="token" class="form-input" type="token" required placeholder="TOKEN">
+    <div class="login-container">
+        <div class="title">
+            <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
+        </div>
+        <div class="subtitle">
+            <h2 class="color-black">ADMIN MODULE</h2>
+        </div>
+        <div class="login-message color-black">
+            <p>TOKEN SUCCESSFULLY GENERATED.</p>
+            <p>PLEASE CHECK YOUR EMAIL</p>
+        </div>
+        <div class="login-form">
+                <form [formGroup]="formToken" (ngSubmit)="login()">
+                <div class="form-section">
+                    <input formControlName ="token" class="form-input" type="token" required placeholder="TOKEN">
+                </div>
+                    <mat-error><ng-content></ng-content></mat-error>
+                    <mat-error *ngIf="fToken['token'].getError('required') != null">Required Field</mat-error>
+                    <mat-error *ngIf="fToken['token'].getError('pattern') != null">Please enter a valid token</mat-error>
+                <div class="form-section btn-request">
+                    <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
+                </div>
+            </form>
+            <div class="login-link">
+                <a href="" class="color-green-dark">GENERATE NEW TOKEN</a>
             </div>
-                <mat-error><ng-content></ng-content></mat-error>
-                <mat-error *ngIf="fToken['token'].getError('required') != null">Required Field</mat-error>
-                <mat-error *ngIf="fToken['token'].getError('pattern') != null">Please enter a valid token</mat-error>
-            <div class="form-block btn-request">
-                <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
-            </div>
-        </form>
-        <div class="link">
-            <a href="" class="color-green-dark">GENERATE NEW TOKEN</a>
         </div>
     </div>
 </div>

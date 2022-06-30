@@ -83,17 +83,6 @@ table th {
     color: #2B2B2B;
     font-weight: bold;
 }
-.btn-option button {
-    width: 100%;
-    margin-bottom: 3px;
-    border: none;
-    padding: 1px;
-    cursor: pointer;
-    font-weight: bold;
-}
-.btn-option button:hover {
-    opacity: 0.6;
-}
 .header {
     display: inline-block;
 }

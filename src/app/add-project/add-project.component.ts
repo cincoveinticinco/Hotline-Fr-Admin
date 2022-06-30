@@ -11,6 +11,7 @@ export class AddProjectComponent implements OnInit {
 	@Input() itemact: any;
 	@Output() closePanel = new EventEmitter<string>();
 	@Output() notify = new EventEmitter<string>();
+	@Input() toCreate: any;
 
 	loading: boolean = true;
 	center_id: any[] = [];
@@ -26,7 +27,8 @@ export class AddProjectComponent implements OnInit {
 		alias: "",
 		p_abbreviation: "",
 		aliases: "",
-		correos: ""
+		correos: "",
+		users: ""
 	}
 
 	/* 	profileForm = this.fb.group({
@@ -66,17 +68,18 @@ export class AddProjectComponent implements OnInit {
 		(<FormArray>this.form.get("aliases")).clear();
 		(<FormArray>this.form.get("correos")).clear();
 		this.closePanel.emit();
+		this.form.reset()
 	}
 
 	deleteAlias(ev: any) {
-		this.project.alias.splice(ev, 1);
+		(<FormArray>this.form.get("aliases")).removeAt(ev);
 	}
 	deleteCorreos(ev: any) {
-		this.project.correo.splice(ev, 1);
+		(<FormArray>this.form.get("correos")).removeAt(ev);
 	}
 
 	addAlias() {
-		(<FormArray>this.form.get("aliases")).push(this.fb.control(this.alias))
+		(<FormArray>this.form.get("aliases")).push(this.fb.control(this.alias));
 	}
 
 	get alias(): string | null {
@@ -104,7 +107,7 @@ export class AddProjectComponent implements OnInit {
 			alias: new FormControl(''),
 			p_abbreviation: new FormControl(''),
 			aliases: new FormArray([]),
-			correos: new FormArray([])
+			correos: new FormArray([]),
 
 
 
@@ -120,7 +123,8 @@ export class AddProjectComponent implements OnInit {
 				alias: this.itemact.alias,
 				p_abbreviation: this.itemact.p_abbreviation,
 				aliases: this.itemact.aliases,
-				correos: this.itemact.correos
+				correos: this.itemact.correos,
+				users: this.itemact.users
 			})
 		}
 

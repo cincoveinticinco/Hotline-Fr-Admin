@@ -45,6 +45,9 @@
 			  <mat-select class="dropdown-location" name="location_name" formControlName="location_name" placeholder="Insert">
 				<option selected [value]="null">Select</option>   
 				<mat-option selected [value]="null" *ngFor="let location of location_name" [value]="location.id">
+					<app-dropdown>
+						[toCreate]="true"
+					</app-dropdown>
 					{{ location.location_name | uppercase }}
 				</mat-option>                            
 			</mat-select>
@@ -60,17 +63,36 @@
 			  </div>
 			
 		</div>
+		<div formArrayName="aliases">
+			<div *ngFor="let alias of aliases.controls; let i=index">		
+				<div>
+					<input class="deleteAlias" id="alias-{{ i }}" type="text" [formControlName]="i">
+				</div>
+					<div class="form_button">
+						<span  class="form_button" (click)="deleteAlias(i)"></span>
+					</div>			
+			</div> 
+		</div>
 		<div class="sidenav-grid-incidentType">
 			<div>
-				<h3 style="font-size: 1.3rem; margin-bottom: -7px" class="label-user color-green-dark">EMAIL</h3>
+				<h3 style="font-size: 1.3rem; margin-bottom: -7px; margin-top: 3%;" class="label-user color-green-dark">EMAIL</h3>
 				<hr style="height: 1px; background-color: #11888c;" class="sidenav-hr">
 				<h3 style="font-size: 0.8rem; margin-top: -10px;" class="label-user color-green-dark">EMAIL</h3>
 				<input  formControlName ="users" class="add-insert-alias" type="token"  required placeholder="Email">
 				<button type="button" (click)="addCorreos()" class="btn-add bg-green-dark add-button">ADD </button>
 				<mat-error *ngIf="fproject['users'].getError('required') != null">Required Field</mat-error>
-
-				</div>
+				</div>		
 		  </div>
+			<div formArrayName="correos">
+				<div *ngFor="let correo of correos.controls; let i=index">		
+					<div>		
+						<input style="margin-bottom: 2%;" class="deleteAlias" id="correo-{{ i }}" type="text" [formControlName]="i">
+					</div>		
+						<div class="form_button">
+							<span  class="form_button" (click)="deleteCorreos(i)"></span>
+						</div>				
+				</div> 
+			</div>
 		  <hr style="height: 1px; background-color: #8e9191;" class="sidenav-hr">
 		 <button type="submit" name="submit" class="btn-add bg-green-dark save-button" >SAVE</button>
 		 
@@ -90,25 +112,7 @@
 
 		
 	</div>
-	<div formArrayName="aliases">
-		<h2>Aliases</h2>
-		<button type="button" (click)="addAlias()">+ Add another alias</button>	
-		<div *ngFor="let alias of aliases.controls; let i=index">		
-			
-				<label for="alias-{{ i }}">Alias:</label>
-				<input id="alias-{{ i }}" type="text" [formControlName]="i">
-			
-		</div> 
-	</div>
-	<div formArrayName="correos">
-		<h2>Correos</h2>
-		<button type="button" (click)="addAlias()">+ Add another alias</button>	
-		<div *ngFor="let correo of correos.controls; let i=index">		
-			
-				<label for="correo-{{ i }}">Correo:</label>
-				<input id="correo-{{ i }}" type="text" [formControlName]="i">
-			
-		</div> 
-	</div>
+
+	
 </form>
 </div>

@@ -122,8 +122,9 @@ export class AdminService {
 		});
 	}
 
-	createReply(requestParams: { reportId: number, replyTxt: string | null, toClose: boolean }) {
+	createReply(requestParams: { replyId?:number, reportId: number, replyTxt: string | null, toClose: boolean }) {
 		let params = {
+			'reply_id': requestParams.replyId,
 			'report_id': requestParams.reportId,
 			'reply_txt': requestParams.replyTxt,
 			'to_close': requestParams.toClose,
@@ -132,12 +133,11 @@ export class AdminService {
 			map((response: any) => response))
 	}
 
-	createResponseReply(requestParams: { replyId: number, replyTxt: string | null}) {
+	deleteResponseReply (requestParams: { replyId: number}) {
 		let params = {
-			'reply_id': requestParams.replyId,
-			'reply_txt': requestParams.replyTxt,
+			'reply_id': requestParams.replyId
 		};
-		return this.http.post(this.service_url + 'admin/addReportReplyResponse', params, this.httpOptions).pipe(
+		return this.http.post(this.service_url + 'admin/deleteReportReply', params, this.httpOptions).pipe(
 			map((response: any) => response))
 	}
 

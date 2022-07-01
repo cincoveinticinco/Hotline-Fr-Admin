@@ -138,6 +138,10 @@ a {
 .color-green-dark {
   color: var(--green-dark) !important;
 }
+.color-red {
+  color: var(--red) !important;
+}
+
 
 .mat-drawer-container {
   background-color: transparent;
@@ -429,6 +433,9 @@ table .img-text {
 
 .text-center {
   text-align: center;
+}
+.uppercase {
+  text-transform: uppercase;
 }
 
 .login-container {

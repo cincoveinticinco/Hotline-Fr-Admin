@@ -67,6 +67,7 @@ export class AdminHomeComponent implements OnInit {
     )
   }
   update() {
+    this.isOpenSidenav = false;
     this.sidenav.close();
     this.loadData();
   }

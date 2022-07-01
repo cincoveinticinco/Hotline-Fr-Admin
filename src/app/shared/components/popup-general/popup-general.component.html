@@ -1,0 +1,11 @@
+<div class="popup-general-container" (click)="closeContainer()">
+	<div class="popup-general" (click)="$event.stopPropagation()">
+		<h2 [ngClass]="{'color-green-dark': type == 'confirmation'}" class="uppercase">{{title}}</h2>
+		<p *ngIf="item" class="uppercase">{{item}}</p>
+		<p>{{message}}</p>
+		<ng-container *ngIf="type == 'confirmation'">
+			<button class="save-button" (click)="confirm()">{{confirmText}}</button>
+			<button class="cancel-button" (click)="close()">{{cancelText}}</button>
+		</ng-container>
+	</div>
+</div>

@@ -636,33 +636,40 @@ table .img-text {
 
 
 .form_button span {
-  margin-top: -8%;
-  margin-left: 9%;
-  margin-bottom: 5px;
+  margin-top: -1% !important;
+  margin-left: inherit !important;
   display: block;
   width: 30px;
   height: 32px;
   background-image: url("../../Hotline-Fr-Admin/src/assets/img/assets.png");
   background-size: 1024px 1024px;
   background-position: -437px 0px;
+  z-index: 999;
+}
 
-  .cancel-button {
-    border: 0;
-    height: 30px;
-    width: 150px;
-    background-color: var(--red);
-    border-radius: 5px;
-    color: #ffffff;
-    margin: 6px;
+.conetenedor-alias {
+  display: inline-block;
+  min-width: 10px !important;
+  float: left;
+}
+
+.cancel-button {
+  border: 0;
+  height: 30px;
+  width: 150px;
+  background-color: var(--red);
+  border-radius: 5px;
+  color: #ffffff;
+  margin: 6px;
+}
+
+.cancel-button:hover {
+  background-color: #ff6f9f;
+}
+
+
+@media screen and (max-width: 720px) {
+  .mat-drawer.mat-drawer-end {
+    width: 100%;
   }
-
-  .cancel-button:hover {
-    background-color: #ff6f9f;
-  }
-
-
-  @media screen and (max-width: 720px) {
-    .mat-drawer.mat-drawer-end {
-      width: 100%;
-    }
-  }
+}

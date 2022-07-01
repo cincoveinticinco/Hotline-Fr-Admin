@@ -2,6 +2,7 @@ h2 {
   margin-top: 10px;
   border-bottom: 1px solid var(--green-dark);
 }
+
 .columns .btn-add {
   height: 30px;
 }
@@ -24,8 +25,10 @@ h2 {
 }
 
 .deleteAlias {
-  border: none;
-  width: 10%;
+  border: 0;
   text-transform: uppercase;
   margin-bottom: 20px;
+  text-align: center;
+  outline: none;
+  text-align: justify !important;
 }

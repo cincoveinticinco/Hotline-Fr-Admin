@@ -57,11 +57,11 @@
 			</div>
 			<div formArrayName="aliases">
 				<div *ngFor="let alias of aliases.controls; let i=index">		
-					<div style="margin-top: 50px;" >	
-					<input  class="deleteAlias" id="alias-{{ i }}" type="text" [formControlName]="i">
+					<div class="conetenedor-alias" >	
+					<input class="deleteAlias" id="alias-{{ i }}" type="text" [formControlName]="i" readonly="readonly">
 					</div>
 						<div class="form_button">
-							<span class="form_button" (click)="deleteAlias(i)"></span>
+							<span style="float: left;" class="form_button" (click)="deleteAlias(i)"></span>
 						</div>
 				</div>
 			</div>

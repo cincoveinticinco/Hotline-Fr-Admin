@@ -132,6 +132,15 @@ export class AdminService {
 			map((response: any) => response))
 	}
 
+	createResponseReply(requestParams: { replyId: number, replyTxt: string | null}) {
+		let params = {
+			'reply_id': requestParams.replyId,
+			'reply_txt': requestParams.replyTxt,
+		};
+		return this.http.post(this.service_url + 'admin/addReportReplyResponse', params, this.httpOptions).pipe(
+			map((response: any) => response))
+	}
+
 	getListProjects() {
 		return this.http.get(this.service_url + 'admin/getProjects');
 	}

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../services/admin.service';
 
@@ -10,6 +10,8 @@ import { AdminService } from '../services/admin.service';
 export class LoginComponent implements OnInit {
 
 	@Output() sendToken = new EventEmitter<string>();
+
+	@Input() error: string = '';
 
 	formToken: FormGroup;
 

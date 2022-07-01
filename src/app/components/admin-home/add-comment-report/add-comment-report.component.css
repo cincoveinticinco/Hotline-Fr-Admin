@@ -3,7 +3,7 @@
   border-bottom: 1px solid var(--green-dark);
   margin: 10px 0;
 }
-.response-textarea-container textarea{
+textarea{
   width: 100%;
   resize: none;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -30,13 +30,16 @@
   padding: 3px;
   width: 100%;
 }
+.response-detail .response-info {
+  border: none;
+}
 .response-info h3 {
   text-transform: uppercase;
 }
-
-.sidenav-lateral .sidenav-grid-center {
-  grid-template-columns: 18% 36% 42% !important;
+.response-options {
+  border-bottom: 1px solid var(--green-dark);
 }
-.sidenav-lateral .sidenav-grid-incidentType {
-  grid-template-columns: 54% 23% 23% !important;
+
+.row {
+  margin: 6px 0;
 }

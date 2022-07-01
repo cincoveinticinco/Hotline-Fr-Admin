@@ -16,7 +16,6 @@
                     <input name="email" formControlName ="email" class="form-input" type="email"  placeholder="EMAIL">
                 </div>
                     <mat-error *ngIf="errorRequest">{{errorRequest}}</mat-error>
-                    <mat-error *ngIf="fToken['email'].getError('required') != null">Required Field</mat-error>
                     <mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid email</mat-error>
                 <div class="form-section btn-request">
                     <button class="bg-green-dark" type="submit" [disabled]="!formToken.valid">REQUEST TOKEN</button>
@@ -28,7 +27,7 @@
         </div>
     </div>
 </div>
-<app-login *ngIf="openToken && !loading" (sendToken)="sendToken($event)">{{errorRequest}}</app-login>
+<app-login *ngIf="openToken && !loading" (sendToken)="sendToken($event)" [error]="errorRequest"></app-login>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

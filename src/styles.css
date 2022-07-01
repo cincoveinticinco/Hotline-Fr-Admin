@@ -149,10 +149,7 @@ a {
 
 button {
   cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.5;
+  text-transform: uppercase;
 }
 
 button:disabled {
@@ -215,6 +212,19 @@ mat-select:hover .mat-select-arrow {
 
 mat-option:hover {
   color: var(--green-dark);
+}
+
+.mat-icon-option {
+  cursor: pointer;
+  color: var(--green-dark);
+  border-radius: 50%;
+  font-size: 25px;
+  padding: 2.5px;
+  width: 30px !important;
+  height: 30px !important;
+}
+.mat-icon-option:hover {
+  background-color: #11888c20;
 }
 
 .mat-error {
@@ -530,7 +540,7 @@ table .img-text {
 }
 
 .sidenav-lateral .sidenav-container {
-  margin: 30px;
+  margin: 10px 30px;
 }
 
 .sidenav-lateral .sidenav-container h3 {
@@ -548,29 +558,11 @@ table .img-text {
   text-align: justify;
 }
 
-.sidenav-lateral .sidenav-grid-status {
-  display: grid;
-  grid-template-columns: 18% 18% 18% 24% 18%;
-  height: auto;
-}
-
 .sidenav-lateral .sidenav-hr {
   margin-top: 8px;
   margin-bottom: 15px;
   width: 100%;
   height: 0;
-}
-
-.sidenav-lateral .sidenav-grid-center {
-  display: grid;
-  grid-template-columns: 100% 36% 42%;
-  height: auto;
-}
-
-.sidenav-lateral .sidenav-grid-incidentType {
-  display: grid;
-  grid-template-columns: 100% 23% 23%;
-  height: auto;
 }
 
 .sidenav-lateral .sidenav-grid-project {
@@ -590,6 +582,10 @@ table .img-text {
   align-items: center;
   margin-left: 24px;
 }
+.sidenav-lateral .options-general {
+  display: flex;
+  justify-content: end;
+}
 
 .mat-progress-spinner {
   position: absolute !important;
@@ -607,65 +603,32 @@ table .img-text {
   text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .save-button {
-  width: 35%;
-  height: 50px;
-  padding-left: 10px;
-  border: 0px;
-  margin-left: 34%;
+  border: 0;
+  height: 30px;
+  width: 150px;
+  background-color: var(--green-dark);
+  border-radius: 5px;
+  color: #ffffff;
+  margin: 6px;
+}
+.save-button:hover {
+  background-color: #1acdcd;
 }
 
-
-
-
-
-
-
-
-
-.form_button span {
-  margin-top: -7%;
-  margin-left: 9%;
-  margin-bottom: 5px;
-  display: block;
-  width: 40px;
-  height: 32px;
-  background-image: url("../../Hotline-Fr-Admin/src/assets/img/assets.png");
-  background-size: 1024px 1024px;
-  background-position: -437px 0px;
+.cancel-button {
+  border: 0;
+  height: 30px;
+  width: 150px;
+  background-color: var(--red);
+  border-radius: 5px;
+  color: #ffffff;
+  margin: 6px;
+}
+.cancel-button:hover {
+  background-color: #ff6f9f;
 }
 
-.form_button span:hover {
-  cursor: pointer;
-  background-position: -397px 0px;
-}
-
-.deleteAlias {
-  border: none;
-  width: 10%;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
 
 @media screen and (max-width: 720px) {
   .mat-drawer.mat-drawer-end {

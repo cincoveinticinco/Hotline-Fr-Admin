@@ -32,6 +32,7 @@ export class AdminHomeComponent implements OnInit {
   };
   selectedRerport: any = null;
   reportDetail: any = null;
+  isOpenSidenav: boolean = false;
 
   constructor(
     public _aS: AdminService,
@@ -70,7 +71,8 @@ export class AdminHomeComponent implements OnInit {
     this.loadData();
   }
 
-  showDetails(report: any) {
+  showDetails(report: any = this.selectedRerport) {
+    this.isOpenSidenav = true;
     this.sidenav.open();
     this.selectedRerport = report;
     this._aS.getReportDetail(this.selectedRerport.id).subscribe(
@@ -79,7 +81,9 @@ export class AdminHomeComponent implements OnInit {
       }
     )
   }
+
   close() {
+    this.isOpenSidenav = false;
     this.sidenav.close();
     this.reportDetail = null;
   }

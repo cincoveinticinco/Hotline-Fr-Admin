@@ -32,7 +32,6 @@ export class AdminHomeComponent implements OnInit {
   };
   selectedRerport: any = null;
   reportDetail: any = null;
-  isOpenSidenav: boolean = false;
   view: string = 'home';
   user: any = null;
 
@@ -77,13 +76,13 @@ export class AdminHomeComponent implements OnInit {
     )
   }
   update() {
-    this.isOpenSidenav = false;
+    this.view = 'home';
     this.sidenav.close();
     this.loadData();
   }
 
   showDetails(report: any = this.selectedRerport) {
-    this.isOpenSidenav = true;
+    this.view = 'add-comment';
     this.sidenav.open();
     this.selectedRerport = report;
     this._aS.getReportDetail(this.selectedRerport.id).subscribe(
@@ -94,7 +93,7 @@ export class AdminHomeComponent implements OnInit {
   }
 
   close() {
-    this.isOpenSidenav = false;
+    this.view = 'home';
     this.sidenav.close();
     this.reportDetail = null;
   }

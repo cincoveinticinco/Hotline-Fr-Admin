@@ -116,8 +116,8 @@ export class AddProjectComponent implements OnInit {
 	fillform() {
 
 		if (this.itemact) {
-			let arrayAlias = this.itemact.alias.split(',');
-			let arrayEmails = this.itemact.users_emails.split(',');
+			let arrayAlias = this.itemact.alias ? this.itemact.alias.split(',') : [];
+			let arrayEmails = this.itemact.users_emails ? this.itemact.users_emails.split(',') : [];
 
 			this.form.patchValue({
 				center_id: this.itemact.center_id,

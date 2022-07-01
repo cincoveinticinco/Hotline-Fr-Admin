@@ -1,5 +1,6 @@
-<div class="panel-lateral-container">
-  <div class="panel-lateral">
+<div class="panel-lateral-container" (click)="close()">
+  <div class="panel-lateral" (click)="$event.stopPropagation()">
+    <mat-icon class="mat-icon-option color-black" (click)="close()">close</mat-icon>
     <mat-spinner *ngIf="loading"></mat-spinner>
     <div class="panel-lateral-header">
 

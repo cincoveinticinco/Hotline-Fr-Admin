@@ -31,8 +31,8 @@ export class AddCommentReportComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-		if (changes['report']) {
-      this.loading = this.report ? false : true;
+		if (changes['report'] && this.report) {
+      this.loading = false;
 		}
 	}
 

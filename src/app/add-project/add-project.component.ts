@@ -11,14 +11,15 @@ export class AddProjectComponent implements OnInit {
 	@Input() itemact: any;
 	@Output() closePanel = new EventEmitter<string>();
 	@Output() notify = new EventEmitter<string>();
-	@Input() toCreate: any;
 
 	loading: boolean = true;
 	center_id: any[] = [];
+	id: any[] = [];
 	location_name: any[] = [];
 	filters: any = {
 		center_id: null,
 		location_name: null,
+
 	}
 	form: FormGroup;
 	project: any = {
@@ -49,6 +50,7 @@ export class AddProjectComponent implements OnInit {
 		console.log(this.form.get("aliases"))
 		console.log(this.form.get("correos"))
 		console.log(this.form)
+
 		this._aS.addProject(this.form.value).subscribe(
 			data => {
 				console.log(data)
@@ -64,11 +66,13 @@ export class AddProjectComponent implements OnInit {
 	}
 
 
+
 	close() {
 		(<FormArray>this.form.get("aliases")).clear();
 		(<FormArray>this.form.get("correos")).clear();
 		this.closePanel.emit();
 		this.form.reset()
+
 	}
 
 	deleteAlias(ev: any) {
@@ -80,6 +84,7 @@ export class AddProjectComponent implements OnInit {
 
 	addAlias() {
 		(<FormArray>this.form.get("aliases")).push(this.fb.control(this.alias));
+		this.form.get("alias")?.patchValue("")
 	}
 
 	get alias(): string | null {
@@ -108,6 +113,8 @@ export class AddProjectComponent implements OnInit {
 			p_abbreviation: new FormControl(''),
 			aliases: new FormArray([]),
 			correos: new FormArray([]),
+			id: new FormControl('')
+
 
 
 
@@ -122,9 +129,11 @@ export class AddProjectComponent implements OnInit {
 				p_season: this.itemact.p_season,
 				alias: this.itemact.alias,
 				p_abbreviation: this.itemact.p_abbreviation,
-				aliases: this.itemact.aliases,
+				/* 	aliases: this.itemact.aliases, */
 				correos: this.itemact.correos,
-				users: this.itemact.users
+				users: this.itemact.users,
+				aliases: this.itemact ? this.itemact.aliases : [],
+				id: this.itemact.id
 			})
 		}
 
@@ -143,6 +152,7 @@ export class AddProjectComponent implements OnInit {
 				this.loading = false;
 			}
 		)
+
 	}
 
 	ngOnChanges(changes: SimpleChanges) {

@@ -147,6 +147,7 @@ export class AdminService {
 
 	addProject(params: any) {
 		let queryParams = {
+			'id': params.id,
 			'p_name': params.p_name,
 			'p_season': params.p_season,
 			'alias': params.aliases,

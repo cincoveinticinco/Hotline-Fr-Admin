@@ -39,6 +39,7 @@ export class ProjectsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadData()
+		console.log()
 
 	}
 
@@ -71,6 +72,7 @@ export class ProjectsComponent implements OnInit {
 	showDetails(element: any) {
 		this.itemact = element
 		console.log(this.itemact);
+		console.log()
 	}
 
 	close() {

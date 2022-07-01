@@ -168,12 +168,15 @@ input {
   text-transform: uppercase;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
+
 input::placeholder {
   color: rgba(0, 0, 0, 0.42);
 }
+
 input:hover::placeholder {
   color: var(--green-dark)
 }
+
 .columns input {
   border-radius: 5px;
   font-size: 11px;
@@ -205,12 +208,14 @@ mat-select:hover .mat-select-placeholder,
 mat-select:hover .mat-select-arrow {
   color: var(--green-dark);
 }
+
 .columns mat-select {
   display: block;
   border-radius: 5px;
   line-height: 28px;
 }
-.columns mat-select span{
+
+.columns mat-select span {
   font-size: 11px !important;
 }
 
@@ -227,6 +232,7 @@ mat-option:hover {
   width: 30px !important;
   height: 30px !important;
 }
+
 .mat-icon-option:hover {
   background-color: #11888c20;
 }
@@ -295,9 +301,11 @@ mat-option:hover {
   margin: 0 10px;
   overflow-y: hidden;
 }
+
 .contaner-filters mat-select {
   width: 150px !important;
 }
+
 .contaner-filters .filter {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
@@ -589,6 +597,7 @@ table .img-text {
   align-items: center;
   margin-left: 24px;
 }
+
 .sidenav-lateral .options-general {
   display: flex;
   justify-content: end;
@@ -600,6 +609,7 @@ table .img-text {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: var(--green-dark);
@@ -619,26 +629,47 @@ table .img-text {
   color: #ffffff;
   margin: 6px;
 }
+
 .save-button:hover {
   background-color: #1acdcd;
 }
 
-.cancel-button {
-  border: 0;
-  height: 30px;
-  width: 150px;
-  background-color: var(--red);
-  border-radius: 5px;
-  color: #ffffff;
-  margin: 6px;
-}
-.cancel-button:hover {
-  background-color: #ff6f9f;
-}
 
 
-@media screen and (max-width: 720px) {
-  .mat-drawer.mat-drawer-end {
-    width: 100%;
+
+
+
+
+
+
+.form_button span {
+  margin-top: -8%;
+  margin-left: 9%;
+  margin-bottom: 5px;
+  display: block;
+  width: 30px;
+  height: 32px;
+  background-image: url("../../Hotline-Fr-Admin/src/assets/img/assets.png");
+  background-size: 1024px 1024px;
+  background-position: -437px 0px;
+
+  .cancel-button {
+    border: 0;
+    height: 30px;
+    width: 150px;
+    background-color: var(--red);
+    border-radius: 5px;
+    color: #ffffff;
+    margin: 6px;
   }
-}
+
+  .cancel-button:hover {
+    background-color: #ff6f9f;
+  }
+
+
+  @media screen and (max-width: 720px) {
+    .mat-drawer.mat-drawer-end {
+      width: 100%;
+    }
+  }

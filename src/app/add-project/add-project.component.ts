@@ -132,7 +132,6 @@ export class AddProjectComponent implements OnInit {
 				/* 	aliases: this.itemact.aliases, */
 				correos: this.itemact.correos,
 				users: this.itemact.users,
-				aliases: this.itemact ? this.itemact.aliases : [],
 				id: this.itemact.id
 			})
 		}

@@ -49,7 +49,7 @@
 			<div class="row">
 				<h2 class="color-green-dark">ALIAS</h2>
 				<div class="L-10 M-10 S-10 columns">
-					<input formControlName ="alias" type="text" placeholder="Insert"/>
+					<input formControlName="alias" type="text" placeholder="Insert"/>
 				</div>
 				<div class="L-2 M-2 S-2 columns">
 					<button type="button" (click)="addAlias()" class="btn-add bg-green-dark add-button">ADD</button>
@@ -57,12 +57,13 @@
 			</div>
 			<div formArrayName="aliases">
 				<div *ngFor="let alias of aliases.controls; let i=index">		
-					<div class="conetenedor-alias" >	
-					<input class="deleteAlias" id="alias-{{ i }}" type="text" [formControlName]="i" readonly="readonly">
+					<div class="form_button">
+						<span style="float: left;" class="form_button" (click)="deleteAlias(i)"></span>
 					</div>
-						<div class="form_button">
-							<span style="float: left;" class="form_button" (click)="deleteAlias(i)"></span>
-						</div>
+					<div class="conetenedor-alias">	
+					<span  class="deleteAlias" id="alias-{{ i }}">{{aliases.controls[i].value}}</span>
+					</div>
+					
 				</div>
 			</div>
 			<div class="row">
@@ -77,13 +78,14 @@
 				</div>
 			</div>
 				<div formArrayName="correos">
-					<div *ngFor="let correo of correos.controls; let i=index">		
-						<div>		
-							<span style="margin-bottom: 2%;" class="deleteAlias" id="correo-{{ i }}" type="text" [formControlName]="i"></span>
+					<div *ngFor="let correo of correos.controls; let i=index">	
+						<div class="form_button">
+							<span style="float: left;" class="form_button" (click)="deleteCorreos(i)"></span>
+						</div>	
+						<div class="conetenedor-alias">	
+							<span class="deleteAlias" id="alias-{{ i }}">{{correos.controls[i].value}}</span>
 						</div>		
-							<div class="form_button">
-								<span  class="form_button" (click)="deleteCorreos(i)"></span>
-							</div>
+						
 					</div>
 				</div>
 

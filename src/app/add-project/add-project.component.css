@@ -8,8 +8,8 @@ h2 {
 }
 
 .form_button span {
-  margin-top: -7%;
-  margin-left: 9%;
+  margin-top: -1%;
+  margin-left: initial;
   margin-bottom: 5px;
   display: block;
   width: 40px;
@@ -17,6 +17,7 @@ h2 {
   background-image: url("src/assets/img/assets.png");
   background-size: 1024px 1024px;
   background-position: -437px 0px;
+  z-index: 999;
 }
 
 .form_button span:hover {
@@ -25,10 +26,15 @@ h2 {
 }
 
 .deleteAlias {
+  position: relative;
   border: 0;
   text-transform: uppercase;
   margin-bottom: 20px;
   text-align: center;
   outline: none;
   text-align: justify !important;
+  width: fit-content;
+  float: left;
+  margin-right: 30px !important;
+  margin-top: 5px !important;
 }

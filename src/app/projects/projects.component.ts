@@ -77,6 +77,7 @@ export class ProjectsComponent implements OnInit {
 
 	close() {
 		this.sidenav.close();
+		this.itemact = null;
 	}
 
 	replyIncident(id: number) {

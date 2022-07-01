@@ -121,20 +121,28 @@ export class AddProjectComponent implements OnInit {
 		})
 	}
 	fillform() {
+
 		if (this.itemact) {
+			let arrayAlias = this.itemact.alias.split(',')
+			console.log(arrayAlias)
+
 			this.form.patchValue({
 				center_id: this.itemact.center_id,
 				location_name: this.itemact.location_name,
 				p_name: this.itemact.p_name,
 				p_season: this.itemact.p_season,
-				alias: this.itemact.alias,
 				p_abbreviation: this.itemact.p_abbreviation,
 				/* 	aliases: this.itemact.aliases, */
 				correos: this.itemact.correos,
 				users: this.itemact.users,
-				id: this.itemact.id
+				id: this.itemact.id,
+
 			})
+
+			this.aliases.patchValue(arrayAlias.map((als: any) => { this.fb.control(als) }))
 		}
+
+		console.log(this.form)
 
 	}
 

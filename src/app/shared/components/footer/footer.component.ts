@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class FooterComponent implements OnInit {
 
-  public frontUrl: string = environment.frontUrl;
-
   constructor() { }
 
   ngOnInit(): void {

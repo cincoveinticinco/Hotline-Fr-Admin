@@ -27,7 +27,7 @@
 				<div class="L-6 M-6 S-6 columns">
 					<label class="color-green-dark">CENTER</label>
 					<mat-select name="center_id"  formControlName="center_id" placeholder="Insert">
-						<mat-option *ngFor="let center of center_id" [value]="center.id"> 
+						<mat-option *ngFor="let center of centers" [value]="center.id">
 							{{ center.center_name | uppercase }}
 						</mat-option>
 					</mat-select>

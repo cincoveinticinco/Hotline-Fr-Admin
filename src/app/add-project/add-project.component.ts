@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@ang
 })
 export class AddProjectComponent implements OnInit {
 	@Input() itemact: any;
+	@Input() centers: any;
 	@Output() closePanel = new EventEmitter<string>();
 	@Output() notify = new EventEmitter<string>();
 
@@ -98,10 +99,6 @@ export class AddProjectComponent implements OnInit {
 		return this.form.get('users')?.value;
 	}
 
-
-
-
-
 	constructor(private _aS: AdminService, private fb: FormBuilder,) {
 		this.form = this.fb.group({
 			users: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])),
@@ -114,17 +111,13 @@ export class AddProjectComponent implements OnInit {
 			aliases: new FormArray([]),
 			correos: new FormArray([]),
 			id: new FormControl('')
-
-
-
-
 		})
 	}
 	fillform() {
 
 		if (this.itemact) {
-			let arrayAlias = this.itemact.alias.split(',')
-			console.log(arrayAlias)
+			let arrayAlias = this.itemact.alias.split(',');
+			let arrayEmails = this.itemact.users_emails.split(',');
 
 			this.form.patchValue({
 				center_id: this.itemact.center_id,
@@ -132,34 +125,17 @@ export class AddProjectComponent implements OnInit {
 				p_name: this.itemact.p_name,
 				p_season: this.itemact.p_season,
 				p_abbreviation: this.itemact.p_abbreviation,
-				/* 	aliases: this.itemact.aliases, */
-				correos: this.itemact.correos,
 				users: this.itemact.users,
 				id: this.itemact.id,
-
 			})
-
-			this.aliases.patchValue(arrayAlias.map((als: any) => { this.fb.control(als) }))
+			arrayAlias.map((als: any) => (<FormArray>this.form.get("aliases")).push(this.fb.control(als)));
+			arrayEmails.map((email: any) => (<FormArray>this.form.get("correos")).push(this.fb.control(email)));
 		}
-
-		console.log(this.form)
-
 	}
 
 	ngOnInit(): void {
-		this.fillform()
-		this.form.reset()
-		console.log(this.itemact)
-		this.loading = true;
-		this._aS.getListProjects().subscribe(
-			(data: any) => {
-				console.log(data);
-				this.center_id = data.centers && data.centers.length ? data.centers : [];
-				this.location_name = data.locations && data.locations.length ? data.locations : [];
-				this.loading = false;
-			}
-		)
-
+		this.fillform();
+		this.form.reset();
 	}
 
 	ngOnChanges(changes: SimpleChanges) {

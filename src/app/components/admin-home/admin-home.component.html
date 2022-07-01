@@ -1,9 +1,13 @@
+<app-add-incident
+*ngIf="view == 'add-incident'">
+</app-add-incident>
 <div class="content">
     <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
         <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
             <app-add-comment-report
                 *ngIf="isOpenSidenav"
                 [report]="reportDetail"
+                [user]="user"
                 (closePanel)="close()"
                 (notify)="update()"
                 (update)="showDetails()">
@@ -54,7 +58,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="save-button">ADD INCIDENT</button>
+                        <button type="button" class="save-button" (click)="changeView('add-incident')">ADD INCIDENT</button>
                     </div>
                 </div>
             </form>

@@ -33,6 +33,8 @@ export class AdminHomeComponent implements OnInit {
   selectedRerport: any = null;
   reportDetail: any = null;
   isOpenSidenav: boolean = false;
+  view: string = 'home';
+  user: any = null;
 
   constructor(
     public _aS: AdminService,
@@ -40,6 +42,7 @@ export class AdminHomeComponent implements OnInit {
   ) {};
 
   ngOnInit(): void {
+    this.getUser();
     this.loadData();
   }
 
@@ -49,6 +52,13 @@ export class AdminHomeComponent implements OnInit {
         if(data.id) this.showDetails({id: data.id})
 			}
 		);
+  }
+  getUser() {
+    this._aS.getUser().subscribe(
+      (data: any) => {
+        if(data.user) this.user = data.user;
+      }
+    )
   }
 
   loadData(){
@@ -121,5 +131,9 @@ export class AdminHomeComponent implements OnInit {
     if(this.filters.searchText) {
       this.filteredDataSource = this._aS.searchByMultipleValuesExtended(this.filteredDataSource, this.searchProperties, this.filters.searchText)
     }
+  }
+
+  changeView(newView: string) {
+    this.view = newView;
   }
 }

@@ -9,6 +9,7 @@ import { AdminService } from 'src/app/services/admin.service';
 export class AddCommentReportComponent implements OnInit {
 
   @Input() report: any = null;
+  @Input() user: any = null;
 
   @Output() closePanel = new EventEmitter<string>();
   @Output() notify = new EventEmitter<string>();

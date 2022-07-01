@@ -27,6 +27,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CookieModule } from 'ngx-cookie';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { PopupGeneralComponent } from './shared/components/popup-general/popup-general.component';
+import { AddIncidentComponent } from './components/admin-home/add-incident/add-incident.component';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import { PopupGeneralComponent } from './shared/components/popup-general/popup-g
 		AddCommentReportComponent,
 		DropdownComponent,
 		FooterComponent,
-  PopupGeneralComponent
+  PopupGeneralComponent,
+  AddIncidentComponent
 	],
 	imports: [
 		BrowserModule,

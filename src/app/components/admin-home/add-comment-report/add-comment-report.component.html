@@ -123,8 +123,8 @@
                             <p>{{ask.reply_txt || '-'}}</p>
                         </div>
                         <div class="response-options">
-                            <mat-icon class="mat-icon-option" (click)="selectResponse(ask)">edit</mat-icon>
-                            <mat-icon class="mat-icon-option color-red" (click)="confirmDelete(ask)">delete</mat-icon>
+                            <mat-icon *ngIf="user == ask.user_id" class="mat-icon-option" (click)="selectResponse(ask)">edit</mat-icon>
+                            <mat-icon *ngIf="user == ask.user_id" class="mat-icon-option color-red" (click)="confirmDelete(ask)">delete</mat-icon>
                         </div>
                     </div>
                 </div>

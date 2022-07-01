@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 
 import * as _ from 'lodash';
+import { CookieService } from 'ngx-cookie';
 
 @Injectable({
 	providedIn: 'root'
@@ -21,6 +22,7 @@ export class AdminService {
 
 	constructor(
 		private http: HttpClient,
+		private _cookieService: CookieService,
 	) { }
 
 	filterElementsInListSplited(list: any[], list_id: any, elements: any, elements_id: any) {
@@ -135,9 +137,9 @@ export class AdminService {
 
 	deleteResponseReply (requestParams: { replyId: number}) {
 		let params = {
-			'reply_id': requestParams.replyId
+			'id': requestParams.replyId
 		};
-		return this.http.post(this.service_url + 'admin/deleteReportReply', params, this.httpOptions).pipe(
+		return this.http.post(this.service_url + 'admin/DeleteReply', params, this.httpOptions).pipe(
 			map((response: any) => response))
 	}
 
@@ -162,5 +164,13 @@ export class AdminService {
 					return response;
 				})
 			)
+	}
+
+	getUser() {
+		const token = this._cookieService.get('hotline') || '';
+		return this.http.get(this.service_url + 'admin/getUser', {
+			params: new HttpParams()
+				.set('token', token)
+		});
 	}
 }

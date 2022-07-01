@@ -26,8 +26,8 @@ export class LoginService {
   } */
 
   getToken() {
-    const value = this._cookieService.get('hotline')
-    return value
+    const token = this._cookieService.get('hotline')
+    return token
   }
 
 	setToken(token: string) {

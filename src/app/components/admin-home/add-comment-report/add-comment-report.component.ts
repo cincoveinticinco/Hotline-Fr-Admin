@@ -12,11 +12,14 @@ export class AddCommentReportComponent implements OnInit {
 
   @Output() closePanel = new EventEmitter<string>();
   @Output() notify = new EventEmitter<string>();
+  @Output() update = new EventEmitter<string>();
 
   heightTextarea: number = 30;
   isOpenTexarea: boolean = false;
   response: string = '';
   loading: boolean = true;
+  selectedResponse: any = null;
+  errorResponse: string = '';
 
   constructor(
     private _aS: AdminService
@@ -25,8 +28,13 @@ export class AddCommentReportComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+		if (changes['report']) {
+      this.loading = this.report ? false : true;
+		}
+	}
+
   close() {
-    this.response = '';
     this.closePanel.emit();
   }
 
@@ -51,11 +59,24 @@ export class AddCommentReportComponent implements OnInit {
     )
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-		if (changes['report']) {
-      this.loading = this.report ? false : true;
-		}
-	}
+  saveResponse() {
+    this.loading = true;
+    let params = {
+      replyId: this.selectedResponse.id,
+      replyTxt: this.selectedResponse.reply_txt,
+    }
+    this._aS.createResponseReply(params).subscribe(
+      (data: any) => {
+        this.update.emit();
+        this.selectedResponse = null;
+        this.loading = false;
+      },
+      err => {
+        this.selectedResponse = null;
+        this.loading = false;
+      }
+    );
+  }
 
   getQuestion(id:number) {
     let text: string = '';
@@ -63,6 +84,10 @@ export class AddCommentReportComponent implements OnInit {
       if(rpt.question_id == id) text = rpt.answer_text ? rpt.answer_text : '-';
     });
     return text;
+  }
+
+  selectResponse(newResponse: any) {
+    this.selectedResponse = newResponse;
   }
 
 }

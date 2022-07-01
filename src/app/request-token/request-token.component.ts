@@ -42,7 +42,7 @@ export class RequestTokenComponent implements OnInit {
 		this._lS.getLoginToken(params).subscribe(
 			(data: any) => {
 				if(data.error) {
-					this.errorRequest = data.msg;
+					this.errorRequest = 'Invalid token';
 					this.loading = false;
 					return;
 				}

@@ -10,106 +10,117 @@
                 <div>
                     <h1>#{{report.report?.r_reference || ' -'}}</h1>
                 </div>
-                <div *ngIf="report.report?.r_status_id != 5">
+                <div *ngIf="report.report?.r_status_id != 5 && !selectedResponse">
                     <button class="sidenav-header-btn bg-black" (click)="toggleTextarea()">REPLY</button>
                 </div>
             </div>
         </div>
         <div class="sidenav-container">
-          <div class="sidenav-grid-status">
-              <div>
-                  <h3 class="color-green-dark">STATUS</h3>
-                  <span>{{report.report?.r_status_txt || '-'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">DATE REPORT</h3>
-                  <span>{{(report.report?.created_at | date: 'mediumDate') || '--/--/----'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">METHOD</h3>
-                  <span>{{report.report?.r_method_txt || '-'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">REPORTER</h3>
-                  <span>{{getQuestion(3) || '-'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">NOTIFICATIONS</h3>
-                  <span>{{getQuestion(4) || 'No'}}</span>
-              </div>
-          </div>
-          <hr class="sidenav-hr">
-          <div class="sidenav-grid-center">
-              <div>
-                  <h3 class="color-green-dark">CENTER</h3>
-                  <span>{{report.report?.center_name || '-'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">PROJECT</h3>
-                    <span>{{report.report?.p_name || '-'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">POSITION ON PRODUCTION</h3>
-                    <span>{{getQuestion(9) || '-'}}</span>
-              </div>
-          </div>
-          <hr class="sidenav-hr">
-          <div class="sidenav-grid-incidentType" style="height: 50px;">
-              <div>
-                  <h3 class="color-green-dark">INCIDENT TYPE</h3>
-                    <span>{{getQuestion(10) || '-'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">DATE INCIDENT</h3>
-                    <span>{{getQuestion(15) || '--/--/----'}}</span>
-              </div>
-              <div>
-                  <h3 class="color-green-dark">LOCATION INCIDENT</h3>
-                    <span>{{getQuestion(16) || '-'}}</span>
-              </div>
-          </div>
-          <hr class="sidenav-hr">
-          <div class="sidenav-incident-description" style="height: 50px;">
-              <h3 class="color-green-dark">INCIDENT</h3>
-                <p>{{getQuestion(13) || '-'}}</p>
-          </div>
-          <hr class="sidenav-hr">
-          <div class="sidenav-people-involved sidenav-section">
-              <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
-                <p >{{getQuestion(14) || '-'}}</p>
-          </div>
-          <div class="sidenav-container-discussed">
-              <div class="sidenav-section">
-                <h3 class="color-green-dark">REPEATED INCIDENT</h3>
-                    <p>{{getQuestion(17) || '-'}}</p>
-              </div>
-              <div class="sidenav-section" style="flex: 1 1 300px;">
-                <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
-                    <p>{{getQuestion(18) || '-'}}</p>
-              </div>
-          </div>
-          <div class="sidenav-container-responses">
-            <h2 class="color-green-dark">RESPONSES</h2>
-            <div *ngIf="report.report?.r_status_id != 5" class="response-textarea-container">
-                <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
-                <div *ngIf="isOpenTexarea" class="response-text-options">
-                    <span></span>
-                    <div>
-                        <button class="sidenav-header-btn bg-black" (click)="saveReply(false)">REPLY</button>
-                        <button class="sidenav-header-btn bg-green-dark" (click)="saveReply(true)">CLOSE</button>
-                    </div>
-                </div>
-            </div>
-            <div class="responses-container">
-                <div *ngFor="let ask of report.replies" class="response">
+            <ng-container *ngIf="selectedResponse">
+                <mat-icon class="mat-icon-option" (click)="selectResponse(null)">arrow_back</mat-icon>
+                <div class="response response-detail">
                     <div class="response-icon">R</div>
                     <div class="response-info">
-                        <h3 class="color-green-dark">{{ask.user_name || '-'}}. ON {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
-                        <p>{{ask.reply_txt || '-'}}</p>
+                        <h3 class="color-green-dark">{{selectedResponse.user_name || '-'}}. ON {{(selectedResponse.date | date: 'mediumDate') || '--/--/----'}}</h3>
+                        <textarea [(ngModel)]="selectedResponse.reply_txt" placeholder="response ..."></textarea>
                     </div>
                 </div>
-            </div>
-          </div>
-      </div>
+                <div class="options-general">
+                    <button class="save-button" (click)="saveResponse()">SAVE</button>
+                    <button class="cancel-button" (click)="selectResponse(null)">Cancel</button>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!selectedResponse">
+                <div class="row">
+                    <div class="L-2 M-2 S-6 columns">
+                        <h3 class="color-green-dark">STATUS</h3>
+                        <span>{{report.report?.r_status_txt || '-'}}</span>
+                    </div>
+                    <div class="L-2 M-2 S-6 columns">
+                        <h3 class="color-green-dark">DATE REPORT</h3>
+                        <span>{{(report.report?.created_at | date: 'mediumDate') || '--/--/----'}}</span>
+                    </div>
+                    <div class="L-2 M-2 S-6 columns">
+                        <h3 class="color-green-dark">METHOD</h3>
+                        <span>{{report.report?.r_method_txt || '-'}}</span>
+                    </div>
+                    <div class="L-3 M-3 S-6 columns">
+                        <h3 class="color-green-dark">REPORTER</h3>
+                        <span>{{getQuestion(3) || '-'}}</span>
+                    </div>
+                    <div class="L-3 M-3 S-12 columns">
+                        <h3 class="color-green-dark">NOTIFICATIONS</h3>
+                        <span>{{getQuestion(4) || 'No'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="L-2 M-2 S-6 columns">
+                        <h3 class="color-green-dark">CENTER</h3>
+                        <span>{{report.report?.center_name || '-'}}</span>
+                    </div>
+                    <div class="L-4 M-4 S-6 columns">
+                        <h3 class="color-green-dark">PROJECT</h3>
+                          <span>{{report.report?.p_name || '-'}}</span>
+                    </div>
+                    <div class="L-6 M-6 S-12 columns">
+                        <h3 class="color-green-dark">POSITION ON PRODUCTION</h3>
+                          <span>{{getQuestion(9) || '-'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="L-6 M-6 S-12 columns">
+                        <h3 class="color-green-dark">INCIDENT TYPE</h3>
+                          <span>{{getQuestion(10) || '-'}}</span>
+                    </div>
+                    <div class="L-3 M-3 S-6 columns">
+                        <h3 class="color-green-dark">DATE INCIDENT</h3>
+                          <span>{{getQuestion(15) || '--/--/----'}}</span>
+                    </div>
+                    <div class="L-3 M-3 S-6 columns">
+                        <h3 class="color-green-dark">LOCATION INCIDENT</h3>
+                          <span>{{getQuestion(16) || '-'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 class="color-green-dark">INCIDENT</h3>
+                      <p>{{getQuestion(13) || '-'}}</p>
+                </div>
+                <div class="row">
+                    <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
+                      <p >{{getQuestion(14) || '-'}}</p>
+                </div>
+                <div class="row">
+                  <h3 class="color-green-dark">REPEATED INCIDENT</h3>
+                      <p>{{getQuestion(17) || '-'}}</p>
+                </div>
+                <div class="row" style="flex: 1 1 300px;">
+                  <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
+                      <p>{{getQuestion(18) || '-'}}</p>
+                </div>
+                <div class="sidenav-container-responses">
+                    <h2 class="color-green-dark">RESPONSES</h2>
+                    <div *ngIf="report.report?.r_status_id != 5" class="response-textarea-container">
+                        <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
+                        <div *ngIf="isOpenTexarea" class="response-text-options">
+                            <span></span>
+                            <div>
+                            <button class="sidenav-header-btn bg-black" (click)="saveReply(false)">REPLY</button>
+                            <button class="sidenav-header-btn bg-green-dark" (click)="saveReply(true)">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngFor="let ask of report.replies" class="response">
+                    <div class="response-icon">R</div>
+                        <div class="response-info">
+                            <h3 class="color-green-dark">{{ask.user_name || '-'}}. ON {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
+                            <p>{{ask.reply_txt || '-'}}</p>
+                        </div>
+                        <div class="response-options">
+                            <mat-icon class="mat-icon-option" (click)="selectResponse(ask)">edit</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
     </ng-container>
 </div>

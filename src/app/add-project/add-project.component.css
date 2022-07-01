@@ -5,3 +5,27 @@ h2 {
 .columns .btn-add {
   height: 30px;
 }
+
+.form_button span {
+  margin-top: -7%;
+  margin-left: 9%;
+  margin-bottom: 5px;
+  display: block;
+  width: 40px;
+  height: 32px;
+  background-image: url("src/assets/img/assets.png");
+  background-size: 1024px 1024px;
+  background-position: -437px 0px;
+}
+
+.form_button span:hover {
+  cursor: pointer;
+  background-position: -397px 0px;
+}
+
+.deleteAlias {
+  border: none;
+  width: 10%;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}

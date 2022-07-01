@@ -13,11 +13,9 @@
         <div class="login-form">
                 <form [formGroup]="formToken" (ngSubmit)="login()">
                 <div class="form-section">
-                    <input formControlName ="token" class="form-input" type="token" required placeholder="TOKEN">
+                    <input formControlName ="token" class="form-input" type="token" required placeholder="TOKEN" (ngModelChange)="error = ''">
                 </div>
-                    <mat-error><ng-content></ng-content></mat-error>
-                    <mat-error *ngIf="fToken['token'].getError('required') != null">Required Field</mat-error>
-                    <mat-error *ngIf="fToken['token'].getError('pattern') != null">Please enter a valid token</mat-error>
+                    <mat-error>{{error}}</mat-error>
                 <div class="form-section btn-request">
                     <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
                 </div>

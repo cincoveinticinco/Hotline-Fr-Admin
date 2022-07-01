@@ -167,12 +167,15 @@ input {
   text-transform: uppercase;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
+
 input::placeholder {
   color: rgba(0, 0, 0, 0.42);
 }
+
 input:hover::placeholder {
   color: var(--green-dark)
 }
+
 .columns input {
   border-radius: 5px;
   font-size: 11px;
@@ -204,12 +207,14 @@ mat-select:hover .mat-select-placeholder,
 mat-select:hover .mat-select-arrow {
   color: var(--green-dark);
 }
+
 .columns mat-select {
   display: block;
   border-radius: 5px;
   line-height: 28px;
 }
-.columns mat-select span{
+
+.columns mat-select span {
   font-size: 11px !important;
 }
 
@@ -281,9 +286,11 @@ mat-option:hover {
   margin: 0 10px;
   overflow-y: hidden;
 }
+
 .contaner-filters mat-select {
   width: 150px !important;
 }
+
 .contaner-filters .filter {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
@@ -597,6 +604,7 @@ table .img-text {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: var(--green-dark);
@@ -644,11 +652,11 @@ table .img-text {
 
 
 .form_button span {
-  margin-top: -7%;
+  margin-top: -8%;
   margin-left: 9%;
   margin-bottom: 5px;
   display: block;
-  width: 40px;
+  width: 30px;
   height: 32px;
   background-image: url("../../Hotline-Fr-Admin/src/assets/img/assets.png");
   background-size: 1024px 1024px;

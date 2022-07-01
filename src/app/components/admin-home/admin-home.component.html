@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn-add bg-green-dark">ADD INCIDENT</button>
+                        <button type="button" class="save-button">ADD INCIDENT</button>
                     </div>
                 </div>
             </form>
@@ -91,16 +91,16 @@
                         </ng-container>
                     <ng-container matColumnDef="comments">
                         <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
-                        <td class="commets" mat-cell *matCellDef="let element" (click)="showDetails(element)">
-                            <mat-icon aria-hidden="false" aria-label="comments">forum</mat-icon>
+                        <td class="commets" mat-cell *matCellDef="let element">
+                            <mat-icon class="mat-icon-option color-grey" aria-hidden="false" aria-label="comments" (click)="showDetails(element)">forum</mat-icon>
                             <span>{{element.replies || '0'}}</span>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="id">
                         <th mat-header-cell *matHeaderCellDef></th>
                         <td mat-cell *matCellDef="let element; let i = index">
-                            <div class="text-center" (click)="showDetails(element)">
-                                <mat-icon class="color-green-dark btn-option">visibility</mat-icon>
+                            <div class="text-center">
+                                <mat-icon class="mat-icon-option" (click)="showDetails(element)">visibility</mat-icon>
                             </div>
                         </td>
                     </ng-container>

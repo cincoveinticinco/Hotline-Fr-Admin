@@ -20,6 +20,7 @@ export class AddCommentReportComponent implements OnInit {
   loading: boolean = true;
   selectedResponse: any = null;
   errorResponse: string = '';
+  view: string = 'home';
 
   constructor(
     private _aS: AdminService
@@ -51,7 +52,7 @@ export class AddCommentReportComponent implements OnInit {
       toClose: isClose,
     }
     this._aS.createReply(params).subscribe(
-      (data: any) => {
+      () => {
         this.response = '';
         this.notify.emit();
         this.loading = false;
@@ -60,22 +61,42 @@ export class AddCommentReportComponent implements OnInit {
   }
 
   saveResponse() {
+    this.view = 'home';
     this.loading = true;
     let params = {
       replyId: this.selectedResponse.id,
       replyTxt: this.selectedResponse.reply_txt,
+      reportId: this.report.report.id,
+      toClose: false,
     }
-    this._aS.createResponseReply(params).subscribe(
-      (data: any) => {
+    this._aS.createReply(params).subscribe({
+      next: () => {
         this.update.emit();
         this.selectedResponse = null;
         this.loading = false;
       },
-      err => {
+      error: () => {
         this.selectedResponse = null;
         this.loading = false;
       }
-    );
+  });
+  }
+
+  deleteResponse() {
+    this.view = 'home';
+    this.loading = true;
+    let params = { replyId: this.selectedResponse.id }
+    this._aS.deleteResponseReply(params).subscribe({
+      next: () => {
+        this.update.emit();
+        this.selectedResponse = null;
+        this.loading = false;
+      },
+      error: () => {
+        this.selectedResponse = null;
+        this.loading = false;
+      }
+    });
   }
 
   getQuestion(id:number) {
@@ -87,7 +108,18 @@ export class AddCommentReportComponent implements OnInit {
   }
 
   selectResponse(newResponse: any) {
+    this.view = newResponse ? 'edit-response' : 'home';
     this.selectedResponse = newResponse;
+  }
+
+  confirmDelete(newResponse: any) {
+    this.selectedResponse = newResponse;
+    this.view = 'confirm-delete-response';
+  }
+
+  cancelDelete() {
+    this.view = 'home';
+    this.selectedResponse = null;
   }
 
 }

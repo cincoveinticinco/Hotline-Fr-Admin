@@ -139,6 +139,11 @@ a {
   color: var(--green-dark) !important;
 }
 
+.color-red {
+  color: var(--red) !important;
+}
+
+
 .mat-drawer-container {
   background-color: transparent;
 }
@@ -439,6 +444,10 @@ table .img-text {
   text-align: center;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .login-container {
   margin: auto;
   padding: 50px 20px;
@@ -627,6 +636,19 @@ table .img-text {
   background-color: #1acdcd;
 }
 
+.cancel-button {
+  border: 0;
+  height: 30px;
+  width: 150px;
+  background-color: var(--red);
+  border-radius: 5px;
+  color: #ffffff;
+  margin: 6px;
+}
+
+.cancel-button:hover {
+  background-color: #ff6f9f;
+}
 
 
 

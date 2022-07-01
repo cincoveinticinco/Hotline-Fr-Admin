@@ -1,4 +1,11 @@
 
+<app-popup-general
+    *ngIf="view == 'confirm-delete-response'"
+    [title]="'Delete response'"
+    [message]="'Are you sure to delete this answer?'"
+    (closePopup)="cancelDelete()"
+    (confirmPopup)="deleteResponse()">
+</app-popup-general>
 <div class="sidenav-lateral">
     <mat-spinner *ngIf="loading"></mat-spinner>
     <ng-container *ngIf="!loading">
@@ -16,7 +23,7 @@
             </div>
         </div>
         <div class="sidenav-container">
-            <ng-container *ngIf="selectedResponse">
+            <ng-container *ngIf="view == 'edit-response'">
                 <mat-icon class="mat-icon-option" (click)="selectResponse(null)">arrow_back</mat-icon>
                 <div class="response response-detail">
                     <div class="response-icon">R</div>
@@ -30,7 +37,7 @@
                     <button class="cancel-button" (click)="selectResponse(null)">Cancel</button>
                 </div>
             </ng-container>
-            <ng-container *ngIf="!selectedResponse">
+            <ng-container *ngIf="view != 'edit-response'">
                 <div class="row">
                     <div class="L-2 M-2 S-6 columns">
                         <h3 class="color-green-dark">STATUS</h3>
@@ -117,6 +124,7 @@
                         </div>
                         <div class="response-options">
                             <mat-icon class="mat-icon-option" (click)="selectResponse(ask)">edit</mat-icon>
+                            <mat-icon class="mat-icon-option color-red" (click)="confirmDelete(ask)">delete</mat-icon>
                         </div>
                     </div>
                 </div>

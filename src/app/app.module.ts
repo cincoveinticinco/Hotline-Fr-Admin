@@ -26,6 +26,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CookieModule } from 'ngx-cookie';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { PopupGeneralComponent } from './shared/components/popup-general/popup-general.component';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 		AddProjectComponent,
 		AddCommentReportComponent,
 		DropdownComponent,
-		FooterComponent
+		FooterComponent,
+  PopupGeneralComponent
 	],
 	imports: [
 		BrowserModule,

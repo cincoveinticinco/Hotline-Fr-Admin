@@ -55,7 +55,7 @@ export class AddCommentReportComponent implements OnInit {
     this._aS.createReply(params).subscribe(
       () => {
         this.response = '';
-        this.notify.emit();
+        this.update.emit();
         this.loading = false;
       }
     )

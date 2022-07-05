@@ -1,5 +1,6 @@
 <app-add-incident
-*ngIf="view == 'add-incident'">
+*ngIf="view == 'add-incident'"
+(closePanel)="changeView('home')">
 </app-add-incident>
 <div class="content">
     <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
@@ -58,7 +59,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="save-button">ADD INCIDENT</button>
+                        <!-- <button type="button" class="save-button" (click)="changeView('add-incident')">ADD INCIDENT</button> -->
                     </div>
                 </div>
             </form>

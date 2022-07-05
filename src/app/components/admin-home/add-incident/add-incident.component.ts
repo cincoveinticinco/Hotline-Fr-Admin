@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-incident',
@@ -6,6 +6,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./add-incident.component.css']
 })
 export class AddIncidentComponent implements OnInit {
+
+  @Input() incident: any = null;
 
   @Output() closePanel = new EventEmitter<string>();
 

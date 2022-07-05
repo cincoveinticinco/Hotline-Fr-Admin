@@ -15,4 +15,31 @@
   position: absolute;
   right: 0;
   box-shadow: -5px 0 5px rgb(0 0 0 / 40%);
+  animation: animationPanel 1s;
+}
+.panel-lateral .mat-icon-close{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.panel-lateral .panel-lateral-header{
+  height: 100px;
+  width: 100%;
+  background-color: var(--green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+.panel-lateral .panel-lateral-body {
+  width: 100%;
+  height: calc(100% - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px;
+}
+
+@keyframes animationPanel {
+  0%{width: 0;}
+  100%{width: 100%;}
 }

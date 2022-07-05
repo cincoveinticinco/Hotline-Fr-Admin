@@ -6,6 +6,7 @@
   width: 100%;
   height: 100%;
   z-index: 200;
+  text-transform: uppercase;
 }
 .panel-lateral {
   width: 100%;
@@ -29,7 +30,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: uppercase;
 }
 .panel-lateral .panel-lateral-body {
   width: 100%;
@@ -37,6 +37,15 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 6px;
+}
+.panel-lateral form {
+  width: 90%;
+  margin: auto;
+}
+.panel-lateral .submit-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 @keyframes animationPanel {

@@ -7,7 +7,28 @@
       <h4 *ngIf="incident">{{incident}}</h4>
     </div>
     <div class="panel-lateral-body">
-      
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="L-12 M-12 S-12 columns">
+					<label class="color-green-dark">{{'How do you want to report the incident?'}}</label>
+					<mat-select name="reporter" formControlName="reporter" placeholder="Select option">
+						<mat-option [value]="1">{{'Anonymous'}}</mat-option>
+						<mat-option [value]="2">{{'I want to identify myself'}}</mat-option>
+					</mat-select>
+				</div>
+        <div class="L-12 M-12 S-12 columns">
+					<label class="color-green-dark">{{'Do you authorize us to send messages to your email that maybe required for the investigation?'}}</label>
+					<mat-select name="reporter" formControlName="reporter" placeholder="Select option">
+						<mat-option [value]="0">{{'Yes'}}</mat-option>
+						<mat-option [value]="false">{{'No'}}</mat-option>
+					</mat-select>
+				</div>
+
+        <div class="submit-form">
+          <button class="save-button" [disabled]="form.invalid">SAVE</button>
+          <button type="button" class="cancel-button" (click)="close()">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

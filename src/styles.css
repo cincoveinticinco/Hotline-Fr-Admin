@@ -153,8 +153,10 @@ a {
 }
 
 button {
-  cursor: pointer;
   text-transform: uppercase;
+}
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 button:disabled {
@@ -220,6 +222,9 @@ mat-select:hover .mat-select-arrow {
   font-size: 11px !important;
 }
 
+mat-option {
+  text-transform: uppercase;
+}
 mat-option:hover {
   color: var(--green-dark);
 }
@@ -632,7 +637,7 @@ table .img-text {
   margin: 6px;
   box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f
 }
-.save-button:hover {
+.save-button:hover:not(:disabled) {
   background-color: #1acdcd;
 }
 

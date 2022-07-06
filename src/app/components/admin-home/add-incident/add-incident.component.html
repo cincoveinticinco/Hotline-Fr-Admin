@@ -1,148 +1,148 @@
-<div class="panel-lateral-container">
+<div class="panel-lateral-container" (click)="close()">
   <div class="panel-lateral" (click)="$event.stopPropagation()">
     <mat-icon class="mat-icon-option color-black mat-icon-close" (click)="close()">close</mat-icon>
     <mat-spinner *ngIf="loading"></mat-spinner>
-    <div class="panel-lateral-header">
-      <h2>{{incident ? 'Edit Incident' : 'Add Incident'}}</h2>
-      <h4 *ngIf="incident">{{incident}}</h4>
-    </div>
-    <div class="panel-lateral-body">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="!loading">
 
-        <div class="L-12 M-12 S-12 columns">
-					<label class="color-green-dark">{{'How do you want to report the incident?'}}</label>
-					<mat-select name="reporter" formControlName="reporter" placeholder="Select option" disableOptionCentering>
-						<mat-option [value]="1">{{'Anonymous'}}</mat-option>
-						<mat-option [value]="2">{{'I want to identify myself'}}</mat-option>
-					</mat-select>
-				</div>
+      <div class="panel-lateral-header">
+        <h2>{{incident ? 'Edit Incident' : 'Add Incident'}}</h2>
+        <h4 *ngIf="incident">{{incident}}</h4>
+      </div>
+      <div class="panel-lateral-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-        <ng-container *ngIf="getControlValue('reporter') == 1">
           <div class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Do you authorize us to send messages to your email that maybe required for the investigation?'}}</label>
-            <mat-select name="send_emails" formControlName="send_emails" placeholder="Select option" disableOptionCentering>
-              <mat-option [value]="true">{{'Yes'}}</mat-option>
-              <mat-option [value]="false">{{'No'}}</mat-option>
+            <label class="color-green-dark">{{'How do you want to report the incident?'}}</label>
+            <mat-select name="reporter" formControlName="reporter" placeholder="Select option" disableOptionCentering>
+              <mat-option [value]="1">{{'Anonymous'}}</mat-option>
+              <mat-option [value]="2">{{'I want to identify myself'}}</mat-option>
             </mat-select>
           </div>
 
-          <ng-container *ngIf="getControlValue('send_emails') == true">
+          <ng-container *ngIf="getControlValue('reporter') == 1">
+            <div class="L-12 M-12 S-12 columns">
+              <label class="color-green-dark">{{'Do you authorize us to send messages to your email that maybe required for the investigation?'}}</label>
+              <mat-select name="send_emails" formControlName="send_emails" placeholder="Select option" disableOptionCentering>
+                <mat-option [value]="true">{{'Yes'}}</mat-option>
+                <mat-option [value]="false">{{'No'}}</mat-option>
+              </mat-select>
+            </div>
+
+            <ng-container *ngIf="getControlValue('send_emails') == true">
+              <div class="L-12 M-12 S-12 columns">
+                <label class="color-green-dark">{{'Email'}}</label>
+                <input name="email" formControlName="email" placeholder="example@email.com">
+              </div>
+              <div class="L-12 M-12 S-12 columns">
+                <label class="color-green-dark">{{'Confirm Email'}}</label>
+                <input type="email" name="confirm_email" formControlName="confirm_email" placeholder="example@email.com">
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="getControlValue('reporter') == 2">
+            <div class="L-6 M-6 S-12 columns">
+              <label class="color-green-dark">{{'First Name'}}</label>
+              <input name="first_name" formControlName="first_name" placeholder="Name">
+            </div>
+            <div class="L-6 M-6 S-12 columns">
+              <label class="color-green-dark">{{'Last Name'}}</label>
+              <input name="last_name" formControlName="last_name" placeholder="Last Name">
+            </div>
+            <div class="L-6 M-6 S-12 columns">
+              <label class="color-green-dark">{{'Country'}}</label>
+              <mat-select name="country" formControlName="country" placeholder="Select option" disableOptionCentering>
+                <mat-option *ngFor="let option of optionsCoutry" [value]="option.code">{{option.country}}</mat-option>
+              </mat-select>
+            </div>
+            <div class="L-6 M-6 S-12 columns">
+              <label class="color-green-dark">{{'Phone Number'}}</label>
+              <input type="number" name="phone_number" formControlName="phone_number">
+            </div>
             <div class="L-12 M-12 S-12 columns">
               <label class="color-green-dark">{{'Email'}}</label>
               <input name="email" formControlName="email" placeholder="example@email.com">
             </div>
+          </ng-container>
+
+          <div *ngIf="getControlValue('reporter') == 2 || getControlValue('send_emails') != null" class="L-12 M-12 S-12 columns">
+            <label class="color-green-dark">{{'Please provide you department and position within the production'}}</label>
+            <mat-select name="postion_on_production" formControlName="postion_on_production" placeholder="Select option" disableOptionCentering>
+              <mat-option *ngFor="let option of optionsPositionOnProduction" [value]="option.id">{{option.answer_text}}</mat-option>
+            </mat-select>
+          </div>
+
+          <ng-container *ngIf="getControlValue('reporter')">
             <div class="L-12 M-12 S-12 columns">
-              <label class="color-green-dark">{{'Confirm Email'}}</label>
-              <input type="email" name="confirm_email" formControlName="confirm_email" placeholder="example@email.com">
+              <label class="color-green-dark">{{'Select issue type'}}</label>
+              <mat-select name="type" formControlName="type" placeholder="Select option" disableOptionCentering>
+                <mat-option *ngFor="let option of optionsType" [value]="option.id">{{option.answer_text}}</mat-option>
+              </mat-select>
+            </div>
+            <h5 class="color-green-dark">{{'What is the production?'}}</h5>
+            <div class="L-8 M-8 S-8 columns">
+              <label class="color-green-dark">{{'Production Name'}}</label>
+              <input name="production" formControlName="production" placeholder="Name">
+            </div>
+            <div class="L-4 M-4 S-4 columns">
+              <label class="color-green-dark">{{'Season'}}</label>
+              <input name="season" formControlName="season" placeholder="Season">
+            </div>
+            <div class="L-12 M-12 S-12 columns">
+              <label class="color-green-dark">{{'Please describe the incident'}}</label>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <textarea matInput name="description" formControlName="description" placeholder="Description ..."></textarea>
+              </mat-form-field>
+            </div>
+            <div class="L-12 M-12 S-12 columns">
+              <label class="color-green-dark">{{'People involved in the incident'}}</label>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <textarea matInput name="people_involved" formControlName="people_involved" placeholder="People ..."></textarea>
+              </mat-form-field>
+            </div>
+            <h5 class="color-green-dark">{{'Date and location of the incident'}}</h5>
+            <div class="L-6 M-6 S-12 columns">
+              <label class="color-green-dark">{{'Date'}}</label>
+              <input type="date" [max]="today" name="date" formControlName="date">
+            </div>
+            <div class="L-6 M-6 S-12 columns">
+              <label class="color-green-dark">{{'Location'}}</label>
+              <input name="location" formControlName="location" placeholder="Location">
+            </div>
+            <div class="L-12 M-12 S-12 columns">
+              <label class="color-green-dark">{{'Has this incident happened more than once?'}}</label>
+              <mat-select name="more_once" formControlName="more_once" placeholder="Select option" disableOptionCentering>
+                <mat-option [value]="true">{{'Yes'}}</mat-option>
+                <mat-option [value]="false">{{'No'}}</mat-option>
+              </mat-select>
+            </div>
+            <div *ngIf="getControlValue('more_once') == true" class="L-12 M-12 S-12 columns">
+              <label class="color-green-dark">{{'Please provide the details'}}</label>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <textarea matInput name="more_once_detail" formControlName="more_once_detail" placeholder="Details ..."></textarea>
+              </mat-form-field>
+            </div>
+            <div class="L-12 M-12 S-12 columns">
+              <label class="color-green-dark">{{'Have you discussed this incident with your manager or production supervisor?'}}</label>
+              <mat-select name="discussed_supervisor" formControlName="discussed_supervisor" placeholder="Select option" disableOptionCentering>
+                <mat-option [value]="true">{{'Yes'}}</mat-option>
+                <mat-option [value]="false">{{'No'}}</mat-option>
+              </mat-select>
+            </div>
+            <div *ngIf="getControlValue('discussed_supervisor') == true" class="L-12 M-12 S-12 columns">
+              <label class="color-green-dark">{{'Who did you report this incident to?'}}</label>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <textarea matInput name="who_report" formControlName="who_report" placeholder="Who ..."></textarea>
+              </mat-form-field>
             </div>
           </ng-container>
-        </ng-container>
 
-        <ng-container *ngIf="getControlValue('reporter') == 2">
-          <div class="L-6 M-6 S-12 columns">
-            <label class="color-green-dark">{{'First Name'}}</label>
-            <input name="first_name" formControlName="first_name" placeholder="Name">
+          <div class="submit-form">
+            <button class="save-button" [disabled]="form.invalid || validateForm()">SAVE</button>
+            <button type="button" class="cancel-button" (click)="close()">Cancel</button>
           </div>
-          <div class="L-6 M-6 S-12 columns">
-            <label class="color-green-dark">{{'Last Name'}}</label>
-            <input name="last_name" formControlName="last_name" placeholder="Last Name">
-          </div>
-          <div class="L-6 M-6 S-12 columns">
-            <label class="color-green-dark">{{'Country'}}</label>
-            <mat-select name="country" formControlName="country" placeholder="Select option" disableOptionCentering>
-              <mat-option *ngFor="let option of optionsCoutry" [value]="option.id">{{option.country}}</mat-option>
-            </mat-select>
-          </div>
-          <div class="L-6 M-6 S-12 columns">
-            <label class="color-green-dark">{{'Phone Number'}}</label>
-            <input type="number" name="phone_number" formControlName="phone_number">
-          </div>
-          <div class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Email'}}</label>
-            <input name="email" formControlName="email" placeholder="example@email.com">
-          </div>
-          <div class="L-12 M-12 S-12 columns">
-            <mat-checkbox name="authorize_to_be_contacted" formControlName="authorize_to_be_contacted">{{'I authorize to be contacted for more information about this report'}}</mat-checkbox>
-          </div>
-        </ng-container>
-
-        <div *ngIf="getControlValue('reporter') == 2 || getControlValue('send_emails') != null" class="L-12 M-12 S-12 columns">
-          <label class="color-green-dark">{{'Please provide you department and position within the production'}}</label>
-          <mat-select name="postion_on_production" formControlName="postion_on_production" placeholder="Select option" disableOptionCentering>
-            <mat-option *ngFor="let option of optionsPositionOnProduction" [value]="option.id">{{option.answer_text}}</mat-option>
-          </mat-select>
-        </div>
-
-        <ng-container *ngIf="getControlValue('reporter')">
-          <div class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Select issue type'}}</label>
-            <mat-select name="type" formControlName="type" placeholder="Select option" disableOptionCentering>
-              <mat-option *ngFor="let option of optionsType" [value]="option.id">{{option.answer_text}}</mat-option>
-            </mat-select>
-          </div>
-          <h5 class="color-green-dark">{{'What is the production?'}}</h5>
-          <div class="L-8 M-8 S-8 columns">
-            <label class="color-green-dark">{{'Production Name'}}</label>
-            <input name="production" formControlName="production" placeholder="Name">
-          </div>
-          <div class="L-4 M-4 S-4 columns">
-            <label class="color-green-dark">{{'Season'}}</label>
-            <input name="season" formControlName="season" placeholder="Season">
-          </div>
-          <div class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Please describe the incident'}}</label>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <textarea matInput name="description" formControlName="description" placeholder="Description ..."></textarea>
-            </mat-form-field>
-          </div>
-          <div class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'People involved in the incident'}}</label>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <textarea matInput name="people_involved" formControlName="people_involved" placeholder="People ..."></textarea>
-            </mat-form-field>
-          </div>
-          <h5 class="color-green-dark">{{'Date and location of the incident'}}</h5>
-          <div class="L-6 M-6 S-12 columns">
-            <label class="color-green-dark">{{'Date'}}</label>
-            <input type="date" [max]="today" name="date" formControlName="date">
-          </div>
-          <div class="L-6 M-6 S-12 columns">
-            <label class="color-green-dark">{{'Location'}}</label>
-            <input name="location" formControlName="location" placeholder="Location">
-          </div>
-          <div class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Has this incident happened more than once?'}}</label>
-            <mat-select name="more_once" formControlName="more_once" placeholder="Select option" disableOptionCentering>
-              <mat-option [value]="true">{{'Yes'}}</mat-option>
-              <mat-option [value]="false">{{'No'}}</mat-option>
-            </mat-select>
-          </div>
-          <div *ngIf="getControlValue('more_once') == true" class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Please provide the details'}}</label>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <textarea matInput name="more_once_detail" formControlName="more_once_detail" placeholder="Details ..."></textarea>
-            </mat-form-field>
-          </div>
-          <div class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Have you discussed this incident with your manager or production supervisor?'}}</label>
-            <mat-select name="discussed_supervisor" formControlName="discussed_supervisor" placeholder="Select option" disableOptionCentering>
-              <mat-option [value]="true">{{'Yes'}}</mat-option>
-              <mat-option [value]="false">{{'No'}}</mat-option>
-            </mat-select>
-          </div>
-          <div *ngIf="getControlValue('discussed_supervisor') == true" class="L-12 M-12 S-12 columns">
-            <label class="color-green-dark">{{'Who did you report this incident to?'}}</label>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <textarea matInput name="who_report" formControlName="who_report" placeholder="Who ..."></textarea>
-            </mat-form-field>
-          </div>
-        </ng-container>
-
-        <div class="submit-form">
-          <button class="save-button" [disabled]="form.invalid || validateForm()">SAVE</button>
-          <button type="button" class="cancel-button" (click)="onSubmit()">Cancel</button>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </ng-container>
   </div>
 </div>

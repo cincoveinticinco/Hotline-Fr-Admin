@@ -16,7 +16,7 @@
   position: absolute;
   right: 0;
   box-shadow: -5px 0 5px rgb(0 0 0 / 40%);
-  animation: animationPanel 1s;
+  animation: animationPanel .5s;
 }
 .panel-lateral .mat-icon-close{
   position: absolute;

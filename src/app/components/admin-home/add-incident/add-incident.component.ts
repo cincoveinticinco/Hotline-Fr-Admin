@@ -13,6 +13,7 @@ export class AddIncidentComponent implements OnInit {
   @Input() incident: any = null;
 
   @Output() closePanel = new EventEmitter<string>();
+  @Output() notify = new EventEmitter<string>();
 
   loading: boolean = false;
   form: FormGroup = this.fb.group({});
@@ -36,7 +37,7 @@ export class AddIncidentComponent implements OnInit {
     { id: 16, answer_text: 'MINORS', question_id: 10 },
     { id: 17, answer_text: 'HOSTILE WORK ENVIRONMENT', question_id: 10 },
     { id: 18, answer_text: 'BULLYING / INTIMIDATION', question_id: 10 },
-    { id: 19, answer_text: 'BULLYING / INTIMIDATION', question_id: 10 },
+    { id: 19, answer_text: 'ALL OTHERS', question_id: 10 },
   ];
   optionsCoutry: any[] = [
     { id: 1, code: '+49', country: 'Germany' },
@@ -97,9 +98,8 @@ export class AddIncidentComponent implements OnInit {
       'postion_on_production': [null, Validators.required],
       'first_name': '',
       'last_name': '',
-      'country': null,
+      'country': '',
       'phone_number': null,
-      'authorize_to_be_contacted': false,
       'type': [null, Validators.required],
       'production': ['', Validators.required],
       'season': null,
@@ -119,13 +119,12 @@ export class AddIncidentComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('enviando-----,,,,,......');
-    console.log(this.form);
+    this.loading = true;
     this.validateAnswers();
-    console.log(this.answersForm);
     this._aS.saveIncident(this.answersForm).subscribe(
       () => {
-        console.log('enviado');
+        this.loading = false;
+        this.notify.emit();
       }
     )
   }
@@ -174,7 +173,6 @@ export class AddIncidentComponent implements OnInit {
       }
     }
     this.form.get(controlName)?.updateValueAndValidity();
-    console.log(this.form);
   } */
 
   /* validateEmails(): ValidatorFn {
@@ -189,7 +187,7 @@ export class AddIncidentComponent implements OnInit {
     if(this.getControlValue('reporter') == 2) {
       if(this.getControlValue('first_name') == '') return true;
       if(this.getControlValue('last_name') == '') return true;
-      if(this.getControlValue('country') == null) return true;
+      if(this.getControlValue('country') == '') return true;
       if(this.getControlValue('phone_number') == null) return true;
       if(this.getControlValue('email') == '') return true;
     }

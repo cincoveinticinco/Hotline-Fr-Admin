@@ -46,6 +46,12 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  padding: 30px;
+}
+.panel-lateral h5 {
+  margin-top: 10px;
+  display: inline-block;
+  width: 100%;
 }
 
 @keyframes animationPanel {

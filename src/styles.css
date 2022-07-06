@@ -171,13 +171,19 @@ input {
   text-transform: uppercase;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
-
 input::placeholder {
   color: rgba(0, 0, 0, 0.42);
 }
-
 input:hover::placeholder {
   color: var(--green-dark)
+}
+input[type='date'] {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+input.ng-invalid.ng-touched,
+mat-select.ng-invalid.ng-touched {
+  border: 1px solid var(--red);
+  color: var(--red);
 }
 
 .columns input {
@@ -237,6 +243,29 @@ mat-option:hover {
   padding: 2.5px;
   width: 30px !important;
   height: 30px !important;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  font-weight: normal;
+  color: var(--dark-grey);
+}
+.mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+textarea.mat-input-element{
+  resize: none !important;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+.mat-form-field-underline {
+  bottom: 0;
 }
 
 mat-icon:hover {

@@ -173,4 +173,16 @@ export class AdminService {
 				.set('token', token)
 		});
 	}
+
+	saveIncident(answers: any[]) {
+		let queryParams = {
+			'answers': answers
+		}
+		return this.http.post(this.service_url + 'web_report/submitAnswer', queryParams, this.httpOptions)
+			.pipe(
+				map((response: any) => {
+					return response;
+				})
+			)
+  }
 }

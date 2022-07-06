@@ -36,7 +36,6 @@ export class RequestTokenComponent implements OnInit {
 		);
 	}
 
-
 	constructor(
 		private fb: FormBuilder,
 		private _lS: LoginService,

@@ -13,15 +13,17 @@
         <div class="login-form">
                 <form [formGroup]="formToken" (ngSubmit)="sendToken()">
                 <div class="form-section">
-                    <input formControlName ="token" class="form-input" type="token" required placeholder="TOKEN">
+                    <input name="token" formControlName="token" class="form-input" type="token" required placeholder="TOKEN" (ngModelChange)="resetMessages()">
                 </div>
+                <mat-error *ngIf="errorResponse">{{errorResponse}}</mat-error>
+                <mat-error *ngIf="errorEmail">{{errorEmail}}</mat-error>
+                <a *ngIf="newToken" class="color-green-dark" style="font-size: 12px;">{{newToken}}</a>
                 <div class="form-section btn-request">
-                    <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
+                    <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid || !email">LOGIN</button>
                 </div>
             </form>
-            <div class="login-link">
-                <a href="" class="color-green-dark">GENERATE NEW TOKEN</a>
-            </div>
+            <div *ngIf="this.email" class="login-link"><a (click)="sendEmail()" class="color-green-dark" style="cursor: pointer;">GENERATE NEW TOKEN</a></div>
+            <div *ngIf="!this.email" class="login-link"><a [routerLink]="['..', 'request-token']" class="color-green-dark">ENTER EMAIL</a></div>
         </div>
     </div>
 </div>

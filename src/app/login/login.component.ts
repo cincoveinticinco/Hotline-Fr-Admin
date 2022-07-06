@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from '../services/admin.service';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -11,18 +10,23 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-	formToken: FormGroup;
+	formToken: FormGroup = this.fb.group({});
 	loading: boolean = false;
+	email: string = '';
+	errorEmail: string = '';
+	newToken: string = '';
+	errorResponse: string = '';
 
 	sendToken() {
 		this.loading = true;
 		let params = {
-			'email': this.formToken.value.email,
-			'token': null
+			'email': this.email,
+			'token': this.formToken.get('token')?.value
 		}
 		this._lS.getLoginToken(params).subscribe(
 			(data: any) => {
 				if(data.error) {
+					this.errorResponse = 'INVALID TOKEN';
 					this.loading = false;
 					return;
 				}
@@ -33,16 +37,44 @@ export class LoginComponent implements OnInit {
 		);
 	}
 
-	get fToken() {
-		return this.formToken.controls;
+	sendEmail() {
+		this.loading = true;
+		this._lS.getEmail(this.email).subscribe(
+			(data: any) => {
+				if(data.error) {
+					this.loading = false;
+					return;
+				}
+				this.newToken = 'GENERATED TOKEN';
+				this.loading = false;
+			}
+		);
 	}
 
-	constructor(private fb: FormBuilder, private _lS: LoginService, private router: Router) {
+	initFormFields() {
 		this.formToken = this.fb.group({
-			token: new FormControl('', Validators.required)
+			token: ['', Validators.required]
 		})
 	}
 
+	resetMessages() {
+		this.newToken = '';
+		this.errorResponse = '';
+	}
+
+	getSessionStorage() {
+		this.email = JSON.parse(sessionStorage.getItem('session_email_hotline') || '""');
+		if(!this.email) this.errorEmail = 'No email has been entered, please go to the previous view to enter the email.';
+	}
+
+	constructor(
+		private fb: FormBuilder,
+		private _lS: LoginService,
+		private router: Router
+	) {}
+
 	ngOnInit(): void {
+		this.initFormFields();
+		this.getSessionStorage();
 	}
 }

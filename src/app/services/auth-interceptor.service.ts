@@ -33,7 +33,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 			tap(event => {
 				if (event instanceof HttpResponse) {
 					if (event.body) {
-						if (event.body.msg === 'Expired token') {
+						if (event.body.msg === 'Expired token' || event.body.msg === 'Invalid User') {
 							this._lS.logOut();
 						}
 					}

@@ -1,7 +1,7 @@
 <app-add-incident
-*ngIf="view == 'add-incident'"
-(closePanel)="changeView('home')"
-(notify)="update()">
+    *ngIf="view == 'add-incident'"
+    (closePanel)="changeView('home')"
+    (notify)="update()">
 </app-add-incident>
 <div class="content">
     <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">

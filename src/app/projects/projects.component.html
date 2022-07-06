@@ -1,19 +1,19 @@
+<app-add-project
+    *ngIf="view == 'add-project'"
+    (closePanel)="close()"
+    (notify)="update()"
+    [centers]="centers">
+</app-add-project>
+<app-add-project
+    *ngIf="view == 'edit-project'"
+    (closePanel)="close()"
+    (notify)="update()"
+    [project]="itemact"
+    [centers]="centers">
+</app-add-project>
 <div class="content">
     <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
         <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
-            <app-add-project
-                *ngIf="view == 'add-project'"
-                (closePanel)="close()"
-                (notify)="update()"
-                [centers]="centers">
-            </app-add-project>
-            <app-add-project
-                *ngIf="view == 'edit-project'"
-                (closePanel)="close()"
-                (notify)="update()"
-                [itemact]="itemact"
-                [centers]="centers">
-            </app-add-project>
         </mat-sidenav>
         <mat-sidenav-content>
             <app-nav-top>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" (click)="addProject()" class="btn-add bg-green-dark">ADD PROJECT</button>
+                        <button type="button" (click)="changeView('add-project')" class="save-button">ADD PROJECT</button>
                     </div>
                 </div>
             </form>

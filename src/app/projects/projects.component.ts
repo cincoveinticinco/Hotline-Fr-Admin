@@ -31,15 +31,13 @@ export class ProjectsComponent implements OnInit {
 	}
 
 	update() {
-		this.view == 'home';
+		this.view = 'home';
 		this.sidenav.close();
 		this.loadData();
 	}
 
 	ngOnInit(): void {
-		this.loadData()
-		console.log()
-
+		this.loadData();
 	}
 
 	filter() {
@@ -70,13 +68,11 @@ export class ProjectsComponent implements OnInit {
 	showDetails(element: any) {
 		this.itemact = element;
 		this.view = 'edit-project';
-		this.sidenav.open();
 	}
 
 	close() {
 		this.view = 'home';
 		this.sidenav.close();
-		this.itemact = null;
 	}
 
 	replyIncident(id: number) {
@@ -90,6 +86,10 @@ export class ProjectsComponent implements OnInit {
 	addProject() {
 		this.view = 'add-project';
 		this.sidenav.open();
+	}
+
+	changeView(newView: string) {
+		this.view = newView;
 	}
 }
 

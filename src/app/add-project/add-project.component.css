@@ -1,40 +1,17 @@
-h2 {
-  margin-top: 10px;
+.panel-lateral-body h2 {
   border-bottom: 1px solid var(--green-dark);
 }
 
-.columns .btn-add {
-  height: 30px;
+.columns .save-button {
+  margin: 0;
+  width: 100%;
 }
 
-.form_button span {
-  margin-top: -1%;
-  margin-left: initial;
-  margin-bottom: 5px;
-  display: block;
-  width: 40px;
-  height: 32px;
-  background-image: url("src/assets/img/assets.png");
-  background-size: 1024px 1024px;
-  background-position: -437px 0px;
-  z-index: 999;
-}
-
-.form_button span:hover {
-  cursor: pointer;
-  background-position: -397px 0px;
-}
-
-.deleteAlias {
-  position: relative;
-  border: 0;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  text-align: center;
-  outline: none;
-  text-align: justify !important;
-  width: fit-content;
+.item-form-array {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--dark-grey);
   float: left;
-  margin-right: 30px !important;
-  margin-top: 5px !important;
+  margin-right: 20px;
 }

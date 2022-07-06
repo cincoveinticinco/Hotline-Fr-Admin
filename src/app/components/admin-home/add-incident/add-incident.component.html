@@ -4,10 +4,11 @@
     <mat-spinner *ngIf="loading"></mat-spinner>
     <ng-container *ngIf="!loading">
 
-      <div class="panel-lateral-header">
+      <div class="panel-lateral-header center">
         <h2>{{incident ? 'Edit Incident' : 'Add Incident'}}</h2>
         <h4 *ngIf="incident">{{incident}}</h4>
       </div>
+
       <div class="panel-lateral-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
 

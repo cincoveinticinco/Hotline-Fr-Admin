@@ -8,30 +8,15 @@ import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@ang
 	styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent implements OnInit {
-	@Input() itemact: any;
+
+	@Input() project: any;
 	@Input() centers: any;
+
 	@Output() closePanel = new EventEmitter<string>();
 	@Output() notify = new EventEmitter<string>();
 
 	loading: boolean = false;
-	center_id: any[] = [];
-	id: any[] = [];
-	location_name: any[] = [];
-	filters: any = {
-		center_id: null,
-		location_name: null,
-
-	}
 	form: FormGroup;
-	project: any = {
-		p_name: "",
-		p_season: "",
-		alias: "",
-		p_abbreviation: "",
-		aliases: "",
-		correos: "",
-		users: ""
-	}
 
 	get aliases() {
 		return this.form.get('aliases') as FormArray;
@@ -48,7 +33,6 @@ export class AddProjectComponent implements OnInit {
 	get alias(): string | null {
 		return this.form.get('alias')?.value;
 	}
-
 
 	Save() {
 		this.loading = true;
@@ -68,8 +52,6 @@ export class AddProjectComponent implements OnInit {
 		(<FormArray>this.form.get("aliases")).clear();
 		(<FormArray>this.form.get("correos")).clear();
 		this.closePanel.emit();
-		this.form.reset()
-
 	}
 
 	deleteAlias(ev: any) {
@@ -112,24 +94,23 @@ export class AddProjectComponent implements OnInit {
 			company: ''
 		})
 	}
+
 	fillform() {
-		if (this.itemact) {
-			let arrayAlias = this.itemact.alias ? this.itemact.alias.split(',') : [];
-			let arrayEmails = this.itemact.users_emails ? this.itemact.users_emails.split(',') : [];
+		if (this.project) {
+			let arrayAlias = this.project.alias ? this.project.alias.split(',') : [];
+			let arrayEmails = this.project.users_emails ? this.project.users_emails.split(',') : [];
 
 			this.form.patchValue({
-				center_id: this.itemact.center_id,
-				location_name: this.itemact.location_name,
-				p_name: this.itemact.p_name,
-				p_season: this.itemact.p_season,
-				p_abbreviation: this.itemact.p_abbreviation,
-				users: this.itemact.users,
-				id: this.itemact.id,
-				company: this.itemact.company
+				center_id: this.project.center_id,
+				location_name: this.project.location_name,
+				p_name: this.project.p_name,
+				p_season: this.project.p_season,
+				p_abbreviation: this.project.p_abbreviation,
+				users: this.project.users,
+				id: this.project.id,
+				company: this.project.company
 			})
 			arrayAlias.forEach((als: any) => {
-				console.log(arrayAlias);
-				console.log(als);
 				(<FormArray>this.form.get("aliases")).push(this.fb.control(als));
 			});
 			arrayEmails.forEach((email: any) => {
@@ -139,7 +120,6 @@ export class AddProjectComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		console.log(this.itemact);
 		this.fillform();
 	}
 

@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 
 @Component({
@@ -8,8 +7,6 @@ import { AdminService } from '../services/admin.service';
 	styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-
-	@ViewChild('sidenav') sidenav!: MatSidenav;
 
 	displayedColumns = ['production_company', 'project', 'abbreviation', 'season', 'center', 'location', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
 	dataSource: any = [];
@@ -32,7 +29,6 @@ export class ProjectsComponent implements OnInit {
 
 	update() {
 		this.view = 'home';
-		this.sidenav.close();
 		this.loadData();
 	}
 
@@ -68,24 +64,6 @@ export class ProjectsComponent implements OnInit {
 	showDetails(element: any) {
 		this.itemact = element;
 		this.view = 'edit-project';
-	}
-
-	close() {
-		this.view = 'home';
-		this.sidenav.close();
-	}
-
-	replyIncident(id: number) {
-		console.log(id);
-	}
-
-	closeIncident(id: number) {
-		console.log(id);
-	}
-
-	addProject() {
-		this.view = 'add-project';
-		this.sidenav.open();
 	}
 
 	changeView(newView: string) {

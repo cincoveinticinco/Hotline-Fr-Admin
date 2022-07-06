@@ -1,12 +1,12 @@
 <app-add-project
     *ngIf="view == 'add-project'"
-    (closePanel)="close()"
+    (closePanel)="changeView('home')"
     (notify)="update()"
     [centers]="centers">
 </app-add-project>
 <app-add-project
     *ngIf="view == 'edit-project'"
-    (closePanel)="close()"
+    (closePanel)="changeView('home')"
     (notify)="update()"
     [project]="itemact"
     [centers]="centers">

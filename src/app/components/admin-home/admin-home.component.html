@@ -35,8 +35,8 @@
                                     {{ status.r_status_txt | uppercase }}
                                 </mat-option>
                             </mat-select>
-                            <mat-select class="filter" name="types" [(ngModel)]="filters.types" (ngModelChange)="filter()" placeholder="ALL TYPES" disableOptionCentering>
-                                <mat-option [value]="null">ALL TYPES</mat-option>
+                            <mat-select class="filter" name="types" [(ngModel)]="filters.types" (ngModelChange)="filter()" placeholder="ALL TYPES" disableOptionCentering multiple>
+                                <mat-option>ALL TYPES</mat-option>
                                 <mat-option *ngFor="let type of types" [value]="type">
                                     {{ type.q_option_title | uppercase }}
                                 </mat-option>
@@ -97,17 +97,9 @@
                         </ng-container>
                     <ng-container matColumnDef="comments">
                         <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
-                        <td class="commets" mat-cell *matCellDef="let element">
-                            <mat-icon class="mat-icon-option color-grey" aria-hidden="false" aria-label="comments" (click)="showDetails(element)">forum</mat-icon>
+                        <td class="commets" mat-cell *matCellDef="let element" (click)="showDetails(element)">
+                            <mat-icon class="mat-icon-option color-grey" aria-hidden="false" aria-label="comments">forum</mat-icon>
                             <span>{{element.replies || '0'}}</span>
-                        </td>
-                    </ng-container>
-                    <ng-container matColumnDef="id">
-                        <th mat-header-cell *matHeaderCellDef></th>
-                        <td mat-cell *matCellDef="let element; let i = index">
-                            <div class="text-center">
-                                <mat-icon class="mat-icon-option" (click)="showDetails(element)">visibility</mat-icon>
-                            </div>
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

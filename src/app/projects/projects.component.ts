@@ -11,7 +11,7 @@ export class ProjectsComponent implements OnInit {
 
 	@ViewChild('sidenav') sidenav!: MatSidenav;
 
-	displayedColumns = ['project', 'abbreviation', 'season', 'center', 'location', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
+	displayedColumns = ['production_company', 'project', 'abbreviation', 'season', 'center', 'location', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
 	dataSource: any = [];
 	searchProperties: string[] = ['r_status_txt'];
 	filteredDataSource: any[] = [];
@@ -24,15 +24,14 @@ export class ProjectsComponent implements OnInit {
 	filters: any = {
 		centers: null,
 		searchText: ''
-	}
-
-
+	};
+	view: string = 'home';
 
 	constructor(private _aS: AdminService) {
-
 	}
 
 	update() {
+		this.view == 'home';
 		this.sidenav.close();
 		this.loadData();
 	}
@@ -55,7 +54,6 @@ export class ProjectsComponent implements OnInit {
 	}
 
 	loadData() {
-
 		this.loading = true;
 		this._aS.getListProjects().subscribe(
 			(data: any) => {
@@ -70,12 +68,13 @@ export class ProjectsComponent implements OnInit {
 	}
 
 	showDetails(element: any) {
-		this.itemact = element
-		console.log(this.itemact);
-		console.log()
+		this.itemact = element;
+		this.view = 'edit-project';
+		this.sidenav.open();
 	}
 
 	close() {
+		this.view = 'home';
 		this.sidenav.close();
 		this.itemact = null;
 	}
@@ -87,20 +86,11 @@ export class ProjectsComponent implements OnInit {
 	closeIncident(id: number) {
 		console.log(id);
 	}
-}
 
-export interface DataElement {
-	pk: number;
-	project: string;
-	abbreviation: string;
-	season: number;
-	center: string;
-	location: string;
-	alias: string;
-	open_inc: string;
-	closed_inc: string
-	assigns?: any[];
-
+	addProject() {
+		this.view = 'add-project';
+		this.sidenav.open();
+	}
 }
 
 

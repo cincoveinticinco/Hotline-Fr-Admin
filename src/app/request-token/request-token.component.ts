@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
@@ -10,61 +10,40 @@ import { LoginService } from '../services/login.service';
 })
 export class RequestTokenComponent implements OnInit {
 
-	formToken: FormGroup;
-	errorRequest: string = '';
+	formEmail: FormGroup = this.fb.group({});
 	loading: boolean = false;
-	openToken: boolean = false;
+	errorResponse: string = '';
+
+	initFormFields() {
+		this.formEmail = this.fb.group({
+			email: ['',[Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]]
+		})
+	}
 
 	sendEmail() {
 		this.loading = true;
-		if (this.formToken.valid) {
-			this._lS.getEmail(this.formToken.value.email).subscribe(
-				(data: any) => {
-					if(data.error) {
-						this.errorRequest = data.msg;
-						this.loading = false;
-						return;
-					}
-					this.openToken = true;
-					this.errorRequest = '';
-					this.loading = false;
-				}
-			);
-		}
-	}
-
-	sendToken(token: string) {
-		this.loading = true;
-		let params = {
-			'email': this.formToken.value.email,
-			'token': token
-		}
-		this._lS.getLoginToken(params).subscribe(
+		this._lS.getEmail(this.formEmail.get('email')?.value).subscribe(
 			(data: any) => {
 				if(data.error) {
-					this.errorRequest = 'Invalid token';
+					this.errorResponse = data.msg;
 					this.loading = false;
 					return;
 				}
-				this.errorRequest = '';
-				this._lS.setToken(data.token);
-				this.router.navigate(['admin-home']);
+				sessionStorage.setItem('session_email_hotline', JSON.stringify(this.formEmail.get('email')?.value));
+				this.router.navigate(['login']);
 				this.loading = false;
 			}
 		);
 	}
 
-	get fToken() {
-		return this.formToken.controls;
-	}
 
-
-	constructor(private fb: FormBuilder, private router: Router, private _lS: LoginService) {
-		this.formToken = this.fb.group({
-			email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]))
-		})
-	}
+	constructor(
+		private fb: FormBuilder,
+		private _lS: LoginService,
+		private router: Router
+	) {}
 
 	ngOnInit(): void {
+		this.initFormFields();
 	}
 }

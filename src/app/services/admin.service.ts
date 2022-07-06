@@ -156,7 +156,8 @@ export class AdminService {
 			'users': params.correos,
 			'center_id': params.center_id,
 			'location_name': params.location_name,
-			'p_abbreviation': params.p_abbreviation
+			'p_abbreviation': params.p_abbreviation,
+			'production_company': params.company
 		}
 		return this.http.post(this.service_url + 'admin/newProject', queryParams, this.httpOptions)
 			.pipe(

@@ -203,29 +203,30 @@ mat-select {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
-
 .mat-select-value {
   color: var(--black-light);
   padding: 6px;
 }
-
 .mat-select-panel {
   font-size: 11px !important;
 }
-
 mat-select:hover .mat-select-placeholder,
 mat-select:hover .mat-select-arrow {
   color: var(--green-dark);
 }
-
 .columns mat-select {
   display: block;
   border-radius: 5px;
   line-height: 28px;
 }
-
 .columns mat-select span {
   font-size: 11px !important;
+}
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+  background: var(--green-dark);
 }
 
 mat-option {
@@ -429,7 +430,6 @@ table td {
   letter-spacing: 0;
   max-width: 200px;
   height: auto;
-  cursor: pointer;
   min-width: 80px;
   border: 1px solid #b7b7b7;
   border-bottom-color: #b7b7b7 !important;
@@ -443,6 +443,10 @@ table td.commets {
   text-align: center;
   text-align: center;
   color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+table td.commets:hover mat-icon{
+  color: var(--green-dark) !important;
 }
 
 table td.commets span {

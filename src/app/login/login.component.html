@@ -11,11 +11,10 @@
             <p>PLEASE CHECK YOUR EMAIL</p>
         </div>
         <div class="login-form">
-                <form [formGroup]="formToken" (ngSubmit)="login()">
+                <form [formGroup]="formToken" (ngSubmit)="sendToken()">
                 <div class="form-section">
-                    <input formControlName ="token" class="form-input" type="token" required placeholder="TOKEN" (ngModelChange)="error = ''">
+                    <input formControlName ="token" class="form-input" type="token" required placeholder="TOKEN">
                 </div>
-                    <mat-error>{{error}}</mat-error>
                 <div class="form-section btn-request">
                     <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
                 </div>

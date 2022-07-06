@@ -1,5 +1,5 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
-<div *ngIf="!loading && !openToken" class="content">
+<div *ngIf="!loading" class="content">
     <div class="login-container">
         <div class="title">
             <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
@@ -8,26 +8,24 @@
             <h2 class="color-black">ADMIN MODULE</h2>
         </div>
         <div class="login-form">
-            <form [formGroup]="formToken" (ngSubmit)="sendEmail()">
+            <form [formGroup]="formEmail" (ngSubmit)="sendEmail()">
                 <div class="form-section color-green-dark">
                     <label for="email">E-MAIL</label>
                 </div>
                 <div class="form-section">
-                    <input name="email" formControlName ="email" class="form-input" type="email"  placeholder="EMAIL">
+                    <input name="email" formControlName="email" class="form-input" type="email" placeholder="EMAIL" (ngModelChange)="errorResponse = ''">
                 </div>
-                    <mat-error *ngIf="errorRequest">{{errorRequest}}</mat-error>
-                    <mat-error *ngIf="fToken['email'].getError('pattern') != null">Please enter a valid email</mat-error>
+                <mat-error *ngIf="errorResponse">{{errorResponse}}</mat-error>
                 <div class="form-section btn-request">
-                    <button class="bg-green-dark" type="submit" [disabled]="!formToken.valid">REQUEST TOKEN</button>
-                </div>
+                <button class="bg-green-dark" type="submit" [disabled]="formEmail.invalid">REQUEST TOKEN</button>
+            </div>
             </form>
             <div class="login-link">
-                <a href="" class="color-green-dark">PRESS HERE IF YOU HAVE ALREADY HAVE A TOKEN</a>
+                <a href="" class="color-green-dark">PRESS HERE IF YOU ALREADY HAVE A TOKEN</a>
             </div>
         </div>
     </div>
 </div>
-<app-login *ngIf="openToken && !loading" (sendToken)="sendToken($event)" [error]="errorRequest"></app-login>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

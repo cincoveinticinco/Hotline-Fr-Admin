@@ -13,7 +13,7 @@ export class AdminHomeComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  displayedColumns = ['status', 'incidentType', 'date', 'project', 'incident', 'assign', 'comments', 'id'];
+  displayedColumns = ['status', 'incidentType', 'date', 'project', 'incident', 'assign', 'comments'];
   searchProperties: string[] = ['r_status_txt', 'Incident_type', 'p_name', 'incident_description'];
   dataSource: any[] = [];
   filteredDataSource: any[] = [];
@@ -25,7 +25,7 @@ export class AdminHomeComponent implements OnInit {
   loading: boolean = true;
   filters: any = {
     status: null,
-    types: null,
+    types: [],
     centers: null,
     project: null,
     searchText: ''
@@ -118,7 +118,7 @@ export class AdminHomeComponent implements OnInit {
     if(this.filters.status) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "r_status_id", this.filters.status, "id");
     }
-    if(this.filters.types) {
+    if(this.filters.types.length && this.filters.types[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "incident_type_id", this.filters.types, "id");
     }
     if(this.filters.centers) {

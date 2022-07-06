@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 
@@ -13,7 +13,7 @@ export class AddProjectComponent implements OnInit {
 	@Output() closePanel = new EventEmitter<string>();
 	@Output() notify = new EventEmitter<string>();
 
-	loading: boolean = true;
+	loading: boolean = false;
 	center_id: any[] = [];
 	id: any[] = [];
 	location_name: any[] = [];
@@ -33,40 +33,36 @@ export class AddProjectComponent implements OnInit {
 		users: ""
 	}
 
-	/* 	profileForm = this.fb.group({
-			aliases: this.fb.array([
-				this.fb.control('')
-			])
-		});
-	 */
 	get aliases() {
 		return this.form.get('aliases') as FormArray;
 	}
+
+	get users(): string | null {
+		return this.form.get('users')?.value;
+	}
+
 	get correos() {
 		return this.form.get('correos') as FormArray;
 	}
 
+	get alias(): string | null {
+		return this.form.get('alias')?.value;
+	}
+
 
 	Save() {
-		console.log(this.form.get("aliases"))
-		console.log(this.form.get("correos"))
-		console.log(this.form)
-
+		this.loading = true;
 		this._aS.addProject(this.form.value).subscribe(
-			data => {
-				console.log(data)
-				this.form.reset()
+			() => {
+				this.loading = false;
 				this.notify.emit();
 			}
 		);
-
 	}
 
 	get fproject() {
 		return this.form.controls;
 	}
-
-
 
 	close() {
 		(<FormArray>this.form.get("aliases")).clear();
@@ -84,24 +80,26 @@ export class AddProjectComponent implements OnInit {
 	}
 
 	addAlias() {
+		if(!this.alias) return;
+		for (const alias of this.aliases.controls) {
+			if(alias.value?.toLowerCase() == this.alias?.toLowerCase()) return;
+		}
 		(<FormArray>this.form.get("aliases")).push(this.fb.control(this.alias));
-		this.form.get("alias")?.patchValue("")
-	}
-
-	get alias(): string | null {
-		return this.form.get('alias')?.value;
+		this.form.get("alias")?.patchValue("");
 	}
 
 	addCorreos() {
-		(<FormArray>this.form.get("correos")).push(this.fb.control(this.users, Validators.required))
-	}
-	get users(): string | null {
-		return this.form.get('users')?.value;
+		if(!this.users || this.form.get('users')?.invalid) return;
+		for (const correo of this.correos.controls) {
+			if(correo.value?.toLowerCase() == this.users?.toLowerCase()) return;
+		}
+		(<FormArray>this.form.get("correos")).push(this.fb.control(this.users, Validators.required));
+		this.form.get("users")?.patchValue("");
 	}
 
 	constructor(private _aS: AdminService, private fb: FormBuilder,) {
 		this.form = this.fb.group({
-			users: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])),
+			users: new FormControl('', Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')),
 			center_id: new FormControl(''),
 			location_name: new FormControl(''),
 			p_name: new FormControl(''),
@@ -110,11 +108,11 @@ export class AddProjectComponent implements OnInit {
 			p_abbreviation: new FormControl(''),
 			aliases: new FormArray([]),
 			correos: new FormArray([]),
-			id: new FormControl('')
+			id: new FormControl(''),
+			company: ''
 		})
 	}
 	fillform() {
-
 		if (this.itemact) {
 			let arrayAlias = this.itemact.alias ? this.itemact.alias.split(',') : [];
 			let arrayEmails = this.itemact.users_emails ? this.itemact.users_emails.split(',') : [];
@@ -127,21 +125,22 @@ export class AddProjectComponent implements OnInit {
 				p_abbreviation: this.itemact.p_abbreviation,
 				users: this.itemact.users,
 				id: this.itemact.id,
+				company: this.itemact.company
 			})
-			arrayAlias.map((als: any) => (<FormArray>this.form.get("aliases")).push(this.fb.control(als)));
-			arrayEmails.map((email: any) => (<FormArray>this.form.get("correos")).push(this.fb.control(email)));
+			arrayAlias.forEach((als: any) => {
+				console.log(arrayAlias);
+				console.log(als);
+				(<FormArray>this.form.get("aliases")).push(this.fb.control(als));
+			});
+			arrayEmails.forEach((email: any) => {
+				(<FormArray>this.form.get("correos")).push(this.fb.control(email));
+			});
 		}
 	}
 
 	ngOnInit(): void {
+		console.log(this.itemact);
 		this.fillform();
-		this.form.reset();
-	}
-
-	ngOnChanges(changes: SimpleChanges) {
-		if (changes['itemact']) {
-			this.fillform()
-		}
 	}
 
 }

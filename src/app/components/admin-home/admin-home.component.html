@@ -97,13 +97,13 @@
                         </ng-container>
                     <ng-container matColumnDef="comments">
                         <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
-                        <td class="commets" mat-cell *matCellDef="let element" (click)="showDetails(element)">
+                        <td class="commets" mat-cell *matCellDef="let element">
                             <mat-icon class="mat-icon-option color-grey" aria-hidden="false" aria-label="comments">forum</mat-icon>
                             <span>{{element.replies || '0'}}</span>
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr style="cursor: pointer;" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)"></tr>
                 </table>
                 <mat-spinner *ngIf="loading"></mat-spinner>
                 <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>

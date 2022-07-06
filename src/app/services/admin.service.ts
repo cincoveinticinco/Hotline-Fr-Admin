@@ -126,7 +126,7 @@ export class AdminService {
 
 	createReply(requestParams: { replyId?:number, reportId: number, replyTxt: string | null, toClose: boolean }) {
 		let params = {
-			'reply_id': requestParams.replyId,
+			'id': requestParams.replyId,
 			'report_id': requestParams.reportId,
 			'reply_txt': requestParams.replyTxt,
 			'to_close': requestParams.toClose,

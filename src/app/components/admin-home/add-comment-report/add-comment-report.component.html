@@ -18,7 +18,7 @@
                     <h1>#{{report.report?.r_reference || ' -'}}</h1>
                 </div>
                 <div *ngIf="reportStatus == 2 && !selectedResponse">
-                    <button class="sidenav-header-btn bg-black">Under review</button>
+                    <button class="sidenav-header-btn bg-black" (click)="changeStatusReport()">Under review</button>
                 </div>
             </div>
         </div>

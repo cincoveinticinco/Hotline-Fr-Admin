@@ -186,4 +186,17 @@ export class AdminService {
 				})
 			)
   }
+
+	changeStatusReport(params: any) {
+		let queryParams = {
+			'id': params.id,
+			'status': 3
+		}
+		return this.http.post(this.service_url + 'admin/changeStatusreport', queryParams, this.httpOptions)
+			.pipe(
+				map((response: any) => {
+					return response;
+				})
+			)
+	}
 }

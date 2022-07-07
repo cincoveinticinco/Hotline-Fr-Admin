@@ -129,4 +129,17 @@ export class AddCommentReportComponent implements OnInit {
     this.selectedResponse = null;
   }
 
+  changeStatusReport() {
+    this.loading = true;
+    let params = {
+      id: this.report?.report?.id
+    }
+    this._aS.changeStatusReport(params).subscribe(
+      () => {
+        this.update.emit();
+        this.loading = false;
+      }
+    )
+  }
+
 }

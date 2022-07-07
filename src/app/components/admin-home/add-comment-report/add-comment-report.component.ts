@@ -47,6 +47,10 @@ export class AddCommentReportComponent implements OnInit {
 
   toggleTextarea(open: boolean = false) {
     this.isOpenTexarea = open ? true : !this.isOpenTexarea;
+    if(!this.isOpenTexarea) {
+      this.response = '';
+      this.resposeStatus = null;
+    }
     this.heightTextarea = this.isOpenTexarea ? 100 : 30;
   }
 
@@ -60,7 +64,7 @@ export class AddCommentReportComponent implements OnInit {
     }
     this._aS.createReply(params).subscribe(
       () => {
-        this.response = '';
+        this.toggleTextarea();
         this.update.emit();
         this.loading = false;
       }

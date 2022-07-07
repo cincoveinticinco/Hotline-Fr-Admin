@@ -17,8 +17,8 @@
                 <div>
                     <h1>#{{report.report?.r_reference || ' -'}}</h1>
                 </div>
-                <div *ngIf="report.report?.r_status_id != 5 && !selectedResponse">
-                    <button class="sidenav-header-btn bg-black" (click)="toggleTextarea()">REPLY</button>
+                <div *ngIf="reportStatus == 2 && !selectedResponse">
+                    <button class="sidenav-header-btn bg-black" (click)="changeStatusReport()">Under review</button>
                 </div>
             </div>
         </div>
@@ -106,25 +106,32 @@
                 </div>
                 <div class="sidenav-container-responses">
                     <h2 class="color-green-dark">RESPONSES</h2>
-                    <div *ngIf="report.report?.r_status_id != 5" class="response-textarea-container">
+                    <div *ngIf="reportStatus != 6" class="response-textarea-container">
                         <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
                         <div *ngIf="isOpenTexarea" class="response-text-options">
-                            <span></span>
+
+                            <div class="L-6 M-6 S-12 columns">
+                                <mat-select name="status" [(ngModel)]="resposeStatus" placeholder="Insert" required disableOptionCentering placeholder="select option">
+                                    <mat-option *ngFor="let status of RESPONSE_STATUS" [value]="status.id">
+                                        {{ status.name | uppercase }}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
                             <div>
-                            <button class="sidenav-header-btn bg-black" (click)="saveReply(false)">REPLY</button>
-                            <button class="sidenav-header-btn bg-green-dark" (click)="saveReply(true)">CLOSE</button>
+                                <button class="save-button sidenav-header-btn" (click)="saveReply()" [disabled]="!response || !resposeStatus">Save</button>
+                                <button class="cancel-button sidenav-header-btn bg-black" (click)="toggleTextarea()">cancel</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div *ngFor="let ask of report.replies" class="response">
-                    <div class="response-icon">R</div>
+                    <div *ngFor="let ask of report.replies" class="response">
+                        <div class="response-icon">R</div>
                         <div class="response-info">
                             <h3 class="color-green-dark">{{ask.user_name || '-'}}. ON {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
                             <p>{{ask.reply_txt || '-'}}</p>
                         </div>
-                        <div class="response-options">
-                            <mat-icon *ngIf="user == ask.user_id" class="mat-icon-option" (click)="selectResponse(ask)">edit</mat-icon>
-                            <mat-icon *ngIf="user == ask.user_id" class="mat-icon-option color-red" (click)="confirmDelete(ask)">delete</mat-icon>
+                        <div *ngIf="user == ask.user_id && reportStatus != 6" class="response-options">
+                            <mat-icon class="mat-icon-option" (click)="selectResponse(ask)">edit</mat-icon>
+                            <mat-icon class="mat-icon-option color-red" (click)="confirmDelete(ask)">delete</mat-icon>
                         </div>
                     </div>
                 </div>

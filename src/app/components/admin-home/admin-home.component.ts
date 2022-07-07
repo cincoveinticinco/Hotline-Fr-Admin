@@ -14,7 +14,7 @@ export class AdminHomeComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   displayedColumns = ['number_report','status', 'incidentType', 'date', 'project', 'incident', 'assign', 'comments'];
-  searchProperties: string[] = ['r_status_txt', 'Incident_type', 'p_name', 'incident_description'];
+  searchProperties: string[] = ['r_reference','r_status_txt', 'Incident_type', 'p_name', 'incident_description'];
   dataSource: any[] = [];
   filteredDataSource: any[] = [];
   reason = '';

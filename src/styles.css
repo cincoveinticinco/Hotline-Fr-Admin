@@ -741,7 +741,7 @@ table .img-text {
 }
 .panel-lateral form {
   width: 90%;
-  margin: auto;
+  margin: 0 auto 50px;
 }
 .panel-lateral .submit-form {
   display: flex;
@@ -759,6 +759,12 @@ table .img-text {
   margin-top: 10px;
   display: inline-block;
   width: 100%;
+}
+
+.response-error {
+  color: var(--red);
+  font-size: 12px;
+  text-align: center;
 }
 
 @keyframes animationPanel {

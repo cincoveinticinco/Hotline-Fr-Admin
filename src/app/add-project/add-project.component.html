@@ -13,23 +13,23 @@
 
 					<div class="L-8 M-8 S-12 columns">
 						<label class="color-green-dark">PROJECT NAME</label>
-						<input name="p_name" formControlName="p_name" type="text" placeholder="Insert" required/>
+						<input name="p_name" formControlName="p_name" type="text" placeholder="Insert" required (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-4 M-4 S-12 columns">
 						<label class="color-green-dark">ABBREVIATION</label>
-						<input name="p_abbreviation" formControlName="p_abbreviation" type="text" placeholder="Insert" required/>
+						<input name="p_abbreviation" formControlName="p_abbreviation" type="text" placeholder="Insert" required (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-8 M-8 S-12 columns">
 						<label class="color-green-dark">Production Company</label>
-						<input name="company" formControlName="company" type="text" placeholder="Insert" required/>
+						<input name="company" formControlName="company" type="text" placeholder="Insert" required (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-4 M-4 S-12 columns">
 						<label class="color-green-dark">SEASON</label>
-						<input name="p_season" formControlName="p_season" type="text" placeholder="Insert"/>
+						<input name="p_season" formControlName="p_season" type="text" placeholder="Insert" (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-6 M-6 S-12 columns">
 						<label class="color-green-dark">CENTER</label>
-						<mat-select name="center_id" formControlName="center_id" placeholder="Insert" required disableOptionCentering>
+						<mat-select name="center_id" formControlName="center_id" placeholder="Insert" required disableOptionCentering (ngModelChange)="dropResposeError()">
 							<mat-option *ngFor="let center of centers" [value]="center.id">
 								{{ center.center_name | uppercase }}
 							</mat-option>
@@ -37,12 +37,12 @@
 					</div>
 					<div class="L-6 M-6 S-12 columns">
 						<label class="color-green-dark">LOCATION</label>
-						<input name="location_name" formControlName="location_name" type="text" placeholder="Insert"/>
+						<input name="location_name" formControlName="location_name" type="text" placeholder="Insert" (ngModelChange)="dropResposeError()"/>
 					</div>
 
 					<h2 class="color-green-dark">{{'Alias'}}</h2>
 					<div class="L-10 M-10 S-12 columns">
-						<input name="alias" formControlName="alias" type="text" placeholder="Insert"/>
+						<input name="alias" formControlName="alias" type="text" placeholder="Insert" (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-2 M-2 S-12 columns">
 						<button type="button" (click)="addAlias()" class="save-button">ADD</button>
@@ -57,7 +57,7 @@
 					<h2 class="color-green-dark">{{'Project users'}}</h2>
 					<div class="L-10 M-10 S-12 columns">
 						<label class="color-green-dark">EMAIL</label>
-						<input name="users" formControlName="users" type="token" placeholder="Email">
+						<input name="users" formControlName="users" type="token" placeholder="Email" (ngModelChange)="dropResposeError()">
 					</div>
 					<div class="L-2 M-2 S-12 columns">
 						<br>
@@ -68,6 +68,10 @@
 							<mat-icon class="mat-icon-option color-red" (click)="deleteCorreos(i)">delete</mat-icon>
 							<span id="alias-{{ i }}">{{correos.controls[i].value}}</span>
 						</div>
+					</div>
+
+					<div class="error-email-container">
+						<p *ngFor="let error of errorResponse" class="errors-email response-error">{{error.msg_eng}}</p>
 					</div>
 
           <div class="submit-form">

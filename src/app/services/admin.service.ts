@@ -124,7 +124,7 @@ export class AdminService {
 		});
 	}
 
-	createReply(requestParams: { replyId?:number, reportId: number, replyTxt: string | null, action: number | null }) {
+	createReply(requestParams: { replyId?:number, reportId: number, replyTxt: string | null, action: number }) {
 		let params = {
 			'id': requestParams.replyId,
 			'report_id': requestParams.reportId,

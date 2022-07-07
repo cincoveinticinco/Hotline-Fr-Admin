@@ -17,6 +17,7 @@ export class AddProjectComponent implements OnInit {
 
 	loading: boolean = false;
 	form: FormGroup;
+	errorResponse: any[] = [];
 
 	get aliases() {
 		return this.form.get('aliases') as FormArray;
@@ -37,7 +38,12 @@ export class AddProjectComponent implements OnInit {
 	Save() {
 		this.loading = true;
 		this._aS.addProject(this.form.value).subscribe(
-			() => {
+			(data: any) => {
+				if(data.error && data.errors && data.errors.length){
+					this.errorResponse = data.errors;
+					this.loading = false;
+					return;
+				}
 				this.loading = false;
 				this.notify.emit();
 			}
@@ -48,6 +54,10 @@ export class AddProjectComponent implements OnInit {
 		return this.form.controls;
 	}
 
+	dropResposeError() {
+		this.errorResponse = [];
+	}
+
 	close() {
 		(<FormArray>this.form.get("aliases")).clear();
 		(<FormArray>this.form.get("correos")).clear();
@@ -55,9 +65,12 @@ export class AddProjectComponent implements OnInit {
 	}
 
 	deleteAlias(ev: any) {
+		this.dropResposeError();
 		(<FormArray>this.form.get("aliases")).removeAt(ev);
 	}
+
 	deleteCorreos(ev: any) {
+		this.dropResposeError();
 		(<FormArray>this.form.get("correos")).removeAt(ev);
 	}
 

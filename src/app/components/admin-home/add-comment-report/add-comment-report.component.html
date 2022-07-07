@@ -39,11 +39,11 @@
             </ng-container>
             <ng-container *ngIf="view != 'edit-response'">
                 <div class="row">
-                    <div class="L-2 M-2 S-6 columns">
+                    <div class="L-6 M-6 S-6 columns">
                         <h3 class="color-green-dark">STATUS</h3>
                         <span>{{report.report?.r_status_txt || '-'}}</span>
                     </div>
-                    <div class="L-2 M-2 S-6 columns">
+                    <div class="L-6 M-6 S-6 columns">
                         <h3 class="color-green-dark">DATE REPORT</h3>
                         <span>{{(report.report?.created_at | date: 'mediumDate') || '--/--/----'}}</span>
                     </div>
@@ -51,11 +51,11 @@
                         <h3 class="color-green-dark">METHOD</h3>
                         <span>{{report.report?.r_method_txt || '-'}}</span>
                     </div>
-                    <div class="L-3 M-3 S-6 columns">
+                    <div class="L-4 M-4 S-6 columns">
                         <h3 class="color-green-dark">REPORTER</h3>
                         <span>{{getQuestion(3) || '-'}}</span>
                     </div>
-                    <div class="L-3 M-3 S-12 columns">
+                    <div class="L-6 M-6 S-12 columns">
                         <h3 class="color-green-dark">NOTIFICATIONS</h3>
                         <span>{{getQuestion(4) || 'No'}}</span>
                     </div>

@@ -20,7 +20,7 @@ export class AddCommentReportComponent implements OnInit {
   heightTextarea: number = 30;
   isOpenTexarea: boolean = false;
   response: string = '';
-  resposeStatus: number | null = null;
+  resposeStatus: number = 1;
   loading: boolean = true;
   selectedResponse: any = null;
   errorResponse: string = '';
@@ -49,7 +49,7 @@ export class AddCommentReportComponent implements OnInit {
     this.isOpenTexarea = open ? true : !this.isOpenTexarea;
     if(!this.isOpenTexarea) {
       this.response = '';
-      this.resposeStatus = null;
+      this.resposeStatus = 1;
     }
     this.heightTextarea = this.isOpenTexarea ? 100 : 30;
   }

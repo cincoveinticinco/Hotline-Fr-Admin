@@ -8,10 +8,15 @@
 }
 
 .item-form-array {
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  color: var(--dark-grey);
-  float: left;
-  margin-right: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: var(--dark-grey);
+    float: left;
+    margin-right: 20px;
+}
+
+.response-error {
+  padding: 5px 0;
+  display: inline-block;
 }

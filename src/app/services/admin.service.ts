@@ -124,12 +124,12 @@ export class AdminService {
 		});
 	}
 
-	createReply(requestParams: { replyId?:number, reportId: number, replyTxt: string | null, toClose: boolean }) {
+	createReply(requestParams: { replyId?:number, reportId: number, replyTxt: string | null, action: number | null }) {
 		let params = {
 			'id': requestParams.replyId,
 			'report_id': requestParams.reportId,
 			'reply_txt': requestParams.replyTxt,
-			'to_close': requestParams.toClose,
+			'action': requestParams.action,
 		};
 		return this.http.post(this.service_url + 'admin/addReportReply', params, this.httpOptions).pipe(
 			map((response: any) => response))

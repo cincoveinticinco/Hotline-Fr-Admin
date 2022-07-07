@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
+import { RESPONSE_STATUS } from 'src/app/shared/interfaces/reports';
 
 @Component({
   selector: 'app-add-comment-report',
@@ -15,9 +16,11 @@ export class AddCommentReportComponent implements OnInit {
   @Output() notify = new EventEmitter<string>();
   @Output() update = new EventEmitter<string>();
 
+  readonly RESPONSE_STATUS = RESPONSE_STATUS;
   heightTextarea: number = 30;
   isOpenTexarea: boolean = false;
   response: string = '';
+  resposeStatus: number | null = null;
   loading: boolean = true;
   selectedResponse: any = null;
   errorResponse: string = '';
@@ -47,12 +50,13 @@ export class AddCommentReportComponent implements OnInit {
     this.heightTextarea = this.isOpenTexarea ? 100 : 30;
   }
 
-  saveReply(isClose: boolean) {
+  saveReply() {
+    if(!this.resposeStatus) return
     this.loading = true;
     let params = {
       reportId: this.report.report.id,
       replyTxt: this.response,
-      toClose: isClose,
+      action: this.resposeStatus,
     }
     this._aS.createReply(params).subscribe(
       () => {
@@ -70,7 +74,7 @@ export class AddCommentReportComponent implements OnInit {
       replyId: this.selectedResponse.id,
       replyTxt: this.selectedResponse.reply_txt,
       reportId: this.report.report.id,
-      toClose: false,
+      action: 1,
     }
     this._aS.createReply(params).subscribe({
       next: () => {

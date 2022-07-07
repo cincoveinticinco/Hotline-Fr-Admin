@@ -100,21 +100,6 @@ export class AdminHomeComponent implements OnInit {
     this.reportDetail = null;
   }
 
-  saveReply(id: number, isClose: boolean) {
-    this.loading = true;
-    let params = {
-      reportId: id,
-      replyTxt: null,
-      toClose: isClose,
-    }
-    this._aS.createReply(params).subscribe(
-      (data: any) => {
-        this.loadData();
-        this.loading = false;
-      }
-    )
-  }
-
   filter() {
     this.filteredDataSource = JSON.parse(JSON.stringify(this.dataSource));
     if(this.filters.status.length && this.filters.status[0] != undefined) {

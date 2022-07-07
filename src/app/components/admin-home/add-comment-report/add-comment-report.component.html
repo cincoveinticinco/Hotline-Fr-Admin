@@ -109,15 +109,22 @@
                     <div *ngIf="reportStatus != 5" class="response-textarea-container">
                         <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
                         <div *ngIf="isOpenTexarea" class="response-text-options">
-                            <span></span>
+
+                            <div class="L-6 M-6 S-12 columns">
+                                <mat-select name="status" [(ngModel)]="resposeStatus" placeholder="Insert" required disableOptionCentering placeholder="select option">
+                                    <mat-option *ngFor="let status of RESPONSE_STATUS" [value]="status.id">
+                                        {{ status.name | uppercase }}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
                             <div>
-                            <button class="sidenav-header-btn bg-black" (click)="saveReply(false)">Save</button>
-                            <button class="sidenav-header-btn bg-green-dark" (click)="toggleTextarea()">cancel</button>
+                                <button class="save-button sidenav-header-btn" (click)="saveReply()" [disabled]="!response || !resposeStatus">Save</button>
+                                <button class="cancel-button sidenav-header-btn bg-black" (click)="toggleTextarea()">cancel</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div *ngFor="let ask of report.replies" class="response">
-                    <div class="response-icon">R</div>
+                    <div *ngFor="let ask of report.replies" class="response">
+                        <div class="response-icon">R</div>
                         <div class="response-info">
                             <h3 class="color-green-dark">{{ask.user_name || '-'}}. ON {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
                             <p>{{ask.reply_txt || '-'}}</p>

@@ -106,7 +106,7 @@ a {
 }
 
 .bg-black {
-  background-color: var(--black);
+  background-color: var(--black) !important;
   color: var(--white);
 }
 
@@ -627,12 +627,14 @@ table .img-text {
 .sidenav-lateral .sidenav-grid-header {
   padding: 6px;
 }
+.sidenav-lateral .sidenav-lateral-header {
+  margin-left: 24px;
+}
 .sidenav-lateral .sidenav-lateral-header,
 .sidenav-lateral .response-text-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 24px;
 }
 .sidenav-lateral .options-general {
   display: flex;

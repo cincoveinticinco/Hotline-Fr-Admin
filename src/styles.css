@@ -210,6 +210,10 @@ mat-select {
 .mat-select-panel {
   font-size: 11px !important;
 }
+.mat-select-panel{
+  max-height: 600px !important;
+}
+
 mat-select:hover .mat-select-placeholder,
 mat-select:hover .mat-select-arrow {
   color: var(--green-dark);
@@ -347,6 +351,7 @@ mat-icon:hover {
 
 .contaner-filters .filter {
   border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: -1px;
 }
 
 .contaner-filters .filter:first-child {
@@ -458,6 +463,11 @@ table td.commets span {
   justify-content: center;
   align-items: center;
   color: var(--white);
+}
+
+table tr:hover {
+  background-color: #f0f0f0 !important;
+  cursor: pointer !important;
 }
 
 table .img-text {

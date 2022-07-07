@@ -254,6 +254,11 @@ mat-option:hover {
   font-weight: normal;
   color: var(--dark-grey);
 }
+
+th.mat-header-cell:first-of-type{
+  padding-left: 0 !important;
+}
+
 .mat-checkbox-layout {
   white-space: normal !important;
 }

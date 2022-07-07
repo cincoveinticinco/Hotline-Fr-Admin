@@ -22,6 +22,7 @@ export class AddCommentReportComponent implements OnInit {
   selectedResponse: any = null;
   errorResponse: string = '';
   view: string = 'home';
+  reportStatus: number | null = null;
 
   constructor(
     private _aS: AdminService
@@ -32,6 +33,7 @@ export class AddCommentReportComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
 		if (changes['report'] && this.report) {
+      this.reportStatus = this.report?.report?.r_status_id;
       this.loading = false;
 		}
 	}

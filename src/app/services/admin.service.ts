@@ -129,7 +129,7 @@ export class AdminService {
 			'id': requestParams.replyId,
 			'report_id': requestParams.reportId,
 			'reply_txt': requestParams.replyTxt,
-			'action': requestParams.action,
+			'action_status': requestParams.action,
 		};
 		return this.http.post(this.service_url + 'admin/addReportReply', params, this.httpOptions).pipe(
 			map((response: any) => response))

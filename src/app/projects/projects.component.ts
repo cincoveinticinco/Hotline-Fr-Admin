@@ -10,7 +10,7 @@ export class ProjectsComponent implements OnInit {
 
 	displayedColumns = ['production_company', 'project', 'abbreviation', 'season', 'center', 'location', 'alias', 'assign', 'open_inc', 'closed_inc', 'pk'];
 	dataSource: any = [];
-	searchProperties: string[] = ['r_status_txt'];
+	searchProperties: string[] = ['production_company','p_name', 'p_abbreviation', 'center_name', 'location_name', 'alias'];
 	filteredDataSource: any[] = [];
 	reason = '';
 	statuses: any[] = [];

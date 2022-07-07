@@ -82,16 +82,16 @@ export class AdminHomeComponent implements OnInit {
     this.loadData();
   }
 
-  showDetails(report: any = this.selectedRerport) {
+  showDetails(report: any = null) {
     this.view = 'add-comment';
     this.sidenav.open();
-    this.selectedRerport = report;
+    if(report) this.selectedRerport = report;
     this._aS.getReportDetail(this.selectedRerport.id).subscribe(
       (data: any) => {
         this.reportDetail = data;
       }
     )
-    this.loadData();
+    if(!report) this.loadData();
   }
 
   close() {

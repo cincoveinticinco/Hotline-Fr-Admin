@@ -108,7 +108,7 @@ export class AddProjectComponent implements OnInit {
 				p_abbreviation: this.project.p_abbreviation,
 				users: this.project.users,
 				id: this.project.id,
-				company: this.project.company
+				company: this.project.production_company
 			})
 			arrayAlias.forEach((als: any) => {
 				(<FormArray>this.form.get("aliases")).push(this.fb.control(als));

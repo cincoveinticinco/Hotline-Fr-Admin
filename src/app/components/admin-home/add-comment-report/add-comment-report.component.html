@@ -18,7 +18,7 @@
                     <h1>#{{report.report?.r_reference || ' -'}}</h1>
                 </div>
                 <div *ngIf="reportStatus == 2 && !selectedResponse">
-                    <button class="sidenav-header-btn bg-black" (click)="toggleTextarea()">Under review</button>
+                    <button class="sidenav-header-btn bg-black">Under review</button>
                 </div>
             </div>
         </div>
@@ -111,8 +111,8 @@
                         <div *ngIf="isOpenTexarea" class="response-text-options">
                             <span></span>
                             <div>
-                            <button class="sidenav-header-btn bg-black" (click)="saveReply(false)">REPLY</button>
-                            <button class="sidenav-header-btn bg-green-dark" (click)="saveReply(true)">CLOSE</button>
+                            <button class="sidenav-header-btn bg-black" (click)="saveReply(false)">Save</button>
+                            <button class="sidenav-header-btn bg-green-dark" (click)="toggleTextarea()">cancel</button>
                         </div>
                     </div>
                 </div>

@@ -106,7 +106,7 @@
                 </div>
                 <div class="sidenav-container-responses">
                     <h2 class="color-green-dark">RESPONSES</h2>
-                    <div *ngIf="reportStatus != 5" class="response-textarea-container">
+                    <div *ngIf="reportStatus != 6" class="response-textarea-container">
                         <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
                         <div *ngIf="isOpenTexarea" class="response-text-options">
 
@@ -129,7 +129,7 @@
                             <h3 class="color-green-dark">{{ask.user_name || '-'}}. ON {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
                             <p>{{ask.reply_txt || '-'}}</p>
                         </div>
-                        <div *ngIf="user == ask.user_id && reportStatus != 5" class="response-options">
+                        <div *ngIf="user == ask.user_id && reportStatus != 6" class="response-options">
                             <mat-icon class="mat-icon-option" (click)="selectResponse(ask)">edit</mat-icon>
                             <mat-icon class="mat-icon-option color-red" (click)="confirmDelete(ask)">delete</mat-icon>
                         </div>

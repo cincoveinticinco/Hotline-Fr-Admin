@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,12 @@ export class HomeComponent implements OnInit {
 
   public service_url: string = environment.apiUrl;
 
-  constructor() { }
+  constructor(
+    private _lS: LoginService
+  ) { }
 
   ngOnInit(): void {
+    this._lS.removeCookies();
   }
 
 }

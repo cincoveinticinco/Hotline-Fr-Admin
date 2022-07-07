@@ -13,14 +13,13 @@ export class LoginComponent implements OnInit {
 	formToken: FormGroup = this.fb.group({});
 	loading: boolean = false;
 	email: string = '';
-	errorEmail: string = '';
 	newToken: string = '';
 	errorResponse: string = '';
 
 	sendToken() {
 		this.loading = true;
 		let params = {
-			'email': this.email,
+			'email': this.getEmail()?.value,
 			'token': this.formToken.get('token')?.value
 		}
 		this._lS.getLoginToken(params).subscribe(
@@ -39,7 +38,7 @@ export class LoginComponent implements OnInit {
 
 	sendEmail() {
 		this.loading = true;
-		this._lS.getEmail(this.email).subscribe(
+		this._lS.getEmail(this.getEmail()?.value).subscribe(
 			(data: any) => {
 				if(data.error) {
 					this.loading = false;
@@ -53,7 +52,8 @@ export class LoginComponent implements OnInit {
 
 	initFormFields() {
 		this.formToken = this.fb.group({
-			token: ['', Validators.required]
+			token: ['', Validators.required],
+			email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]]
 		})
 	}
 
@@ -64,7 +64,11 @@ export class LoginComponent implements OnInit {
 
 	getSessionStorage() {
 		this.email = JSON.parse(sessionStorage.getItem('session_email_hotline') || '""');
-		if(!this.email) this.errorEmail = 'No email has been entered, please go to the previous view to enter the email.';
+		if(this.email) this.getEmail()?.patchValue(this.email);
+	}
+
+	getEmail() {
+		return this.formToken.get('email');
 	}
 
 	constructor(

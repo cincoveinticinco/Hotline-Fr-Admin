@@ -24,10 +24,10 @@ export class AdminHomeComponent implements OnInit {
   projects: any[] = [];
   loading: boolean = true;
   filters: any = {
-    status: null,
+    status: [],
     types: [],
-    centers: null,
-    project: null,
+    centers: [],
+    project: [],
     searchText: ''
   };
   selectedRerport: any = null;
@@ -75,6 +75,7 @@ export class AdminHomeComponent implements OnInit {
       }
     )
   }
+
   update() {
     this.view = 'home';
     this.sidenav.close();
@@ -90,6 +91,7 @@ export class AdminHomeComponent implements OnInit {
         this.reportDetail = data;
       }
     )
+    this.loadData();
   }
 
   close() {
@@ -115,16 +117,16 @@ export class AdminHomeComponent implements OnInit {
 
   filter() {
     this.filteredDataSource = JSON.parse(JSON.stringify(this.dataSource));
-    if(this.filters.status) {
+    if(this.filters.status.length && this.filters.status[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "r_status_id", this.filters.status, "id");
     }
     if(this.filters.types.length && this.filters.types[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "incident_type_id", this.filters.types, "id");
     }
-    if(this.filters.centers) {
+    if(this.filters.centers.length && this.filters.centers[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "center_id", this.filters.centers, "id");
     }
-    if(this.filters.project) {
+    if(this.filters.project.length && this.filters.project[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "project_id", this.filters.project, "id");
     }
     if(this.filters.searchText) {

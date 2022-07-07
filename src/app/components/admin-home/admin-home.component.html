@@ -29,7 +29,7 @@
                     </div>
                     <div class="contaner-filters">
                         <div class="filters">
-                            <mat-select class="filter" name="status" [(ngModel)]="filters.status" (ngModelChange)="filter()" placeholder="ALL STATUSES" disableOptionCentering>
+                            <mat-select class="filter" name="status" [(ngModel)]="filters.status" (ngModelChange)="filter()" placeholder="ALL STATUSES" disableOptionCentering multiple>
                                 <mat-option>ALL STATUSES</mat-option>
                                 <mat-option *ngFor="let status of statuses" [value]="status">
                                     {{ status.r_status_txt | uppercase }}
@@ -41,14 +41,14 @@
                                     {{ type.q_option_title | uppercase }}
                                 </mat-option>
                             </mat-select>
-                            <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="ALL CENTERS" disableOptionCentering>
-                                <mat-option [value]="null">ALL CENTERS</mat-option>
+                            <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="ALL CENTERS" disableOptionCentering multiple>
+                                <mat-option>ALL CENTERS</mat-option>
                                 <mat-option *ngFor="let center of centers" [value]="center">
                                     {{ center.center_name | uppercase }}
                                 </mat-option>
                             </mat-select>
-                            <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="ALL PROJECTS" disableOptionCentering>
-                                <mat-option [value]="null">ALL PROJECTS</mat-option>
+                            <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="ALL PROJECTS" disableOptionCentering multiple>
+                                <mat-option>ALL PROJECTS</mat-option>
                                 <mat-option *ngFor="let project of projects" [value]="project">
                                     {{ project.p_name | uppercase }}
                                 </mat-option>

@@ -43,6 +43,7 @@ export class RequestTokenComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		this._lS.removeCookies();
 		this.initFormFields();
 	}
 }

@@ -6,24 +6,29 @@
         <div class="subtitle">
             <h2 class="color-black">ADMIN MODULE</h2>
         </div>
-        <div class="login-message color-black">
+        <div *ngIf="email" class="login-message color-black">
             <p>TOKEN SUCCESSFULLY GENERATED.</p>
             <p>PLEASE CHECK YOUR EMAIL</p>
+            <p class="email">({{email}})</p>
         </div>
         <div class="login-form">
                 <form [formGroup]="formToken" (ngSubmit)="sendToken()">
-                <div class="form-section">
+                    <div *ngIf="!email" class="form-section">
+                        <input name="email" formControlName="email" class="form-input" type="email" placeholder="EMAIL">
+                    </div>
+                    <div class="form-section">
                     <input name="token" formControlName="token" class="form-input" type="token" required placeholder="TOKEN" (ngModelChange)="resetMessages()">
                 </div>
                 <mat-error *ngIf="errorResponse">{{errorResponse}}</mat-error>
-                <mat-error *ngIf="errorEmail">{{errorEmail}}</mat-error>
                 <a *ngIf="newToken" class="color-green-dark" style="font-size: 12px;">{{newToken}}</a>
                 <div class="form-section btn-request">
-                    <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid || !email">LOGIN</button>
+                    <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
                 </div>
             </form>
-            <div *ngIf="this.email" class="login-link"><a (click)="sendEmail()" class="color-green-dark" style="cursor: pointer;">GENERATE NEW TOKEN</a></div>
-            <div *ngIf="!this.email" class="login-link"><a [routerLink]="['..', 'request-token']" class="color-green-dark">ENTER EMAIL</a></div>
+            <div class="login-link">
+                <a (click)="sendEmail()" class="color-green-dark generate-token" [ngClass]="{'available': getEmail()?.valid}">GENERATE NEW TOKEN</a>
+                <a *ngIf="this.email" [routerLink]="['..', 'request-token']" class="color-grey go-back">Change e-mail</a>
+            </div>
         </div>
     </div>
 </div>

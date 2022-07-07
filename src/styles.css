@@ -493,21 +493,20 @@ table .img-text {
   margin: auto;
   padding: 50px 20px;
   max-width: 400px;
+  text-transform: uppercase;
+  text-align: center;
 }
-
 .login-container .title {
   text-align: center;
   font-size: 23px;
   font-weight: bold;
 }
-
 .login-container .subtitle {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 30px;
 }
-
 .login-container .btn button {
   display: block;
   width: 100%;
@@ -519,20 +518,16 @@ table .img-text {
   font-weight: bold;
   box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f
 }
-
 .login-container.btn button:hover {
   opacity: 0.6;
 }
-
 .login-container .login-form .form-section {
   margin-top: 10px;
 }
-
 .login-container .login-form label {
   font-size: 14px;
   font-weight: bold;
 }
-
 .login-container .login-form .form-input {
   width: 100%;
   padding: 15px 0px 15px 0;
@@ -540,7 +535,6 @@ table .img-text {
   font-size: 15px;
   height: 50px;
 }
-
 .login-container .login-form .btn-request button {
   width: 100%;
   margin-top: 5px;
@@ -551,22 +545,24 @@ table .img-text {
   padding: 15px 0px 15px 0;
   box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f
 }
-
 .login-container .login-form .btn-request button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-
 .login-container .login-link {
   margin-top: 18px;
   font-size: 14px;
   font-weight: bold;
+  text-align: center;
 }
-
 .login-container .login-message p {
   text-align: center;
   font-size: 17px;
   margin-bottom: 2px;
+}
+.login-container a {
+  display: block;
+  margin-top: 10px;
 }
 
 .sidebar-container {

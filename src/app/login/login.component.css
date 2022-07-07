@@ -1,0 +1,16 @@
+.go-back {
+  font-size: 11px;
+  text-decoration: underline;
+}
+.generate-token {
+  opacity: 0.5;
+}
+.generate-token.available {
+  opacity: 1;
+  cursor: pointer;
+}
+.email {
+  font-size: 12px !important;
+  color: var(--green-dark);
+  margin-top: 10px;
+}

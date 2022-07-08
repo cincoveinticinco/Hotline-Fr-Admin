@@ -31,6 +31,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { PopupGeneralComponent } from './shared/components/popup-general/popup-general.component';
 import { AddIncidentComponent } from './components/admin-home/add-incident/add-incident.component';
 import { DatePipe } from '@angular/common';
+import { MergeProjectsComponent } from './components/admin-home/merge-projects/merge-projects.component';
 
 @NgModule({
 	declarations: [
@@ -47,7 +48,8 @@ import { DatePipe } from '@angular/common';
 		DropdownComponent,
 		FooterComponent,
   PopupGeneralComponent,
-  AddIncidentComponent
+  AddIncidentComponent,
+  MergeProjectsComponent
 	],
 	imports: [
 		BrowserModule,

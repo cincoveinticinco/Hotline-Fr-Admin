@@ -3,6 +3,7 @@
     (closePanel)="changeView('home')"
     (notify)="update()">
 </app-add-incident>
+
 <div class="content">
     <mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
         <mat-sidenav #sidenav (keydown.escape)="close()" position="end" disableClose>
@@ -121,11 +122,16 @@
     </mat-sidenav-container>
 </div>
 
-<div *ngIf="_cS.showContext" class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
+<div *ngIf="_cS.showContext && (selectedAssign || moreAssign.length)" class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
     <ng-container *ngIf="selectedAssign">{{selectedAssign.email}}</ng-container>
     <ng-container *ngIf="moreAssign.length">
         <ng-container *ngFor="let assing of moreAssign | slice:limitAsssign:moreAssign.length">
             {{assing.email}}<br>
         </ng-container>
     </ng-container>
+</div>
+<div *ngIf="_cS.showContext && selectedReport" class="context-menu-container" (click)="closeRowsMenu()" (contextmenu)="closeRowsMenu()">
+    <div class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
+        <button (click)="changeView('merge-projects')">Merge</button>
+    </div>
 </div>

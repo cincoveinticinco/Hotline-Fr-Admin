@@ -24,7 +24,7 @@ export class AdminHomeComponent implements OnInit {
   projects: any[] = [];
   loading: boolean = true;
   filters: any;
-  selectedRerport: any = null;
+  selectedReport: any = null;
   reportDetail: any = null;
   view: string = 'home';
   user: any = null;
@@ -102,8 +102,8 @@ export class AdminHomeComponent implements OnInit {
   showDetails(report: any = null) {
     this.view = 'add-comment';
     this.sidenav.open();
-    if(report) this.selectedRerport = report;
-    this._aS.getReportDetail(this.selectedRerport.id).subscribe(
+    if(report) this.selectedReport = report;
+    this._aS.getReportDetail(this.selectedReport.id).subscribe(
       (data: any) => {
         this.reportDetail = data;
       }
@@ -165,5 +165,14 @@ export class AdminHomeComponent implements OnInit {
     this.selectedAssign = null;
     this.moreAssign = [];
     this._cS.hidemenu();
+  }
+
+  closeRowsMenu() {
+    this._cS.hidemenu();
+  }
+
+  openRowsMenu(ev: MouseEvent, report: any) {
+    this.selectedReport = report;
+    this._cS.onMouseEnterContext(ev, 1);
   }
 }

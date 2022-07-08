@@ -742,7 +742,7 @@ table .img-text {
   box-shadow: -5px 0 5px rgb(0 0 0 / 40%);
   animation: animationPanel .3s;
 }
-.panel-lateral .mat-icon-close{
+.panel-lateral .mat-icon-close {
   position: absolute;
   left: 0;
   top: 0;
@@ -793,6 +793,16 @@ table .img-text {
   text-align: center;
 }
 
+.context-menu-container {
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: block;
+  left: 0;
+  top: 0;
+}
+
 .context-menu {
   position: fixed;
   background-color: var(--white);
@@ -808,6 +818,18 @@ table .img-text {
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 2;
+}
+.context-menu button {
+  width: 100%;
+  border: none;
+  padding: 6px;
+  margin: 1px 0;
+  border-radius: 3px;
+  color: var(--black-light);
+}
+.context-menu button:hover {
+  color: var(--white);
+  background-color: var(--green-dark);
 }
 
 @keyframes animationPanel {

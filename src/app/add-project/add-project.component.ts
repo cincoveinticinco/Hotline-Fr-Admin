@@ -37,17 +37,19 @@ export class AddProjectComponent implements OnInit {
 
 	Save() {
 		this.loading = true;
-		this._aS.addProject(this.form.value).subscribe(
-			(data: any) => {
-				if(data.error && data.errors && data.errors.length){
-					this.errorResponse = data.errors;
+		if(this.loading) {
+			this._aS.addProject(this.form.value).subscribe(
+				(data: any) => {
+					if(data.error && data.errors && data.errors.length){
+						this.errorResponse = data.errors;
+						this.loading = false;
+						return;
+					}
+					this.notify.emit();
 					this.loading = false;
-					return;
 				}
-				this.loading = false;
-				this.notify.emit();
-			}
-		);
+			);
+		}
 	}
 
 	get fproject() {

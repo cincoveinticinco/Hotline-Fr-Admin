@@ -366,14 +366,19 @@ mat-icon:hover {
   border-radius: 5px 0 0 5px;
 }
 
-.contaner-filters .filter:last-child {
+.contaner-filters .filter.final {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 0 5px 5px 0;
 }
 
 .contaner-filters .filters {
   width: max-content;
+  display: flex;
+  align-items: center;
   margin: 4px;
+}
+.contaner-filters .filters .drop-filters {
+  color: var(--dark-grey);
 }
 
 .contaner-filters .filters input {
@@ -702,6 +707,19 @@ table .img-text {
 }
 .cancel-button:hover {
   background-color: #ff6f9f;
+}
+
+.clear-button {
+  border: 0;
+  height: 30px;
+  background-color: var(--orange-lite);
+  border-radius: 5px;
+  color: var(--black-light);
+  margin: 6px;
+  padding: 6px;
+}
+.clear-button:hover {
+  background-color: #ffc458;
 }
 
 .panel-lateral-container {

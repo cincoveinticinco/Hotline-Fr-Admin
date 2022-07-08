@@ -53,10 +53,11 @@
                                     {{ project.p_name | uppercase }}
                                 </mat-option>
                             </mat-select>
-                            <div  class="search-text filter">
+                            <div class="filter search-text final">
                                 <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" type="text" placeholder="SEARCH"/>
                                 <mat-icon>search</mat-icon>
                             </div>
+                            <button type="button" class="clear-button" (click)="dropFilters()">CLEAR</button>
                         </div>
                     </div>
                     <div>

@@ -23,17 +23,12 @@ export class AdminHomeComponent implements OnInit {
   centers: any[] = [];
   projects: any[] = [];
   loading: boolean = true;
-  filters: any = {
-    status: [],
-    types: [],
-    centers: [],
-    project: [],
-    searchText: ''
-  };
+  filters: any;
   selectedRerport: any = null;
   reportDetail: any = null;
   view: string = 'home';
   user: any = null;
+  activeFilters: boolean = false;
 
   constructor(
     public _aS: AdminService,
@@ -41,8 +36,19 @@ export class AdminHomeComponent implements OnInit {
   ) {};
 
   ngOnInit(): void {
+    this.initFilters();
     this.getUser();
     this.loadData();
+  }
+
+  initFilters() {
+    this.filters = {
+      status: [],
+      types: [],
+      centers: [],
+      project: [],
+      searchText: ''
+    };
   }
 
   ngAfterViewInit() {
@@ -102,21 +108,32 @@ export class AdminHomeComponent implements OnInit {
 
   filter() {
     this.filteredDataSource = JSON.parse(JSON.stringify(this.dataSource));
+    this.activeFilters = false;
     if(this.filters.status.length && this.filters.status[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "r_status_id", this.filters.status, "id");
+      this.activeFilters = true;
     }
     if(this.filters.types.length && this.filters.types[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "incident_type_id", this.filters.types, "id");
+      this.activeFilters = true;
     }
     if(this.filters.centers.length && this.filters.centers[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "center_id", this.filters.centers, "id");
+      this.activeFilters = true;
     }
     if(this.filters.project.length && this.filters.project[0] != undefined) {
       this.filteredDataSource = this._aS.filterElementsInListSplited(this.filteredDataSource, "project_id", this.filters.project, "id");
+      this.activeFilters = true;
     }
     if(this.filters.searchText) {
-      this.filteredDataSource = this._aS.searchByMultipleValuesExtended(this.filteredDataSource, this.searchProperties, this.filters.searchText)
+      this.filteredDataSource = this._aS.searchByMultipleValuesExtended(this.filteredDataSource, this.searchProperties, this.filters.searchText);
+      this.activeFilters = true;
     }
+  }
+
+  dropFilters() {
+    this.initFilters();
+    this.filter();
   }
 
   changeView(newView: string) {

@@ -101,11 +101,6 @@
                 <th mat-header-cell *matHeaderCellDef style="width: 10px;"></th>
                 <td class="text-center" mat-cell *matCellDef="let element">
                     <mat-icon class="mat-icon-option" (click)="showDetails(element)">edit</mat-icon>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef style="width: 10px;"></th>
-                <td class="text-center" mat-cell *matCellDef="let element">
                     <mat-icon *ngIf="!element.open_reports && !element.closed_reports" class="mat-icon-option color-red" (click)="confirmDeleteProject(element)">delete</mat-icon>
                 </td>
             </ng-container>

@@ -793,6 +793,23 @@ table .img-text {
   text-align: center;
 }
 
+.context-menu {
+  position: fixed;
+  background-color: var(--white);
+  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 33%);
+  padding: 6px;
+  font-size: 11px;
+  text-align: left;
+  border-radius: 5px;
+  min-height: 20px;
+  min-width: 100px;
+  max-height: 500px;
+  max-width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 2;
+}
+
 @keyframes animationPanel {
   0%{width: 0;}
   100%{width: 100%;}

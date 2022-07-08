@@ -85,21 +85,25 @@
                     </ng-container>
                     <ng-container matColumnDef="project">
                         <th mat-header-cell *matHeaderCellDef>PROJECT</th>
-                        <td mat-cell *matCellDef="let element"> {{element.p_name || '-'}} </td>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.p_name || '-'}}<br>
+                            {{element.center_name || 'Not assigned'}}
+                        </td>
                     </ng-container>
                     <ng-container matColumnDef="incident">
                         <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">INCIDENT</th>
                         <td mat-cell *matCellDef="let element"> {{element.incident_description || '-'}} </td>
                     </ng-container>
                     <ng-container matColumnDef="assign">
-                        <th mat-header-cell *matHeaderCellDef>ASSIGN</th>
+                        <th mat-header-cell *matHeaderCellDef>Users</th>
                         <td class="text-center" mat-cell *matCellDef="let element">
-                            <ng-container *ngFor="let assing of element.assigns">
-                                <span class="img-text">{{assing.value_initials | uppercase}}</span>
+                            <ng-container *ngFor="let assing of element.assigns; index as i">
+                                <span *ngIf="i < limitAsssign" class="img-text" (mousemove)="selectAssign($event, assing)" (mouseleave)="deselectAssing()">{{assing.initials | uppercase}}</span>
                             </ng-container>
                             <ng-container *ngIf="!element.assigns || !element.assigns.length">-</ng-container>
+                            <span *ngIf="element.assigns.length > limitAsssign" class="img-text" (mousemove)="selectMoreAssign($event, element.assigns)" (mouseleave)="deselectAssing()">+{{element.assigns.length - limitAsssign}}</span>
                         </td>
-                        </ng-container>
+                    </ng-container>
                     <ng-container matColumnDef="comments">
                         <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
                         <td class="commets" mat-cell *matCellDef="let element">
@@ -115,4 +119,13 @@
             </section>
         </mat-sidenav-content>
     </mat-sidenav-container>
+</div>
+
+<div *ngIf="_cS.showContext" class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
+    <ng-container *ngIf="selectedAssign">{{selectedAssign.email}}</ng-container>
+    <ng-container *ngIf="moreAssign.length">
+        <ng-container *ngFor="let assing of moreAssign | slice:limitAsssign:moreAssign.length">
+            {{assing.email}}<br>
+        </ng-container>
+    </ng-container>
 </div>

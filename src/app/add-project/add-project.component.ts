@@ -121,7 +121,6 @@ export class AddProjectComponent implements OnInit {
 				p_name: this.project.p_name,
 				p_season: this.project.p_season,
 				p_abbreviation: this.project.p_abbreviation,
-				users: this.project.users,
 				id: this.project.id,
 				company: this.project.production_company
 			})

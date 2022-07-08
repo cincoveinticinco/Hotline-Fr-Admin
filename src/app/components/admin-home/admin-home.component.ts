@@ -2,6 +2,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
+import { ComunService } from 'src/app/services/comun.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -17,7 +18,6 @@ export class AdminHomeComponent implements OnInit {
   searchProperties: string[] = ['r_reference','r_status_txt', 'Incident_type', 'p_name', 'incident_description'];
   dataSource: any[] = [];
   filteredDataSource: any[] = [];
-  reason = '';
   statuses: any[] = [];
   types: any[] = [];
   centers: any[] = [];
@@ -29,10 +29,14 @@ export class AdminHomeComponent implements OnInit {
   view: string = 'home';
   user: any = null;
   activeFilters: boolean = false;
+  selectedAssign: any = null;
+  moreAssign: any[] = [];
+  limitAsssign: number = 5;
 
   constructor(
     public _aS: AdminService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public _cS: ComunService
   ) {};
 
   ngOnInit(): void {
@@ -71,7 +75,14 @@ export class AdminHomeComponent implements OnInit {
     this._aS.getListReports().subscribe(
       (data: any) => {
         this.dataSource = data.reports ? data.reports : [];
-        this.dataSource.map((rpt: any) => rpt.assigns?.map((assign: any) => assign.value_initials = `${assign.first_name[0]}${assign.last_name[0]}`));
+        this.dataSource.map(report=> {
+          let assigns: any[] = [];
+          if(report.users_assigned) {
+            const users = report.users_assigned.split(';');
+            users.map((user: any) => assigns.push({initials: user.split(',')[0], email: user.split(',')[1]}));
+          }
+          report.assigns = assigns;
+        })
         this.statuses = data.report_statuses && data.report_statuses.length ? data.report_statuses : [];
         this.types = data.incident_types && data.incident_types.length ? data.incident_types : [];
         this.centers = data.centers && data.centers.length ? data.centers : [];
@@ -138,5 +149,21 @@ export class AdminHomeComponent implements OnInit {
 
   changeView(newView: string) {
     this.view = newView;
+  }
+
+  selectAssign(ev: MouseEvent, newAssing?: any) {
+    this.selectedAssign = newAssing;
+    this._cS.onMouseEnterContext(ev, 1);
+  }
+
+  selectMoreAssign(ev: MouseEvent, newAssings: any[]) {
+    this.moreAssign = newAssings;
+    this._cS.onMouseEnterContext(ev, 1);
+  }
+
+  deselectAssing() {
+    this.selectedAssign = null;
+    this.moreAssign = [];
+    this._cS.hidemenu();
   }
 }

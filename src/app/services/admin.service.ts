@@ -167,6 +167,14 @@ export class AdminService {
 			)
 	}
 
+	deleteProject (projectId: number) {
+		let params = {
+			'id': projectId
+		};
+		return this.http.post(this.service_url + 'admin/deleteProject', params, this.httpOptions).pipe(
+			map((response: any) => response))
+	}
+
 	getUser() {
 		const token = this._cookieService.get('hotline') || '';
 		return this.http.get(this.service_url + 'admin/getUser', {

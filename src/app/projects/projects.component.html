@@ -11,6 +11,15 @@
     [project]="itemact"
     [centers]="centers">
 </app-add-project>
+<app-popup-general
+    *ngIf="view == 'confirm-delete-project'"
+    [title]="'Delete project'"
+    [message]="'Are you sure to delete this project?'"
+    [item]="this.selectedProject.p_name"
+    (closePopup)="cancelDelete()"
+    (confirmPopup)="deleteProject()">
+</app-popup-general>
+
 <div class="content">
     <app-nav-top>
         <div [routerLink]="'../admin-home'" class="nav-option"><span>INCIDENTS</span></div>
@@ -41,8 +50,8 @@
         </div>
     </form>
     <section class="table-container" tabindex="0">
-        <table mat-table [dataSource]="filteredDataSource">
-            <ng-container  matColumnDef="production_company">
+        <table *ngIf="!loading" mat-table [dataSource]="filteredDataSource">
+            <ng-container matColumnDef="production_company">
                 <th mat-header-cell *matHeaderCellDef >Production Company</th>
                 <td mat-cell *matCellDef="let element">{{element.production_company || '-' }}</td>
             </ng-container>
@@ -51,19 +60,19 @@
                 <td mat-cell *matCellDef="let element">{{element.p_name | nulls }}</td>
             </ng-container>
             <ng-container  matColumnDef="abbreviation">
-                <th mat-header-cell *matHeaderCellDef style="width: 10px;">ABBR.</th>
+                <th mat-header-cell *matHeaderCellDef>ABBR.</th>
                 <td mat-cell *matCellDef="let element">{{element.p_abbreviation || '-----' }}</td>
             </ng-container>
             <ng-container matColumnDef="season">
-                <th mat-header-cell *matHeaderCellDef style="width: 10px;" >SEASON </th>
+                <th mat-header-cell *matHeaderCellDef>SEASON </th>
                 <td style="text-align: center;"  mat-cell *matCellDef="let element">{{element.p_season | nulls}}</td>
             </ng-container>
             <ng-container matColumnDef="center">
-                <th mat-header-cell *matHeaderCellDef style="width: 80px;">CENTER</th>
+                <th mat-header-cell *matHeaderCellDef>CENTER</th>
                 <td mat-cell *matCellDef="let element"> {{element.center_name | nulls }}</td>
             </ng-container>
             <ng-container matColumnDef="location">
-                <th mat-header-cell *matHeaderCellDef style="width: 80px;">LOCATION</th>
+                <th mat-header-cell *matHeaderCellDef>LOCATION</th>
                 <td mat-cell *matCellDef="let element"> {{element.location_name | nulls}} </td>
             </ng-container>
             <ng-container matColumnDef="alias">
@@ -71,38 +80,49 @@
                 <td mat-cell *matCellDef="let element"> {{element.alias | nulls}} </td>
             </ng-container>
             <ng-container matColumnDef="assign">
-                <th mat-header-cell *matHeaderCellDef style="width: 80px;">ASSIGN</th>
-                <td style="text-align: center;" mat-cell *matCellDef="let element" >
-                    <ng-container *ngFor="let assing of element.assigns">
-                        <span class="img-text">{{assing.value_initials  || '-----' }}</span>
+                <th mat-header-cell *matHeaderCellDef>USERS</th>
+                <td class="text-center" mat-cell *matCellDef="let element">
+                    <ng-container *ngFor="let assing of element.assigns; index as i">
+                        <span *ngIf="i < limitAsssign" class="img-text" (mousemove)="selectAssign($event, assing)" (mouseleave)="deselectAssing()">{{assing.initials | uppercase}}</span>
                     </ng-container>
-                    <!-- <div *ngIf="item[head.list].length > 2" class="box-img box-imgg-asset" >
-                        <div (mouseleave)="_gS.hidemenu()" (mouseenter)="onClickUser($event, item)">
-                            <span>+{{item[head.list].length - 2}}</span>
-                        </div>
-                    </div> -->
+                    <ng-container *ngIf="!element.assigns || !element.assigns.length">-</ng-container>
+                    <span *ngIf="element.assigns.length > limitAsssign" class="img-text" (mousemove)="selectMoreAssign($event, element.assigns)" (mouseleave)="deselectAssing()">+{{element.assigns.length - limitAsssign}}</span>
                 </td>
-                </ng-container>
+            </ng-container>
             <ng-container  matColumnDef="open_inc">
-                <th mat-header-cell *matHeaderCellDef style="width: 20px;">OPEN INC.</th>
+                <th mat-header-cell *matHeaderCellDef>OPEN INC.</th>
                 <td style="text-align: center;"  mat-cell *matCellDef="let element"> {{element.open_reports | nulls}} </td>
             </ng-container>
             <ng-container matColumnDef="closed_inc">
-                <th mat-header-cell *matHeaderCellDef style="width: 15px;">CLOSED INC.</th>
+                <th mat-header-cell *matHeaderCellDef>CLOSED INC.</th>
                 <td style="text-align: center;"  mat-cell *matCellDef="let element"> {{element.closed_reports | nulls}} </td>
             </ng-container>
-            <ng-container matColumnDef="pk">
+            <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef style="width: 10px;"></th>
-                <td mat-cell *matCellDef="let element; let i = index">
-                    <div style="text-align: center;">
-                        <button class="btn-option" style="background-color: white;" (click)="showDetails(element)">
-                        <mat-icon aria-hidden="false" aria-label="comments" style="color: #3C9096;">drive_file_rename_outline</mat-icon>
-                    </button>
-                    </div>
+                <td class="text-center" mat-cell *matCellDef="let element">
+                    <mat-icon class="mat-icon-option" (click)="showDetails(element)">edit</mat-icon>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef style="width: 10px;"></th>
+                <td class="text-center" mat-cell *matCellDef="let element">
+                    <mat-icon *ngIf="!element.open_reports && !element.closed_reports" class="mat-icon-option color-red" (click)="confirmDeleteProject(element)">delete</mat-icon>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <mat-spinner *ngIf="loading"></mat-spinner>
+        <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
     </section>
+</div>
+
+
+<div *ngIf="_cS.showContext" class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
+    <ng-container *ngIf="selectedAssign">{{selectedAssign.email}}</ng-container>
+    <ng-container *ngIf="moreAssign.length">
+        <ng-container *ngFor="let assing of moreAssign | slice:limitAsssign:moreAssign.length">
+            {{assing.email}}<br>
+        </ng-container>
+    </ng-container>
 </div>

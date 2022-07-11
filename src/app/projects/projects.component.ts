@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AdminService } from '../services/admin.service';
 import { ComunService } from '../services/comun.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
 	selector: 'app-projects',
@@ -30,10 +31,12 @@ export class ProjectsComponent implements OnInit {
 	limitAsssign: number = 5;
 	selectedProject: any = null;
 	public service_url: string = environment.apiUrl;
+	token: string = '';
 
 	constructor(
 		private _aS: AdminService,
-		public _cS: ComunService
+		public _cS: ComunService,
+		private _lS: LoginService
 	) {}
 
 	update() {
@@ -42,6 +45,7 @@ export class ProjectsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.token = this._lS.getToken() || '';
 		this.loadData();
 	}
 

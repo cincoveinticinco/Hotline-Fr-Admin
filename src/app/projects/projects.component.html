@@ -100,7 +100,7 @@
             <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td class="text-center" style="white-space: nowrap;" mat-cell *matCellDef="let element">
-                    <a href="{{service_url}}admin/getQrCode?id={{element.id}}" target="_blank"><mat-icon class="mat-icon-option">qr_code_scanner</mat-icon></a>
+                    <a href="{{service_url}}admin/getQrCode?id={{element.id}}&abbreviation={{element.p_abbreviation}}&token={{token}}" target="_blank"><mat-icon class="mat-icon-option">qr_code_scanner</mat-icon></a>
                     <mat-icon class="mat-icon-option" (click)="showDetails(element)">edit</mat-icon>
                     <mat-icon *ngIf="!element.open_reports && !element.closed_reports" class="mat-icon-option color-red" (click)="confirmDeleteProject(element)">delete</mat-icon>
                 </td>

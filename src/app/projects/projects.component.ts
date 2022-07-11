@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { AdminService } from '../services/admin.service';
 import { ComunService } from '../services/comun.service';
 
@@ -28,6 +29,7 @@ export class ProjectsComponent implements OnInit {
   moreAssign: any[] = [];
 	limitAsssign: number = 5;
 	selectedProject: any = null;
+	public service_url: string = environment.apiUrl;
 
 	constructor(
 		private _aS: AdminService,

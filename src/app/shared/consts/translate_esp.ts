@@ -20,7 +20,15 @@ export const TRANSLATE_ESP: any = {
 	'delete': 'Borrar',
 	'email': 'Correo',
 	'save': 'Guardar',
-	'project users': 'Usuarios del proyecto'
+	'project users': 'Usuarios del proyecto',
+	'search': 'Buscar',
+	'insert': 'Insertar',
+
+
+	'projects': 'Proyectos',
+	'all statuses': 'Todos los estados',
+
+
 
 
 

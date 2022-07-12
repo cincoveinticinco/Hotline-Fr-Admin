@@ -7,21 +7,19 @@
         <h3>{{project.p_name}}</h3>
       </div>
       <div class="panel-center-body">
-        <form>
+        <form #form="ngForm" (ngSubmit)="submitForm()">
 
-          <div class="L-6 M-6 S-12 columns">
-            <label class="color-green-dark">{{'Country'}}</label>
-            <mat-select name="country" formControlName="country" placeholder="Select option" disableOptionCentering>
-              <mat-option *ngFor="let option of listProjects" [value]="option.code">
-                <ng-container *ngIf="option.id !== project.id">
-                  {{option.p_name}}
-                </ng-container>
+          <div class="L-12 M-12 S-12 columns">
+            <label class="color-green-dark">{{'Select project'}}</label>
+            <mat-select name="country" [(ngModel)]="mergeProject" placeholder="Select option" disableOptionCentering required>
+              <mat-option *ngFor="let option of listProjects" [value]="option">
+                {{option.p_name}}
               </mat-option>
             </mat-select>
           </div>
 
           <div class="submit-form center">
-            <button class="save-button">SAVE</button>
+            <button class="save-button" [disabled]="form.invalid">SAVE</button>
             <button type="button" class="cancel-button" (click)="close()">Cancel</button>
           </div>
         </form>

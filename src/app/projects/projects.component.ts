@@ -32,6 +32,7 @@ export class ProjectsComponent implements OnInit {
 	selectedProject: any = null;
 	public service_url: string = environment.apiUrl;
 	token: string = '';
+	openMenu: boolean = false;
 
 	constructor(
 		private _aS: AdminService,
@@ -64,7 +65,6 @@ export class ProjectsComponent implements OnInit {
 		this.loading = true;
 		this._aS.getListProjects().subscribe(
 			(data: any) => {
-				console.log(data);
 				this.dataSource = data.projects ? data.projects : [];
 				this.dataSource.map((project: any)=> {
           let assigns: any[] = [];
@@ -107,8 +107,8 @@ export class ProjectsComponent implements OnInit {
   }
 
 	confirmDeleteProject(porject: any) {
-		this.view = 'confirm-delete-project';
 		this.selectedProject = porject;
+		this.view = 'confirm-delete-project';
 	}
 
 	cancelDelete() {
@@ -132,11 +132,13 @@ export class ProjectsComponent implements OnInit {
   }
 
 	closeRowsMenu() {
+		this.openMenu = false;
     this._cS.hidemenu();
   }
 
   openRowsMenu(ev: MouseEvent, project: any) {
-    this.selectedProject = project;
+		this.openMenu = true;
+		this.selectedProject = project;
     this._cS.onMouseEnterContext(ev, 1);
   }
 }

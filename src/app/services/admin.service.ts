@@ -207,4 +207,17 @@ export class AdminService {
 				})
 			)
 	}
+
+	mergeProjects(currentProjectId: number, projectMergeId: number) {
+		let queryParams = {
+			'project_id': currentProjectId,
+			'merge_project_id': projectMergeId
+		}
+		return this.http.post(this.service_url + 'admin/mergeProjects', queryParams, this.httpOptions)
+			.pipe(
+				map((response: any) => {
+					return response;
+				})
+			)
+	}
 }

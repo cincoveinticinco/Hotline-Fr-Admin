@@ -23,7 +23,8 @@
     *ngIf="view == 'merge-projects'"
     [project]="selectedProject"
     [listProjects]="dataSource"
-    (closePanel)="changeView('home')">
+    (closePanel)="changeView('home')"
+    (notify)="update()">
 </app-merge-projects>
 
 <div class="content">
@@ -112,7 +113,7 @@
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (contextmenu)="openRowsMenu($event, row)"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr><!-- (contextmenu)="openRowsMenu($event, row)" -->
         </table>
         <mat-spinner *ngIf="loading"></mat-spinner>
         <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
@@ -120,7 +121,7 @@
 </div>
 
 
-<div *ngIf="_cS.showContext" class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
+<div *ngIf="_cS.showContext && (selectedAssign || moreAssign.length)" class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
     <ng-container *ngIf="selectedAssign">{{selectedAssign.email}}</ng-container>
     <ng-container *ngIf="moreAssign.length">
         <ng-container *ngFor="let assing of moreAssign | slice:limitAsssign:moreAssign.length">
@@ -129,7 +130,7 @@
     </ng-container>
 </div>
 
-<div *ngIf="_cS.showContext && selectedProject" class="context-menu-container" (click)="closeRowsMenu()" (contextmenu)="closeRowsMenu()">
+<div *ngIf="_cS.showContext && openMenu" class="context-menu-container" (click)="closeRowsMenu()" (contextmenu)="closeRowsMenu()">
     <div class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
         <button (click)="changeView('merge-projects')">Merge</button>
     </div>

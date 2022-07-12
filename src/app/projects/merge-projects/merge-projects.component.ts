@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-merge-projects',
@@ -11,16 +12,31 @@ export class MergeProjectsComponent implements OnInit {
   @Input() listProjects: any[] = [];
 
   @Output() closePanel = new EventEmitter<string>();
+  @Output() notify = new EventEmitter<string>();
 
   loading: boolean = false;
+  mergeProject: any = null;
 
-  constructor() { }
+  constructor(
+    private _aS: AdminService
+  ) { }
 
   ngOnInit(): void {
+    this.listProjects = this.listProjects.filter(project => project.id != this.project.id);
   }
 
   close() {
     this.closePanel.emit();
+  }
+
+  submitForm() {
+    this.loading = true;
+    this._aS.mergeProjects(this.project.id, this.mergeProject.id).subscribe(
+      () => {
+        this.notify.emit();
+        this.loading = false;
+      }
+    )
   }
 
 }

@@ -808,7 +808,7 @@ table .img-text {
 .context-menu {
   position: fixed;
   background-color: var(--white);
-  box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 33%);
+  box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
   padding: 6px;
   font-size: 11px;
   text-align: left;
@@ -824,14 +824,53 @@ table .img-text {
 .context-menu button {
   width: 100%;
   border: none;
-  padding: 6px;
-  margin: 1px 0;
+  padding: 6px 12px;
+  margin: 3px 0;
   border-radius: 3px;
   color: var(--black-light);
+  min-width: 200px;
+  display: block;
 }
 .context-menu button:hover {
   color: var(--white);
   background-color: var(--green-dark);
+}
+
+.panel-center {
+  background: var(--white);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 300;
+  text-transform: uppercase
+}
+
+.panel-center .mat-icon-close {
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 45px !important;
+  left: 10px;
+  top: 10px;
+}
+.panel-center-body {
+  width: 80%;
+  margin: auto;
+  padding: 50px 6px;
+  max-width: 500px;
+}
+.panel-center-body form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.panel-center-header {
+  width: 80%;
+  margin: 50px auto 10px;
+  text-align: center;
+}
+.panel-center-header h2 {
+  color: var(--green-dark);
 }
 
 @keyframes animationPanel {

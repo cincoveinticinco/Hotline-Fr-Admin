@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MatTableModule } from '@angular/material/table';
@@ -8,7 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,8 +30,18 @@ import { CookieModule } from 'ngx-cookie';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { PopupGeneralComponent } from './shared/components/popup-general/popup-general.component';
 import { AddIncidentComponent } from './components/admin-home/add-incident/add-incident.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import { MergeProjectsComponent } from './projects/merge-projects/merge-projects.component';
+import { TranslatePipe } from './shared/pipes/translate.pipe';
+
+
+import localeEs from '@angular/common/locales/es-US';
+import localeEn from '@angular/common/locales/en';
+import { LocaleService } from './services/locale.service';
+
+
+registerLocaleData(localeEs, 'es');
+registerLocaleData(localeEn, 'en');
 
 @NgModule({
 	declarations: [
@@ -49,7 +59,8 @@ import { MergeProjectsComponent } from './projects/merge-projects/merge-projects
 		FooterComponent,
   PopupGeneralComponent,
   AddIncidentComponent,
-  MergeProjectsComponent
+  MergeProjectsComponent,
+  TranslatePipe
 	],
 	imports: [
 		BrowserModule,
@@ -73,6 +84,11 @@ import { MergeProjectsComponent } from './projects/merge-projects/merge-projects
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptorService,
 			multi: true
+		},
+		{
+			provide: LOCALE_ID,
+			deps: [LocaleService],
+			useFactory: (LocaleService: { locale: string; }) => LocaleService.locale
 		},
 		DatePipe
 	],

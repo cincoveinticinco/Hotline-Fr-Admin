@@ -18,7 +18,7 @@
                     <h1>#{{report.report?.r_reference || ' -'}}</h1>
                 </div>
                 <div *ngIf="reportStatus == 2 && !selectedResponse">
-                    <button class="sidenav-header-btn bg-black" (click)="changeStatusReport()">Under review</button>
+                    <button class="sidenav-header-btn bg-black" (click)="changeStatusReport()">{{'Under review' | translate}}</button>
                 </div>
             </div>
         </div>
@@ -28,105 +28,105 @@
                 <div class="response response-detail">
                     <div class="response-icon">R</div>
                     <div class="response-info">
-                        <h3 class="color-green-dark">{{selectedResponse.user_name || '-'}}. ON {{(selectedResponse.date | date: 'mediumDate') || '--/--/----'}}</h3>
-                        <textarea [(ngModel)]="selectedResponse.reply_txt" placeholder="response ..."></textarea>
+                        <h3 class="color-green-dark">{{selectedResponse.user_name || '-'}}. {{'ON' | translate}} {{(selectedResponse.date | date: 'mediumDate') || '--/--/----'}}</h3>
+                        <textarea [(ngModel)]="selectedResponse.reply_txt" placeholder="{{'response' | translate}} ..."></textarea>
                     </div>
                 </div>
                 <div class="options-general">
-                    <button class="save-button" (click)="saveResponse()">SAVE</button>
-                    <button class="cancel-button" (click)="selectResponse(null)">Cancel</button>
+                    <button class="save-button" (click)="saveResponse()">{{'SAVE' | translate}}</button>
+                    <button class="cancel-button" (click)="selectResponse(null)">{{'Cancel' | translate}}</button>
                 </div>
             </ng-container>
             <ng-container *ngIf="view != 'edit-response'">
                 <div class="row">
                     <div class="L-6 M-6 S-6 columns">
-                        <h3 class="color-green-dark">STATUS</h3>
+                        <h3 class="color-green-dark">{{'STATUS' | translate}}</h3>
                         <span>{{report.report?.r_status_txt || '-'}}</span>
                     </div>
                     <div class="L-6 M-6 S-6 columns">
-                        <h3 class="color-green-dark">DATE REPORT</h3>
+                        <h3 class="color-green-dark">{{'DATE REPORT' | translate}}</h3>
                         <span>{{(report.report?.created_at | date: 'mediumDate') || '--/--/----'}}</span>
                     </div>
                     <div class="L-2 M-2 S-6 columns">
-                        <h3 class="color-green-dark">METHOD</h3>
+                        <h3 class="color-green-dark">{{'METHOD' | translate}}</h3>
                         <span>{{report.report?.r_method_txt || '-'}}</span>
                     </div>
                     <div class="L-4 M-4 S-6 columns">
-                        <h3 class="color-green-dark">REPORTER</h3>
+                        <h3 class="color-green-dark">{{'REPORTER' | translate}}</h3>
                         <span>{{getQuestion(3) || '-'}}</span>
                     </div>
                     <div class="L-6 M-6 S-12 columns">
-                        <h3 class="color-green-dark">NOTIFICATIONS</h3>
+                        <h3 class="color-green-dark">{{'NOTIFICATIONS' | translate}}</h3>
                         <span>{{getQuestion(4) || 'No'}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="L-2 M-2 S-6 columns">
-                        <h3 class="color-green-dark">CENTER</h3>
+                        <h3 class="color-green-dark">{{'CENTER' | translate}}</h3>
                         <span>{{report.report?.center_name || '-'}}</span>
                     </div>
                     <div class="L-4 M-4 S-6 columns">
-                        <h3 class="color-green-dark">PROJECT</h3>
+                        <h3 class="color-green-dark">{{'PROJECT' | translate}}</h3>
                           <span>{{report.report?.p_name || '-'}}</span>
                     </div>
                     <div class="L-6 M-6 S-12 columns">
-                        <h3 class="color-green-dark">POSITION ON PRODUCTION</h3>
+                        <h3 class="color-green-dark">{{'POSITION ON PRODUCTION' | translate}}</h3>
                           <span>{{getQuestion(9) || '-'}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="L-6 M-6 S-12 columns">
-                        <h3 class="color-green-dark">INCIDENT TYPE</h3>
+                        <h3 class="color-green-dark">{{'INCIDENT TYPE' | translate}}</h3>
                           <span>{{getQuestion(10) || '-'}}</span>
                     </div>
                     <div class="L-3 M-3 S-6 columns">
-                        <h3 class="color-green-dark">DATE INCIDENT</h3>
+                        <h3 class="color-green-dark">{{'DATE INCIDENT' | translate}}</h3>
                           <span>{{getQuestion(15) || '--/--/----'}}</span>
                     </div>
                     <div class="L-3 M-3 S-6 columns">
-                        <h3 class="color-green-dark">LOCATION INCIDENT</h3>
+                        <h3 class="color-green-dark">{{'LOCATION INCIDENT' | translate}}</h3>
                           <span>{{getQuestion(16) || '-'}}</span>
                     </div>
                 </div>
                 <div class="row">
-                    <h3 class="color-green-dark">INCIDENT</h3>
+                    <h3 class="color-green-dark">{{'INCIDENT' | translate}}</h3>
                       <p>{{getQuestion(13) || '-'}}</p>
                 </div>
                 <div class="row">
-                    <h3 class="color-green-dark">PEOPLE INVOLVED IN THE INCIDENT</h3>
+                    <h3 class="color-green-dark">{{'PEOPLE INVOLVED IN THE INCIDENT' | translate}}</h3>
                       <p >{{getQuestion(14) || '-'}}</p>
                 </div>
                 <div class="row">
-                  <h3 class="color-green-dark">REPEATED INCIDENT</h3>
+                  <h3 class="color-green-dark">{{'REPEATED INCIDENT' | translate}}</h3>
                       <p>{{getQuestion(17) || '-'}}</p>
                 </div>
                 <div class="row" style="flex: 1 1 300px;">
-                  <h3 class="color-green-dark">DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO</h3>
+                  <h3 class="color-green-dark">{{'DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO' | translate}}</h3>
                       <p>{{getQuestion(18) || '-'}}</p>
                 </div>
                 <div class="sidenav-container-responses">
-                    <h2 class="color-green-dark">RESPONSES</h2>
+                    <h2 class="color-green-dark">{{'RESPONSES' | translate}}</h2>
                     <div *ngIf="reportStatus != 6" class="response-textarea-container">
-                        <textarea [(ngModel)]="response" placeholder="Write your response ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
+                        <textarea [(ngModel)]="response" placeholder="{{'Write your response' | translate}} ..." [ngStyle]="{'height': heightTextarea + 'px'}" (click)="toggleTextarea(true)"></textarea>
                         <div *ngIf="isOpenTexarea" class="response-text-options">
 
                             <div class="L-6 M-6 S-12 columns">
-                                <mat-select name="status" [(ngModel)]="resposeStatus" placeholder="Insert" required disableOptionCentering placeholder="select option">
+                                <mat-select name="status" [(ngModel)]="resposeStatus" placeholder="{{'Insert' | translate}}" required disableOptionCentering placeholder="select option">
                                     <mat-option *ngFor="let status of RESPONSE_STATUS" [value]="status.id">
                                         {{ status.name | uppercase }}
                                     </mat-option>
                                 </mat-select>
                             </div>
                             <div>
-                                <button class="save-button sidenav-header-btn" (click)="saveReply()" [disabled]="!response || !resposeStatus">Save</button>
-                                <button class="cancel-button sidenav-header-btn bg-black" (click)="toggleTextarea()">cancel</button>
+                                <button class="save-button sidenav-header-btn" (click)="saveReply()" [disabled]="!response || !resposeStatus">{{'Save' | translate}}</button>
+                                <button class="cancel-button sidenav-header-btn bg-black" (click)="toggleTextarea()">{{'cancel' | translate}}</button>
                             </div>
                         </div>
                     </div>
                     <div *ngFor="let ask of report.replies" class="response">
                         <div class="response-icon">{{ask.email | slice:0:2 || 'R'}}</div>
                         <div class="response-info">
-                            <h3 class="color-green-dark">{{ask.email || ask.user_name || 'REPORTER'}}. ON {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
+                            <h3 class="color-green-dark">{{ask.email || ask.user_name || 'REPORTER'}}. {{'ON' | translate}} {{(ask.date | date: 'mediumDate') || '--/--/----'}}</h3>
                             <p>{{ask.reply_txt || '-'}}</p>
                         </div>
                         <div *ngIf="user == ask.user_id && reportStatus != 6" class="response-options">

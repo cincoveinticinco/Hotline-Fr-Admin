@@ -18,85 +18,85 @@
         </mat-sidenav>
         <mat-sidenav-content>
             <app-nav-top>
-                <!-- <div class="nav-option"><span>USERS</span></div>
-                <div class="nav-option"><span>CENTERS</span></div> -->
-                <div [routerLink]="'../projects'" class="nav-option"><span>PROJECTS</span></div>
+                <!-- <div class="nav-option"><span>{{'USERS' | translate}}</span></div>
+                <div class="nav-option"><span>{{'CENTERS' | translate}}</span></div> -->
+                <div [routerLink]="'../projects'" class="nav-option"><span>{{'PROJECTS' | translate}}</span></div>
                 <!-- <div class="nav-option"><span>INCIDENTS</span></div> -->
             </app-nav-top>
             <form>
                 <div class="header-page">
                     <div class="title-page">
-                        <span>INCIDENTS</span>
+                        <span>{{'INCIDENTS' | translate}}</span>
                     </div>
                     <div class="contaner-filters">
                         <div class="filters">
-                            <mat-select class="filter" name="status" [(ngModel)]="filters.status" (ngModelChange)="filter()" placeholder="ALL STATUSES" disableOptionCentering multiple>
-                                <mat-option>ALL STATUSES</mat-option>
+                            <mat-select class="filter" name="status" [(ngModel)]="filters.status" (ngModelChange)="filter()" placeholder="{{'ALL STATUSES' | translate}}" disableOptionCentering multiple>
+                                <mat-option>{{'ALL STATUSES' | translate}}</mat-option>
                                 <mat-option *ngFor="let status of statuses" [value]="status">
                                     {{ status.r_status_txt | uppercase }}
                                 </mat-option>
                             </mat-select>
-                            <mat-select class="filter" name="types" [(ngModel)]="filters.types" (ngModelChange)="filter()" placeholder="ALL TYPES" disableOptionCentering multiple>
-                                <mat-option>ALL TYPES</mat-option>
+                            <mat-select class="filter" name="types" [(ngModel)]="filters.types" (ngModelChange)="filter()" placeholder="{{'ALL TYPES' | translate}}" disableOptionCentering multiple>
+                                <mat-option>{{'ALL TYPES' | translate}}</mat-option>
                                 <mat-option *ngFor="let type of types" [value]="type">
                                     {{ type.q_option_title | uppercase }}
                                 </mat-option>
                             </mat-select>
-                            <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="ALL CENTERS" disableOptionCentering multiple>
-                                <mat-option>ALL CENTERS</mat-option>
+                            <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="{{'ALL CENTERS' | translate}}" disableOptionCentering multiple>
+                                <mat-option>{{'ALL CENTERS' | translate}}</mat-option>
                                 <mat-option *ngFor="let center of centers" [value]="center">
                                     {{ center.center_name | uppercase }}
                                 </mat-option>
                             </mat-select>
-                            <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="ALL PROJECTS" disableOptionCentering multiple>
-                                <mat-option>ALL PROJECTS</mat-option>
+                            <mat-select class="filter" name="project" [(ngModel)]="filters.project" (ngModelChange)="filter()" placeholder="{{'ALL PROJECTS' | translate}}" disableOptionCentering multiple>
+                                <mat-option>{{'ALL PROJECTS' | translate}}</mat-option>
                                 <mat-option *ngFor="let project of projects" [value]="project">
                                     {{ project.p_name | uppercase }}
                                 </mat-option>
                             </mat-select>
                             <div class="filter search-text final">
-                                <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" type="text" placeholder="SEARCH"/>
+                                <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" type="text" placeholder="{{'SEARCH' | translate}}"/>
                                 <mat-icon>search</mat-icon>
                             </div>
                             <button type="button" class="clear-button" (click)="dropFilters()">CLEAR</button>
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="save-button" (click)="changeView('add-incident')">ADD INCIDENT</button>
+                        <button type="button" class="save-button" (click)="changeView('add-incident')">{{'ADD INCIDENT' | translate}}</button>
                     </div>
                 </div>
             </form>
             <section class="table-container" tabindex="0">
                 <table *ngIf="!loading" mat-table [dataSource]="filteredDataSource">
                     <ng-container matColumnDef="number_report">
-                        <th mat-header-cell *matHeaderCellDef>REFERENCE</th>
+                        <th mat-header-cell *matHeaderCellDef>{{'REFERENCE' | translate}}</th>
                         <td mat-cell *matCellDef="let element"><span>{{element.r_reference || '-'}}</span></td>
                     </ng-container>
                     <ng-container matColumnDef="status">
-                        <th mat-header-cell *matHeaderCellDef>STATUS</th>
+                        <th mat-header-cell *matHeaderCellDef>{{'STATUS' | translate}}</th>
                         <td mat-cell *matCellDef="let element"><span>{{element.r_status_txt || '-'}}</span></td>
                     </ng-container>
                     <ng-container matColumnDef="incidentType">
-                        <th mat-header-cell *matHeaderCellDef>INCIDENT TYPE</th>
+                        <th mat-header-cell *matHeaderCellDef>{{'INCIDENT TYPE' | translate}}</th>
                         <td mat-cell *matCellDef="let element"><span>{{element.Incident_type || '-'}}</span></td>
                     </ng-container>
                     <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef>DATE</th>
+                        <th mat-header-cell *matHeaderCellDef>{{'DATE' | translate}}</th>
                         <td class="text-center" mat-cell *matCellDef="let element"> {{(element.created_at | date: 'mediumDate') || '--/--/----' }} </td>
                     </ng-container>
                     <ng-container matColumnDef="project">
-                        <th mat-header-cell *matHeaderCellDef>PROJECT</th>
+                        <th mat-header-cell *matHeaderCellDef>{{'PROJECT' | translate}}</th>
                         <td mat-cell *matCellDef="let element">
                             {{element.p_name || '-'}}<br>
-                            {{element.center_name || 'Not assigned'}}
+                            {{element.center_name || ('Not assigned' | translate)}}
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="incident">
-                        <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">INCIDENT</th>
+                        <th mat-header-cell *matHeaderCellDef style="min-width: 300px;">{{'INCIDENT' | translate}}</th>
                         <td mat-cell *matCellDef="let element"> {{element.incident_description || '-'}} </td>
                     </ng-container>
                     <ng-container matColumnDef="assign">
-                        <th mat-header-cell *matHeaderCellDef>Users</th>
+                        <th mat-header-cell *matHeaderCellDef>{{'Users' | translate}}</th>
                         <td class="text-center" mat-cell *matCellDef="let element">
                             <ng-container *ngFor="let assing of element.assigns; index as i">
                                 <span *ngIf="i < limitAsssign" class="img-text" (mousemove)="selectAssign($event, assing)" (mouseleave)="deselectAssing()">{{assing.initials | uppercase}}</span>
@@ -106,7 +106,7 @@
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="comments">
-                        <th mat-header-cell *matHeaderCellDef>COMMENTS</th>
+                        <th mat-header-cell *matHeaderCellDef>{{'COMMENTS' | translate}}</th>
                         <td class="commets" mat-cell *matCellDef="let element">
                             <mat-icon class="mat-icon-option color-grey" aria-hidden="false" aria-label="comments">forum</mat-icon>
                             <span>{{element.replies || '0'}}</span>
@@ -116,7 +116,7 @@
                     <tr style="cursor: pointer;" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)"></tr>
                 </table>
                 <mat-spinner *ngIf="loading"></mat-spinner>
-                <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
+                <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">{{'NO DATA FOUND' | translate}}</div>
             </section>
         </mat-sidenav-content>
     </mat-sidenav-container>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-merge-projects',
@@ -6,6 +6,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./merge-projects.component.css']
 })
 export class MergeProjectsComponent implements OnInit {
+
+  @Input() project: any = null;
+  @Input() listProjects: any[] = [];
 
   @Output() closePanel = new EventEmitter<string>();
 

@@ -769,14 +769,16 @@ table .img-text {
   width: 90%;
   margin: 0 auto 50px;
 }
-.panel-lateral .submit-form {
+.panel-lateral .submit-form,
+.panel-center .submit-form {
   display: flex;
   justify-content: end;
   width: 100%;
   padding: 30px 0;
   flex-wrap: wrap;
 }
-.panel-lateral .submit-form.center {
+.panel-lateral .submit-form.center,
+.panel-center .submit-form.center {
   justify-content: center;
 }
 .panel-lateral h5,

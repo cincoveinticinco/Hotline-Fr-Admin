@@ -166,13 +166,4 @@ export class AdminHomeComponent implements OnInit {
     this.moreAssign = [];
     this._cS.hidemenu();
   }
-
-  closeRowsMenu() {
-    this._cS.hidemenu();
-  }
-
-  openRowsMenu(ev: MouseEvent, report: any) {
-    this.selectedReport = report;
-    this._cS.onMouseEnterContext(ev, 1);
-  }
 }

@@ -130,8 +130,3 @@
         </ng-container>
     </ng-container>
 </div>
-<div *ngIf="_cS.showContext && selectedReport" class="context-menu-container" (click)="closeRowsMenu()" (contextmenu)="closeRowsMenu()">
-    <div class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
-        <button (click)="changeView('merge-projects')">Merge</button>
-    </div>
-</div>

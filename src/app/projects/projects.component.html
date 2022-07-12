@@ -19,6 +19,12 @@
     (closePopup)="cancelDelete()"
     (confirmPopup)="deleteProject()">
 </app-popup-general>
+<app-merge-projects
+    *ngIf="view == 'merge-projects'"
+    [project]="selectedProject"
+    [listProjects]="dataSource"
+    (closePanel)="changeView('home')">
+</app-merge-projects>
 
 <div class="content">
     <app-nav-top>
@@ -106,7 +112,7 @@
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (contextmenu)="openRowsMenu($event, row)"></tr>
         </table>
         <mat-spinner *ngIf="loading"></mat-spinner>
         <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
@@ -121,4 +127,10 @@
             {{assing.email}}<br>
         </ng-container>
     </ng-container>
+</div>
+
+<div *ngIf="_cS.showContext && selectedProject" class="context-menu-container" (click)="closeRowsMenu()" (contextmenu)="closeRowsMenu()">
+    <div class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
+        <button (click)="changeView('merge-projects')">Merge</button>
+    </div>
 </div>

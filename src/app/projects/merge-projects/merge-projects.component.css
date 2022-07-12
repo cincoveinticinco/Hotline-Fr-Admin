@@ -1,0 +1,36 @@
+.panel-center {
+  background: var(--white);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 300;
+  text-transform: uppercase
+}
+
+.panel-center .mat-icon-close {
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 45px !important;
+  left: 10px;
+  top: 10px;
+}
+.panel-center-body {
+  width: 80%;
+  margin: auto;
+  padding: 50px 6px;
+}
+.panel-center-body form {
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.panel-center-header {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+.panel-center-header h2 {
+  color: var(--green-dark);
+}

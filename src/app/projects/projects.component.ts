@@ -130,6 +130,15 @@ export class ProjectsComponent implements OnInit {
 			}
 		});
   }
+
+	closeRowsMenu() {
+    this._cS.hidemenu();
+  }
+
+  openRowsMenu(ev: MouseEvent, project: any) {
+    this.selectedProject = project;
+    this._cS.onMouseEnterContext(ev, 1);
+  }
 }
 
 

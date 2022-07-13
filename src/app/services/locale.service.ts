@@ -16,7 +16,7 @@ export class LocaleService {
       'img': '../../assets/img/spanish.png'
     },
     {
-      'name': 'po',
+      'name': 'pt',
       'img': '../../assets/img/brasilian.png'
     },
   ];

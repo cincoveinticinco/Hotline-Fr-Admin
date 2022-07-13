@@ -37,11 +37,13 @@ import { TranslatePipe } from './shared/pipes/translate.pipe';
 
 import localeEs from '@angular/common/locales/es-US';
 import localeEn from '@angular/common/locales/en';
+import localePt from '@angular/common/locales/pt';
 import { LocaleService } from './services/locale.service';
 
 
 registerLocaleData(localeEs, 'es');
 registerLocaleData(localeEn, 'en');
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
 	declarations: [

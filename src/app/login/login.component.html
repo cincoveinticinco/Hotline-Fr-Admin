@@ -4,17 +4,17 @@
             <h1 class="color-black">ONE<span class="color-green-dark">HOTLINE</span></h1>
         </div>
         <div class="subtitle">
-            <h2 class="color-black">ADMIN MODULE</h2>
+            <h2 class="color-black">{{'ADMIN MODULE' | translate}}</h2>
         </div>
         <div *ngIf="email" class="login-message color-black">
-            <p>TOKEN SUCCESSFULLY GENERATED.</p>
-            <p>PLEASE CHECK YOUR EMAIL</p>
+            <p>{{'TOKEN SUCCESSFULLY GENERATED.' | translate}}</p>
+            <p>{{'PLEASE CHECK YOUR EMAIL' | translate}}</p>
             <p class="email">({{email}})</p>
         </div>
         <div class="login-form">
                 <form [formGroup]="formToken" (ngSubmit)="sendToken()">
                     <div *ngIf="!email" class="form-section">
-                        <input name="email" formControlName="email" class="form-input" type="email" placeholder="EMAIL">
+                        <input name="email" formControlName="email" class="form-input" type="email" placeholder="{{'EMAIL' | translate}}">
                     </div>
                     <div class="form-section">
                     <input name="token" formControlName="token" class="form-input" type="token" required placeholder="TOKEN" (ngModelChange)="resetMessages()">
@@ -22,12 +22,12 @@
                 <mat-error *ngIf="errorResponse">{{errorResponse}}</mat-error>
                 <a *ngIf="newToken" class="color-green-dark" style="font-size: 12px;">{{newToken}}</a>
                 <div class="form-section btn-request">
-                    <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">LOGIN</button>
+                    <button class="bg-green-dark" id="button-login" type="submit" [disabled]="!formToken.valid">{{'LOGIN' | translate}}</button>
                 </div>
             </form>
             <div class="login-link">
-                <a (click)="sendEmail()" class="color-green-dark generate-token" [ngClass]="{'available': getEmail()?.valid}">GENERATE NEW TOKEN</a>
-                <a *ngIf="this.email" [routerLink]="['..', 'request-token']" class="color-grey go-back">Change e-mail</a>
+                <a (click)="sendEmail()" class="color-green-dark generate-token" [ngClass]="{'available': getEmail()?.valid}">{{'GENERATE NEW TOKEN' | translate}}</a>
+                <a *ngIf="this.email" [routerLink]="['..', 'request-token']" class="color-grey go-back">{{'Change e-mail' | translate}}</a>
             </div>
         </div>
     </div>

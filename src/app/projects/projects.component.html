@@ -13,8 +13,8 @@
 </app-add-project>
 <app-popup-general
     *ngIf="view == 'confirm-delete-project'"
-    [title]="'Delete project'"
-    [message]="'Are you sure to delete this project?'"
+    title="{{'Delete project' | translate}}"
+    message="{{'Are you sure to delete this project?' | translate}}"
     [item]="this.selectedProject.p_name"
     (closePopup)="cancelDelete()"
     (confirmPopup)="deleteProject()">
@@ -29,41 +29,41 @@
 
 <div class="content">
     <app-nav-top>
-        <div [routerLink]="'../admin-home'" class="nav-option"><span>INCIDENTS</span></div>
+        <div [routerLink]="'../admin-home'" class="nav-option"><span>{{'INCIDENTS' | translate}}</span></div>
         <!-- <div class="nav-option"><span>USERS</span></div> -->
     </app-nav-top>
     <form>
         <div class="header-page">
             <div class="title-page">
-                <span>PROJECTS</span>
+                <span>{{'PROJECTS' | translate}}</span>
             </div>
             <div class="contaner-filters">
                 <div class="filters">
-                    <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="CENTERS" disableOptionCentering>
-                        <mat-option [value]="null">ALL CENTERS</mat-option>
+                    <mat-select class="filter" name="centers" [(ngModel)]="filters.centers" (ngModelChange)="filter()" placeholder="{{'CENTERS' | translate}}" disableOptionCentering>
+                        <mat-option [value]="null">{{'ALL CENTERS' | translate}}</mat-option>
                         <mat-option *ngFor="let center of centers" [value]="center">
                             {{ center.center_name | uppercase }}
                         </mat-option>
                     </mat-select>
                     <div class="search-text filter final">
-                        <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" type="text" placeholder="SEARCH"/>
+                        <input name="searchText" [(ngModel)]="filters.searchText" (ngModelChange)="filter()" type="text" placeholder="{{'SEARCH' | translate}}"/>
                         <mat-icon>search</mat-icon>
                     </div>
                 </div>
             </div>
             <div>
-                <button type="button" (click)="changeView('add-project')" class="save-button">ADD PROJECT</button>
+                <button type="button" (click)="changeView('add-project')" class="save-button">{{'ADD PROJECT' | translate}}</button>
             </div>
         </div>
     </form>
     <section class="table-container" tabindex="0">
         <table *ngIf="!loading" mat-table [dataSource]="filteredDataSource">
             <ng-container matColumnDef="production_company">
-                <th mat-header-cell *matHeaderCellDef >Production Company</th>
+                <th mat-header-cell *matHeaderCellDef >{{'Production Company' | translate}}</th>
                 <td mat-cell *matCellDef="let element">{{element.production_company || '-' }}</td>
             </ng-container>
             <ng-container  matColumnDef="project">
-                <th mat-header-cell *matHeaderCellDef >PROJECT</th>
+                <th mat-header-cell *matHeaderCellDef >{{'PROJECT' | translate}}</th>
                 <td mat-cell *matCellDef="let element">{{element.p_name | nulls }}</td>
             </ng-container>
             <ng-container  matColumnDef="abbreviation">
@@ -71,15 +71,15 @@
                 <td mat-cell *matCellDef="let element">{{element.p_abbreviation || '-----' }}</td>
             </ng-container>
             <ng-container matColumnDef="season">
-                <th mat-header-cell *matHeaderCellDef>SEASON </th>
+                <th mat-header-cell *matHeaderCellDef>{{'SEASON' | translate}}</th>
                 <td style="text-align: center;"  mat-cell *matCellDef="let element">{{element.p_season | nulls}}</td>
             </ng-container>
             <ng-container matColumnDef="center">
-                <th mat-header-cell *matHeaderCellDef>CENTER</th>
+                <th mat-header-cell *matHeaderCellDef>{{'CENTER' | translate}}</th>
                 <td mat-cell *matCellDef="let element"> {{element.center_name | nulls }}</td>
             </ng-container>
             <ng-container matColumnDef="location">
-                <th mat-header-cell *matHeaderCellDef>LOCATION</th>
+                <th mat-header-cell *matHeaderCellDef>{{'LOCATION' | translate}}</th>
                 <td mat-cell *matCellDef="let element"> {{element.location_name | nulls}} </td>
             </ng-container>
             <ng-container matColumnDef="alias">
@@ -87,7 +87,7 @@
                 <td mat-cell *matCellDef="let element"> {{element.alias | nulls}} </td>
             </ng-container>
             <ng-container matColumnDef="assign">
-                <th mat-header-cell *matHeaderCellDef>USERS</th>
+                <th mat-header-cell *matHeaderCellDef>{{'USERS' | translate}}</th>
                 <td class="text-center" mat-cell *matCellDef="let element">
                     <ng-container *ngFor="let assing of element.assigns; index as i">
                         <span *ngIf="i < limitAsssign" class="img-text" (mousemove)="selectAssign($event, assing)" (mouseleave)="deselectAssing()">{{assing.initials | uppercase}}</span>
@@ -97,11 +97,11 @@
                 </td>
             </ng-container>
             <ng-container  matColumnDef="open_inc">
-                <th mat-header-cell *matHeaderCellDef>OPEN INC.</th>
+                <th mat-header-cell *matHeaderCellDef>{{'OPEN INC' | translate}}.</th>
                 <td style="text-align: center;"  mat-cell *matCellDef="let element"> {{element.open_reports | nulls}} </td>
             </ng-container>
             <ng-container matColumnDef="closed_inc">
-                <th mat-header-cell *matHeaderCellDef>CLOSED INC.</th>
+                <th mat-header-cell *matHeaderCellDef>{{'CLOSED INC' | translate}}.</th>
                 <td style="text-align: center;"  mat-cell *matCellDef="let element"> {{element.closed_reports | nulls}} </td>
             </ng-container>
             <ng-container matColumnDef="edit">
@@ -116,7 +116,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr><!-- (contextmenu)="openRowsMenu($event, row)" -->
         </table>
         <mat-spinner *ngIf="loading"></mat-spinner>
-        <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">NO DATA FOUND</div>
+        <div *ngIf="!filteredDataSource.length && !loading" class="no-data-found">{{'NO DATA FOUND' | translate}}</div>
     </section>
 </div>
 
@@ -132,6 +132,6 @@
 
 <div *ngIf="_cS.showContext && openMenu" class="context-menu-container" (click)="closeRowsMenu()" (contextmenu)="closeRowsMenu()">
     <div class="context-menu uppercase" [style.left]="_cS.contextmenux" [style.top]="_cS.contextmenuy">
-        <button (click)="changeView('merge-projects')">Merge</button>
+        <button (click)="changeView('merge-projects')">{{'Merge' | translate}}</button>
     </div>
 </div>

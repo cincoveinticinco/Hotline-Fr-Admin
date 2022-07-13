@@ -5,47 +5,47 @@
     <ng-container *ngIf="!loading">
 
       <div class="panel-lateral-header">
-        <h2>{{project ? project.p_name : "New project"}}</h2>
+        <h2>{{project ? project.p_name : "{{'New project' | translate}}"}}</h2>
       </div>
 
       <div class="panel-lateral-body">
         <form [formGroup]="form" (ngSubmit)="Save()">
 
 					<div class="L-8 M-8 S-12 columns">
-						<label class="color-green-dark">PROJECT NAME</label>
-						<input name="p_name" formControlName="p_name" type="text" placeholder="Insert" required (ngModelChange)="dropResposeError()"/>
+						<label class="color-green-dark">{{'PROJECT NAME' | translate}}</label>
+						<input name="p_name" formControlName="p_name" type="text" placeholder="{{'Insert' | translate}}" required (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-4 M-4 S-12 columns">
-						<label class="color-green-dark">ABBREVIATION</label>
-						<input name="p_abbreviation" formControlName="p_abbreviation" type="text" placeholder="Insert" required (ngModelChange)="dropResposeError()"/>
+						<label class="color-green-dark">{{'ABBREVIATION' | translate}}</label>
+						<input name="p_abbreviation" formControlName="p_abbreviation" type="text" placeholder="{{'Insert' | translate}}" required (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-8 M-8 S-12 columns">
-						<label class="color-green-dark">Production Company</label>
-						<input name="company" formControlName="company" type="text" placeholder="Insert" required (ngModelChange)="dropResposeError()"/>
+						<label class="color-green-dark">{{'Production Company' | translate}}</label>
+						<input name="company" formControlName="company" type="text" placeholder="{{'Insert' | translate}}" required (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-4 M-4 S-12 columns">
-						<label class="color-green-dark">SEASON</label>
-						<input name="p_season" formControlName="p_season" type="text" placeholder="Insert" (ngModelChange)="dropResposeError()"/>
+						<label class="color-green-dark">{{'SEASON' | translate}}</label>
+						<input name="p_season" formControlName="p_season" type="text" placeholder="{{'Insert' | translate}}" (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-6 M-6 S-12 columns">
-						<label class="color-green-dark">CENTER</label>
-						<mat-select name="center_id" formControlName="center_id" placeholder="Insert" required disableOptionCentering (ngModelChange)="dropResposeError()">
+						<label class="color-green-dark">{{'CENTER' | translate}}</label>
+						<mat-select name="center_id" formControlName="center_id" placeholder="{{'Insert' | translate}}" required disableOptionCentering (ngModelChange)="dropResposeError()">
 							<mat-option *ngFor="let center of centers" [value]="center.id">
 								{{ center.center_name | uppercase }}
 							</mat-option>
 						</mat-select>
 					</div>
 					<div class="L-6 M-6 S-12 columns">
-						<label class="color-green-dark">LOCATION</label>
-						<input name="location_name" formControlName="location_name" type="text" placeholder="Insert" (ngModelChange)="dropResposeError()"/>
+						<label class="color-green-dark">{{'LOCATION' | translate}}</label>
+						<input name="location_name" formControlName="location_name" type="text" placeholder="{{'Insert' | translate}}" (ngModelChange)="dropResposeError()"/>
 					</div>
 
-					<h2 class="color-green-dark">{{'Alias'}}</h2>
+					<h2 class="color-green-dark">{{'Alias' | translate}}</h2>
 					<div class="L-10 M-10 S-12 columns">
-						<input name="alias" formControlName="alias" type="text" placeholder="Insert" (ngModelChange)="dropResposeError()"/>
+						<input name="alias" formControlName="alias" type="text" placeholder="{{'Insert' | translate}}" (ngModelChange)="dropResposeError()"/>
 					</div>
 					<div class="L-2 M-2 S-12 columns">
-						<button type="button" (click)="addAlias()" class="save-button">ADD</button>
+						<button type="button" (click)="addAlias()" class="save-button">{{'ADD' | translate}}</button>
 					</div>
 					<div class="L-12 M-12 S-12 columns" formArrayName="aliases">
 						<div class="item-form-array" *ngFor="let alias of aliases.controls; let i=index">
@@ -56,12 +56,12 @@
 
 					<h2 class="color-green-dark">{{'Project users'}}</h2>
 					<div class="L-10 M-10 S-12 columns">
-						<label class="color-green-dark">EMAIL</label>
-						<input name="users" formControlName="users" type="token" placeholder="Email" (ngModelChange)="dropResposeError()">
+						<label class="color-green-dark">{{'EMAIL' | translate}}</label>
+						<input name="users" formControlName="users" type="token" placeholder="{{'Email' | translate}}" (ngModelChange)="dropResposeError()">
 					</div>
 					<div class="L-2 M-2 S-12 columns">
 						<br>
-						<button type="button" (click)="addCorreos()" class="save-button">ADD</button>
+						<button type="button" (click)="addCorreos()" class="save-button">{{'ADD' | translate}}</button>
 					</div>
 					<div class="L-12 M-12 S-12 columns" formArrayName="correos">
 						<div class="item-form-array" *ngFor="let correo of correos.controls; let i=index">
@@ -75,7 +75,7 @@
 					</div>
 
           <div class="submit-form">
-            <button class="save-button" [disabled]="form.invalid">SAVE</button>
+            <button class="save-button" [disabled]="form.invalid">{{'SAVE' | translate}}</button>
           </div>
         </form>
       </div>

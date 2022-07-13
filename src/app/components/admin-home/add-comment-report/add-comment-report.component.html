@@ -101,7 +101,7 @@
                       <p>{{getQuestion(17) || '-'}}</p>
                 </div>
                 <div class="row" style="flex: 1 1 300px;">
-                  <h3 class="color-green-dark">{{'DISCUSSED INCIDENT WITH MANAGER OR SUPERVISO' | translate}}</h3>
+                  <h3 class="color-green-dark">{{'DISCUSSED INCIDENT WITH MANAGER OR SUPERVISOR' | translate}}</h3>
                       <p>{{getQuestion(18) || '-'}}</p>
                 </div>
                 <div class="sidenav-container-responses">
@@ -111,7 +111,7 @@
                         <div *ngIf="isOpenTexarea" class="response-text-options">
 
                             <div class="L-6 M-6 S-12 columns">
-                                <mat-select name="status" [(ngModel)]="resposeStatus" placeholder="{{'Insert' | translate}}" required disableOptionCentering placeholder="select option">
+                                <mat-select name="status" [(ngModel)]="resposeStatus" placeholder="{{'Insert' | translate}}" required disableOptionCentering placeholder="{{'select option' | translate}}">
                                     <mat-option *ngFor="let status of RESPONSE_STATUS" [value]="status.id">
                                         {{ status.name | uppercase }}
                                     </mat-option>

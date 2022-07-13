@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocaleService } from 'src/app/services/locale.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 export class NavTopComponent implements OnInit {
 
   constructor(
-    private _lS: LoginService
+    private _lS: LoginService,
+    public _locS: LocaleService
   ) { }
 
   ngOnInit(): void {

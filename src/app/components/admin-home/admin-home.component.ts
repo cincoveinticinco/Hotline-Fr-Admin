@@ -58,7 +58,11 @@ export class AdminHomeComponent implements OnInit {
   ngAfterViewInit() {
     this.route.params.subscribe(
       (data: any) => {
-        if(data.id) this.showDetails({id: data.id})
+        if(data.id) {
+          setTimeout(() => {
+            this.showDetails({id: data.id});
+          }, 0);
+        }
 			}
 		);
   }

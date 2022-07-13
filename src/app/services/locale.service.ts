@@ -5,8 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LocaleService {
 
-  private language: string = 'es';
-  readonly DEFAULT_LANGUAGE = 'es';
+  readonly DEFAULT_LANGUAGE = 'en';
   languages: any[] = [
     {
       'name': 'en',
@@ -25,9 +24,19 @@ export class LocaleService {
   constructor() { }
 
   set locale(value: string) {
-		this.language = value;
+		localStorage.setItem('hotline_loc', JSON.stringify(value));
 	}
 	get locale(): string {
-		return this.language || this.DEFAULT_LANGUAGE;
+		return this.getLanguage() || this.DEFAULT_LANGUAGE;
 	}
+
+  getLanguage(): string {
+    const loc = localStorage.getItem('hotline_loc');
+    return loc ? JSON.parse(loc) : this.DEFAULT_LANGUAGE;
+  }
+
+  setLanguage(language: string) {
+    localStorage.setItem('hotline_loc', JSON.stringify(language));
+    location.reload();
+  }
 }

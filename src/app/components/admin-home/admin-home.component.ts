@@ -1,7 +1,7 @@
 import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComunService } from 'src/app/services/comun.service';
 
 @Component({
@@ -36,10 +36,16 @@ export class AdminHomeComponent implements OnInit {
   constructor(
     public _aS: AdminService,
     private route: ActivatedRoute,
-    public _cS: ComunService
+    public _cS: ComunService,
+    private router: Router
   ) {};
 
   ngOnInit(): void {
+    let route = JSON.parse(localStorage.getItem('currentUrl') || '""');
+    if(route) {
+      localStorage.removeItem('currentUrl');
+      this.router.navigateByUrl(route);
+    }
     this.initFilters();
     this.getUser();
     this.loadData();

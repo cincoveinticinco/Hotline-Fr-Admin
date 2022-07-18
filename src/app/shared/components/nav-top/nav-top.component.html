@@ -6,12 +6,17 @@
     <ng-content></ng-content>
   </div>
   <div class="nav-end">
-    <div class="content-img">
-      <img class="img-round" src="../../../assets/img/english.svg.png" width="30" height="30" alt="Language">
-    </div>
-    <div class="nav-user bg-green-dark">
-        <!-- <button (click)="closeSession()" class="bg-green-dark">LA</button> -->
-        <button (click)="_locS.setLanguage('es')" class="bg-green-dark">LA</button>
+    <div class="nav-user">
+       <!-- <button (click)="closeSession()" class="bg-green-dark">LA</button> -->
+      <li>
+       <mat-icon  class="mat-icon-option" (click)="_locS.setLanguage('en')" >person_filled</mat-icon>
+        <ul class="menu-ver">
+          <li *ngIf="_locS.getLanguage() != 'en'" (click)="_locS.setLanguage('en')" class="text-menu-ver"><a>{{'English' | translate}}</a></li>
+          <li *ngIf="_locS.getLanguage() != 'es'" (click)="_locS.setLanguage('es')" class="text-menu-ver"><a>{{'Spanish' | translate}}</a></li>
+          <li *ngIf="_locS.getLanguage() != 'pt'" (click)="_locS.setLanguage('pt')" class="text-menu-ver"><a>{{'Portuguese' | translate}}</a></li>
+          <li style="font-weight: bold; color:#11888c" (click)="closeSession()" class="text-menu-ver"><a>{{'log out' | translate}}</a></li>
+        </ul>
+      </li>
     </div>
   </div>
 </div>

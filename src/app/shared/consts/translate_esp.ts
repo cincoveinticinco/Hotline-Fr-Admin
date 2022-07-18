@@ -93,6 +93,12 @@ export const TRANSLATE_ESP: any = {
 	'legal terms': 'Términos legales',
 	'data policy': 'Política de datos',
 	'copyright  © 2022 grupo cincoveinticinco sas. all rigths reserved': 'Derechos de autor © 2022 grupo cincoveinticinco sas. Todos los derechos reservados',
+	'log out': 'Cerrar sesión',
+	'spanish': 'Español',
+	'portuguese': 'Portugués',
+	'english': 'Inglés',
+	'new': 'Nuevo',
+	'closed': 'Cerrado'
 
 
 }

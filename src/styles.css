@@ -875,6 +875,10 @@ table .img-text {
   color: var(--green-dark);
 }
 
+.mat-drawer-content {
+  overflow: hidden !important;
+}
+
 @keyframes animationPanel {
   0%{width: 0;}
   100%{width: 100%;}

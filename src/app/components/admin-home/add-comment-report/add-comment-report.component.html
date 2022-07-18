@@ -28,7 +28,7 @@
                 <div class="response response-detail">
                     <div class="response-icon">R</div>
                     <div class="response-info">
-                        <h3 class="color-green-dark">{{selectedResponse.user_name || '-'}}. {{'ON' | translate}} {{(selectedResponse.date | date: 'mediumDate') || '--/--/----'}}</h3>
+                        <h3 class="color-green-dark">{{selectedResponse.email || selectedResponse.user_name || 'REPORTER'}}. {{'ON' | translate}} {{(selectedResponse.date | date: 'mediumDate') || '--/--/----'}}</h3>
                         <textarea [(ngModel)]="selectedResponse.reply_txt" placeholder="{{'response' | translate}} ..."></textarea>
                     </div>
                 </div>

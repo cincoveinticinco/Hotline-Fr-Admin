@@ -30,7 +30,10 @@ export class LoginComponent implements OnInit {
 					return;
 				}
 				this._lS.setToken(data.token);
-				this.router.navigate(['admin-home']);
+				let route = JSON.parse(localStorage.getItem('currentUrl') || '""');
+				route = route ? route : 'admin-home';
+				localStorage.removeItem('currentUrl');
+				this.router.navigateByUrl(route);
 				this.loading = false;
 			}
 		);

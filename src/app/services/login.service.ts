@@ -45,7 +45,7 @@ export class LoginService {
 
   removeCookies() {
 		this._cookieService.remove('hotline');
-		localStorage.clear();
+		//localStorage.clear();
 		sessionStorage.clear();
 	}
 
